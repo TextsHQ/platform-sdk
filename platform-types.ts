@@ -1,4 +1,5 @@
 import type { CookieJar } from 'tough-cookie'
+import React from 'react'
 import { ThreadActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './platform-enums'
 
 export type Awaitable<T> = T | PromiseLike<T>
@@ -215,15 +216,21 @@ export type MessageSendOptions = {
 
 // also modify relayer-constants.ts
 export interface PlatformAPI {
+  /** Initialize the platform
+   * @param accountID the unique identifier for the platform account
+   */
   init: (session?: any, accountID?: string) => Awaitable<void>
+  /** Clean up resources used by the platform */
   dispose: () => Awaitable<void>
-
+  /** Metadata for the current user */
   getCurrentUser: () => Awaitable<CurrentUser>
-
+  
   login?: (username?: string, password?: string) => Promise<LoginResult>
   loginWithJar?: (cookieJarJSON?: CookieJar.Serialized) => Promise<LoginResult>
   loginWithCode?: (loginResult: LoginResult, code: string) => Promise<LoginResult>
+  /** logout from the platform */
   logout?: () => Awaitable<void>
+  /** serialize & return the credentials required to log back in to the platform */
   serializeSession?: () => Awaitable<any>
 
   subscribeToEvents: (onEvent: OnServerEventCallback) => Awaitable<void>

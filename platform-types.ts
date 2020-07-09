@@ -1,5 +1,5 @@
 import type { CookieJar } from 'tough-cookie'
-import React from 'react'
+import type React from 'react'
 import { ThreadActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './platform-enums'
 
 export type Awaitable<T> = T | PromiseLike<T>
@@ -224,7 +224,7 @@ export interface PlatformAPI {
   dispose: () => Awaitable<void>
   /** Metadata for the current user */
   getCurrentUser: () => Awaitable<CurrentUser>
-  
+
   login?: (username?: string, password?: string) => Promise<LoginResult>
   loginWithJar?: (cookieJarJSON?: CookieJar.Serialized) => Promise<LoginResult>
   loginWithCode?: (loginResult: LoginResult, code: string) => Promise<LoginResult>

@@ -1,7 +1,7 @@
 {
   "name": "@textshq/platform-sdk",
-  "version": "0.1.0",
-  "main": "index.ts",
+  "version": "0.1.2",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TextsHQ/platform-sdk.git"

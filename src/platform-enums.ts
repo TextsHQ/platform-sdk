@@ -15,6 +15,7 @@ export enum Attribute {
   SUPPORTS_ARCHIVE,
   SUPPORTS_PIN_THREAD,
   SUPPORTS_STOP_TYPING_INDICATOR,
+  SUPPORTS_REQUESTS_INBOX,
 }
 
 export enum ThreadActionType {

@@ -1,5 +1,5 @@
-import { CookieJar } from 'tough-cookie'
-import React from 'react'
+import type { CookieJar } from 'tough-cookie'
+import type React from 'react'
 import { ThreadActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './platform-enums'
 
 export type Awaitable<T> = T | PromiseLike<T>
@@ -28,9 +28,6 @@ export type Action =
   ThreadParticipantsRemoved |
   GroupThreadCreated |
   MessageRequestAccepted
-
-// also modify constants.ts
-export type ReactionName = 'heart' | 'like' | 'dislike' | 'laugh' | 'surprised' | 'cry' | 'fire' | 'emphasize' | 'question'
 
 export type MessageSeen = boolean | Date | { [participantID: string]: Date | boolean }
 
@@ -108,7 +105,7 @@ export type MessagePreview = {
 }
 
 export type MessageReaction = {
-  reactionName: ReactionName
+  reactionName: string
   participantID: string
 }
 
@@ -216,21 +213,15 @@ export type MessageSendOptions = {
 
 // also modify relayer-constants.ts
 export interface PlatformAPI {
-  /** Initialize the platform
-   * @param accountID the unique identifier for the platform account
-   */
   init: (session?: any, accountID?: string) => Awaitable<void>
-  /** Clean up resources used by the platform */
   dispose: () => Awaitable<void>
-  /** Metadata for the current user */
+
   getCurrentUser: () => Awaitable<CurrentUser>
 
   login?: (username?: string, password?: string) => Promise<LoginResult>
   loginWithJar?: (cookieJarJSON?: CookieJar.Serialized) => Promise<LoginResult>
   loginWithCode?: (loginResult: LoginResult, code: string) => Promise<LoginResult>
-  /** logout from the platform */
   logout?: () => Awaitable<void>
-  /** serialize & return the credentials required to log back in to the platform */
   serializeSession?: () => Awaitable<any>
 
   subscribeToEvents: (onEvent: OnServerEventCallback) => Awaitable<void>
@@ -253,8 +244,8 @@ export interface PlatformAPI {
   sendFileFromBuffer: (threadID: string, fileBuffer: Buffer, mimeType: string, fileName?: string, options?: MessageSendOptions) => Promise<boolean>
 
   sendTypingIndicator: (threadID: string, typing?: boolean) => Awaitable<void>
-  addReaction?: (threadID: string, messageID: string, reactionName: ReactionName) => Promise<any>
-  removeReaction?: (threadID: string, messageID: string, reactionName: ReactionName) => Promise<any>
+  addReaction?: (threadID: string, messageID: string, reactionName: string) => Promise<any>
+  removeReaction?: (threadID: string, messageID: string, reactionName: string) => Promise<any>
   deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Promise<boolean>
   sendReadReceipt: (threadID: string, messageID: string, messageCursor?: string) => Promise<any>
 
@@ -270,11 +261,16 @@ export interface PlatformAPI {
   loadDynamicMessage?: (message: Message) => Promise<Message>
 }
 
+export type Reaction = {
+  title: string
+  render: string
+}
+
 export type Platform = {
   name: string
   version: string
   displayName: string
-  supportedReactions: ReactionName[]
+  supportedReactions: Record<string, Reaction>
   deletionMode: MessageDeletionMode
   attributes: Set<Attribute>
   icon: React.ReactElement | (() => JSX.Element) | ((props: any) => JSX.Element)

@@ -1,6 +1,6 @@
 {
   "name": "@textshq/platform-sdk",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
@@ -12,10 +12,6 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
-  },
-  "dependencies": {
-    "tough-cookie": "^4.0.0",
-    "react": "^16.13.1"
   },
   "devDependencies": {
     "@types/node": "^14.0.18",

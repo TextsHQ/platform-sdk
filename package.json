@@ -2,10 +2,6 @@
   "name": "@textshq/platform-sdk",
   "version": "0.2.3",
   "main": "dist/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TextsHQ/platform-sdk.git"
-  },
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc"

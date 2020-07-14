@@ -61,8 +61,3 @@ export enum ConnectionStatus {
   UNAUTHORIZED = 'unauthorized',
   DISCONNECTED = 'disconnected',
 }
-
-export enum RightPaneView {
-  THREAD = 'thread',
-  PREFS = 'prefs',
-}

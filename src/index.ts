@@ -3,6 +3,7 @@ export * from './platform-errors'
 export * from './platform-types'
 
 export type TextsGlobals = {
+  IS_DEV: boolean
   log: (...args: any[]) => void
 }
 

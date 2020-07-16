@@ -1,6 +1,6 @@
 import type { CookieJar } from 'tough-cookie'
 import type React from 'react'
-import { ThreadActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './platform-enums'
+import { ThreadActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './enums'
 
 export type Awaitable<T> = T | PromiseLike<T>
 

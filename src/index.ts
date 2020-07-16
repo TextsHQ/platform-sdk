@@ -1,6 +1,6 @@
-export * from './platform-enums'
-export * from './platform-errors'
-export * from './platform-types'
+export * from './enums'
+export * from './errors'
+export * from './types'
 
 export type TextsGlobals = {
   IS_DEV: boolean

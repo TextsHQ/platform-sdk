@@ -4,20 +4,20 @@ export enum InboxName {
 }
 
 export enum Attribute {
-  NO_SUPPORT_GROUP_THREAD_CREATION,
-  NO_SUPPORT_SINGLE_THREAD_CREATION,
-  NO_SUPPORT_TYPING_INDICATOR,
-  NO_SUPPORT_GROUP_TITLE_CHANGE,
-  NO_SUPPORT_GROUP_ADD_PARTICIPANT,
-  NO_SUPPORT_GROUP_REMOVE_PARTICIPANT,
-  SUBSCRIBE_TO_THREAD_SELECTION,
-  SEARCH_USERS_IN_CONTACTS,
-  SUPPORTS_SEARCH,
-  SUPPORTS_QUOTED_MESSAGES,
-  SUPPORTS_ARCHIVE,
-  SUPPORTS_PIN_THREAD,
-  SUPPORTS_STOP_TYPING_INDICATOR,
-  SUPPORTS_REQUESTS_INBOX,
+  NO_SUPPORT_GROUP_THREAD_CREATION = 'no_support_group_thread_creation',
+  NO_SUPPORT_SINGLE_THREAD_CREATION = 'no_support_single_thread_creation',
+  NO_SUPPORT_TYPING_INDICATOR = 'no_support_typing_indicator',
+  NO_SUPPORT_GROUP_TITLE_CHANGE = 'no_support_group_title_change',
+  NO_SUPPORT_GROUP_ADD_PARTICIPANT = 'no_support_group_add_participant',
+  NO_SUPPORT_GROUP_REMOVE_PARTICIPANT = 'no_support_group_remove_participant',
+  SUBSCRIBE_TO_THREAD_SELECTION = 'subscribe_to_thread_selection',
+  SEARCH_USERS_IN_CONTACTS = 'search_users_in_contacts',
+  SUPPORTS_SEARCH = 'supports_search',
+  SUPPORTS_QUOTED_MESSAGES = 'supports_quoted_messages',
+  SUPPORTS_ARCHIVE = 'supports_archive',
+  SUPPORTS_PIN_THREAD = 'supports_pin_thread',
+  SUPPORTS_STOP_TYPING_INDICATOR = 'supports_stop_typing_indicator',
+  SUPPORTS_REQUESTS_INBOX = 'supports_requests_inbox',
 }
 
 export enum ThreadActionType {
@@ -36,16 +36,16 @@ export enum ServerEventType {
 }
 
 export enum CodeRequiredReason {
-  TWO_FACTOR,
-  CHECKPOINT,
+  TWO_FACTOR = 'two_factor',
+  CHECKPOINT = 'checkpoint',
 }
 
 export enum MessageDeletionMode {
-  DELETE_FOR_SELF,
-  DELETE_FOR_EVERYONE,
-  UNSEND,
-  UNSUPPORTED,
-  NONE,
+  DELETE_FOR_SELF = 'delete_for_self',
+  DELETE_FOR_EVERYONE = 'delete_for_everyone',
+  UNSEND = 'unsend',
+  UNSUPPORTED = 'unsupported',
+  NONE = 'none',
 }
 
 export enum MessageAttachmentType {

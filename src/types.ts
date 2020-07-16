@@ -249,9 +249,12 @@ export interface PlatformAPI {
   deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Promise<boolean>
   sendReadReceipt: (threadID: string, messageID: string, messageCursor?: string) => Promise<any>
 
-  changeThreadTitle?: (threadID: string, newTitle: string) => Promise<boolean>
   addParticipant?: (threadID: string, participantID: string) => Promise<boolean>
   removeParticipant?: (threadID: string, participantID: string) => Promise<boolean>
+  modifyParticipantRole?: (threadID: string, participantID: string, role: string) => Promise<boolean>
+
+  changeThreadTitle?: (threadID: string, newTitle: string) => Promise<boolean>
+
   markAsUnread?: (threadID: string) => Awaitable<void>
   archiveThread?: (threadID: string, archived: boolean) => Awaitable<void>
   muteThread?: (threadID: string, muted: boolean) => Awaitable<void>

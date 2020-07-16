@@ -1,6 +1,6 @@
 {
   "name": "@textshq/platform-sdk",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "main": "dist/index.js",
   "scripts": {
     "prepare": "npm run build",

@@ -211,6 +211,14 @@ export type MessageSendOptions = {
   quotedMessageID?: string
 }
 
+export type LoginCreds = {
+  cookieJarJSON?: CookieJar.Serialized
+  username?: string
+  password?: string
+  code?: string
+  lastLoginResult?: LoginResult
+}
+
 // also modify relayer-constants.ts
 export interface PlatformAPI {
   init: (session?: any, accountID?: string) => Awaitable<void>
@@ -218,9 +226,7 @@ export interface PlatformAPI {
 
   getCurrentUser: () => Awaitable<CurrentUser>
 
-  login?: (username?: string, password?: string) => Promise<LoginResult>
-  loginWithJar?: (cookieJarJSON?: CookieJar.Serialized) => Promise<LoginResult>
-  loginWithCode?: (loginResult: LoginResult, code: string) => Promise<LoginResult>
+  login?: (creds?: LoginCreds) => Promise<LoginResult>
   logout?: () => Awaitable<void>
   serializeSession?: () => Awaitable<any>
 

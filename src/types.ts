@@ -245,9 +245,9 @@ export interface PlatformAPI {
   createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
 
   // sendMessage?: (threadID: string, content: { text?: string, filePaths?: string }) => Awaitable<boolean>
-  sendTextMessage: (threadID: string, text: string, options?: MessageSendOptions) => Awaitable<boolean>
-  sendFileFromFilePath: (threadID: string, filePath: string, mimeType: string, options?: MessageSendOptions) => Awaitable<boolean>
-  sendFileFromBuffer: (threadID: string, fileBuffer: Buffer, mimeType: string, fileName?: string, options?: MessageSendOptions) => Awaitable<boolean>
+  sendTextMessage: (threadID: string, text: string, options?: MessageSendOptions) => Promise<boolean>
+  sendFileFromFilePath: (threadID: string, filePath: string, mimeType: string, options?: MessageSendOptions) => Promise<boolean>
+  sendFileFromBuffer: (threadID: string, fileBuffer: Buffer, mimeType: string, fileName?: string, options?: MessageSendOptions) => Promise<boolean>
 
   sendTypingIndicator: (threadID: string, typing?: boolean) => Awaitable<void>
   addReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>

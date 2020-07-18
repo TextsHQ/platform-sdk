@@ -18,6 +18,7 @@ export enum Attribute {
   SUPPORTS_PIN_THREAD = 'supports_pin_thread',
   SUPPORTS_STOP_TYPING_INDICATOR = 'supports_stop_typing_indicator',
   SUPPORTS_REQUESTS_INBOX = 'supports_requests_inbox',
+  SUPPORTS_GROUP_IMAGE_CHANGE = 'supports_group_image_change',
 }
 
 export enum ThreadActionType {

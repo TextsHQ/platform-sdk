@@ -226,7 +226,7 @@ export interface PlatformAPI {
 
   getCurrentUser: () => Awaitable<CurrentUser>
 
-  login?: (creds?: LoginCreds) => Promise<LoginResult>
+  login?: (creds?: LoginCreds) => Awaitable<LoginResult>
   logout?: () => Awaitable<void>
   serializeSession?: () => Awaitable<any>
 
@@ -237,29 +237,30 @@ export interface PlatformAPI {
 
   takeoverConflict?: () => Awaitable<void>
 
-  searchUsers: (typed: string) => Promise<Participant[]>
-  searchMessages?: (typed: string, beforeCursor?: string, threadID?: string) => Promise<Paginated<Message>>
+  searchUsers: (typed: string) => Awaitable<Participant[]>
+  searchMessages?: (typed: string, beforeCursor?: string, threadID?: string) => Awaitable<Paginated<Message>>
 
-  getThreads: (inboxName: InboxName, beforeCursor?: string) => Promise<Paginated<Thread>>
-  getMessages: (threadID: string, beforeCursor: string) => Promise<Paginated<Message>>
-  createThread: (userIDs: string[], title?: string) => Promise<boolean | Thread>
+  getThreads: (inboxName: InboxName, beforeCursor?: string) => Awaitable<Paginated<Thread>>
+  getMessages: (threadID: string, beforeCursor: string) => Awaitable<Paginated<Message>>
+  createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
 
-  // sendMessage?: (threadID: string, content: { text?: string, filePaths?: string }) => Promise<boolean>
-  sendTextMessage: (threadID: string, text: string, options?: MessageSendOptions) => Promise<boolean>
-  sendFileFromFilePath: (threadID: string, filePath: string, mimeType: string, options?: MessageSendOptions) => Promise<boolean>
-  sendFileFromBuffer: (threadID: string, fileBuffer: Buffer, mimeType: string, fileName?: string, options?: MessageSendOptions) => Promise<boolean>
+  // sendMessage?: (threadID: string, content: { text?: string, filePaths?: string }) => Awaitable<boolean>
+  sendTextMessage: (threadID: string, text: string, options?: MessageSendOptions) => Awaitable<boolean>
+  sendFileFromFilePath: (threadID: string, filePath: string, mimeType: string, options?: MessageSendOptions) => Awaitable<boolean>
+  sendFileFromBuffer: (threadID: string, fileBuffer: Buffer, mimeType: string, fileName?: string, options?: MessageSendOptions) => Awaitable<boolean>
 
   sendTypingIndicator: (threadID: string, typing?: boolean) => Awaitable<void>
-  addReaction?: (threadID: string, messageID: string, reactionName: string) => Promise<any>
-  removeReaction?: (threadID: string, messageID: string, reactionName: string) => Promise<any>
-  deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Promise<boolean>
-  sendReadReceipt: (threadID: string, messageID: string, messageCursor?: string) => Promise<any>
+  addReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>
+  removeReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>
+  deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<boolean>
+  sendReadReceipt: (threadID: string, messageID: string, messageCursor?: string) => Awaitable<any>
 
-  addParticipant?: (threadID: string, participantID: string) => Promise<boolean>
-  removeParticipant?: (threadID: string, participantID: string) => Promise<boolean>
-  modifyParticipantRole?: (threadID: string, participantID: string, role: string) => Promise<boolean>
+  addParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
+  removeParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
+  modifyParticipantRole?: (threadID: string, participantID: string, role: string) => Awaitable<boolean>
 
-  changeThreadTitle?: (threadID: string, newTitle: string) => Promise<boolean>
+  changeThreadTitle?: (threadID: string, newTitle: string) => Awaitable<boolean>
+  changeThreadImage?: (threadID: string, imageBuffer: Buffer, mimeType: string) => Awaitable<void>
 
   markAsUnread?: (threadID: string) => Awaitable<void>
   archiveThread?: (threadID: string, archived: boolean) => Awaitable<void>
@@ -267,7 +268,7 @@ export interface PlatformAPI {
   pinThread?: (threadID: string, pinned: boolean) => Awaitable<void>
 
   onThreadSelected?: (threadID: string) => Awaitable<void>
-  loadDynamicMessage?: (message: Message) => Promise<Message>
+  loadDynamicMessage?: (message: Message) => Awaitable<Message>
 }
 
 export type Reaction = {

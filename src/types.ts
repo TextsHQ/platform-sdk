@@ -83,7 +83,7 @@ export type Tweet = {
   quotedTweet?: Tweet
 }
 
-export type Participant = {
+export type User = {
   id: string
   username?: string
   phoneNumber?: string
@@ -92,10 +92,13 @@ export type Participant = {
   nickname?: string
   imgURL?: string
   isVerified?: boolean
-  isAdmin?: boolean
-  isSelf?: boolean
-  hasExited?: boolean
   cannotMessage?: boolean
+  isSelf?: boolean
+}
+
+export type Participant = User & {
+  isAdmin?: boolean
+  hasExited?: boolean
 }
 
 export type MessagePreview = {

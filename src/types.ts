@@ -257,7 +257,7 @@ export interface PlatformAPI {
 
   addParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
   removeParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
-  modifyParticipantRole?: (threadID: string, participantID: string, role: string) => Awaitable<boolean>
+  changeParticipantRole?: (threadID: string, participantID: string, role: string) => Awaitable<boolean>
 
   changeThreadTitle?: (threadID: string, newTitle: string) => Awaitable<boolean>
   changeThreadImage?: (threadID: string, imageBuffer: Buffer, mimeType: string) => Awaitable<void>

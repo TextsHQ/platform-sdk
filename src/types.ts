@@ -292,4 +292,6 @@ export type Platform = {
   typingDurationMs?: number
 
   getUserLink: (participant: Participant) => string
+
+  mapMessage?: (...originalMsg: any) => Message
 }

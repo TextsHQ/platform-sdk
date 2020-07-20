@@ -31,14 +31,6 @@ export type Action =
 
 export type MessageSeen = boolean | Date | { [participantID: string]: Date | boolean }
 
-export type CurrentUser = {
-  id: string
-  name?: string
-  displayText: string
-  imgURL?: string
-  isVerified?: boolean
-}
-
 export type LoginMode = 'browser' | 'manual' | 'custom'
 
 export type LoginResult = {
@@ -94,6 +86,10 @@ export type User = {
   isVerified?: boolean
   cannotMessage?: boolean
   isSelf?: boolean
+}
+
+export type CurrentUser = User & {
+  displayText: string
 }
 
 export type Participant = User & {

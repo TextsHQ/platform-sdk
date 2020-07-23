@@ -54,7 +54,7 @@ export type MessageAttachment = {
   size?: Size
   srcURL?: string
   data?: Buffer
-  posterImg?: Buffer
+  posterImg?: Buffer | string
   mimeType?: string
   fileName?: string
   loading?: boolean

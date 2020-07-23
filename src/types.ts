@@ -118,7 +118,7 @@ export type MessageLink = {
 }
 
 export type Message = {
-  _original: any
+  _original: any[]
   id: string
   textHeading?: string
   textFooter?: string

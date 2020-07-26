@@ -11,7 +11,7 @@ export enum Attribute {
   NO_SUPPORT_GROUP_ADD_PARTICIPANT = 'no_support_group_add_participant',
   NO_SUPPORT_GROUP_REMOVE_PARTICIPANT = 'no_support_group_remove_participant',
   SUBSCRIBE_TO_THREAD_SELECTION = 'subscribe_to_thread_selection',
-  SUBSCRIBE_TO_CONN_STATUS_CHANGE = 'subscribe_to_conn_status_change',
+  SUBSCRIBE_TO_CONN_STATE_CHANGE = 'subscribe_to_conn_state_change',
   SEARCH_USERS_IN_CONTACTS = 'search_users_in_contacts',
   SUPPORTS_SEARCH = 'supports_search',
   SUPPORTS_QUOTED_MESSAGES = 'supports_quoted_messages',

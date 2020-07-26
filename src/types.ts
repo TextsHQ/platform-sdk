@@ -152,6 +152,12 @@ export type Message = {
   sender?: Participant
 }
 
+export type UserPresence = {
+  userID: string
+  isActive: boolean
+  lastActive: Date
+}
+
 export type ThreadUpdatedEvent = {
   type: ServerEventType.THREAD_UPDATED
   threadID: string
@@ -175,11 +181,17 @@ export type ParticipantStoppedTypingEvent = {
   participantID: string
 }
 
+export type UserPresenceEvent = {
+  type: ServerEventType.USER_PRESENCE_UPDATED
+  presence: UserPresence
+}
+
 export type ServerEvent =
   ThreadUpdatedEvent |
   ThreadReadEvent |
   ParticipantTypingEvent |
-  ParticipantStoppedTypingEvent
+  ParticipantStoppedTypingEvent |
+  UserPresenceEvent
 
 export type OnServerEventCallback = (event: ServerEvent[]) => void
 
@@ -220,6 +232,8 @@ export type LoginCreds = {
   lastLoginResult?: LoginResult
 }
 
+export type PresenceMap = { [userID: string]: UserPresence }
+
 // also modify relayer-constants.ts
 export interface PlatformAPI {
   init: (session?: any, accountID?: string) => Awaitable<void>
@@ -240,6 +254,8 @@ export interface PlatformAPI {
 
   searchUsers: (typed: string) => Awaitable<Participant[]>
   searchMessages?: (typed: string, beforeCursor?: string, threadID?: string) => Awaitable<Paginated<Message>>
+
+  getPresence?: () => Awaitable<PresenceMap>
 
   getThreads: (inboxName: InboxName, beforeCursor?: string) => Awaitable<Paginated<Thread>>
   getMessages: (threadID: string, beforeCursor: string) => Awaitable<Paginated<Message>>

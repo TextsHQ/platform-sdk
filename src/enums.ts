@@ -20,6 +20,7 @@ export enum Attribute {
   SUPPORTS_REQUESTS_INBOX = 'supports_requests_inbox',
   SUPPORTS_GROUP_IMAGE_CHANGE = 'supports_group_image_change',
   SUPPORTS_GROUP_PARTICIPANT_ROLE_CHANGE = 'supports_group_participant_role_change',
+  SUPPORTS_PRESENCE = 'supports_presence',
 }
 
 export enum ThreadActionType {
@@ -35,6 +36,7 @@ export enum ServerEventType {
   THREAD_READ = 'thread_read',
   PARTICIPANT_TYPING = 'participant_typing',
   PARTICIPANT_STOPPED_TYPING = 'participant_stopped_typing',
+  USER_PRESENCE_UPDATED = 'user_presence_updated'
 }
 
 export enum CodeRequiredReason {

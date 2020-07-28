@@ -5,6 +5,10 @@ export * from './types'
 export type TextsGlobals = {
   IS_DEV: boolean
   log: (...args: any[]) => void
+  error: (...args: any[]) => void
+  constants: {
+    USER_AGENT: string
+  }
 }
 
-export const texts: TextsGlobals = ((typeof window === 'undefined' ? global : window) as any).texts
+export const texts = (globalThis as any).texts as TextsGlobals

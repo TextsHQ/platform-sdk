@@ -312,7 +312,7 @@ export type Platform = {
   maxGroupTitleLength?: number
   typingDurationMs?: number
 
-  getUserLink?: (participant: Participant) => string
+  getUserProfileLink?: (participant: Participant) => string
 
   mapMessage?: (...originalMsg: any) => Message
 }

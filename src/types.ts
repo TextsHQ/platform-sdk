@@ -266,6 +266,8 @@ export interface PlatformAPI {
   sendFileFromFilePath: (threadID: string, filePath: string, mimeType: string, options?: MessageSendOptions) => Promise<boolean>
   sendFileFromBuffer: (threadID: string, fileBuffer: Buffer, mimeType: string, fileName?: string, options?: MessageSendOptions) => Promise<boolean>
 
+  forwardMessage?: (messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<boolean>
+
   sendTypingIndicator: (threadID: string, typing?: boolean) => Awaitable<void>
   addReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>
   removeReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>

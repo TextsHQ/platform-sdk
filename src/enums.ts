@@ -22,6 +22,7 @@ export enum Attribute {
   SUPPORTS_GROUP_IMAGE_CHANGE = 'supports_group_image_change',
   SUPPORTS_GROUP_PARTICIPANT_ROLE_CHANGE = 'supports_group_participant_role_change',
   SUPPORTS_PRESENCE = 'supports_presence',
+  SUPPORTS_FORWARD = 'supports_forward',
 }
 
 export enum ThreadActionType {

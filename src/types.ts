@@ -29,7 +29,9 @@ export type Action =
   GroupThreadCreated |
   MessageRequestAccepted
 
-export type MessageSeen = boolean | Date | { [participantID: string]: Date | boolean }
+export type MessageSeen =
+  boolean | Date | // for single threads
+  { [participantID: string]: Date | boolean } // for group threads
 
 export type LoginMode = 'browser' | 'manual' | 'custom'
 
@@ -201,18 +203,24 @@ export type ThreadType = 'single' | 'group' | 'broadcast'
 
 export type Thread = {
   _original?: any
+
   id: string
   title?: string
   isUnread: boolean
   isReadOnly: boolean
   isArchived?: boolean
-  messages: Message[]
+  isPinned?: boolean
+  mutedUntil?: Date | 'forever'
+
   type: ThreadType
-  participants: Participant[]
   timestamp: Date
+
   imgURL?: string
   createdAt?: Date
   description?: string
+
+  messages: Message[]
+  participants: Participant[]
 }
 
 export type ConnectionState = {
@@ -297,7 +305,7 @@ export type Reaction = {
 
 export type Platform = {
   name: string
-  version: string
+  version?: string
   displayName: string
   supportedReactions: Record<string, Reaction>
   deletionMode: MessageDeletionMode

@@ -160,8 +160,8 @@ export type UserPresence = {
   lastActive: Date
 }
 
-export type ThreadUpdatedEvent = {
-  type: ServerEventType.THREAD_UPDATED
+export type ThreadMessagesUpdatedEvent = {
+  type: ServerEventType.THREAD_MESSAGES_UPDATED
   threadID: string
 }
 
@@ -195,7 +195,7 @@ export type UserPresenceEvent = {
 }
 
 export type ServerEvent =
-  ThreadUpdatedEvent |
+  ThreadMessagesUpdatedEvent |
   ThreadDeletedEvent |
   ThreadPropsUpdatedEvent |
   ParticipantTypingEvent |

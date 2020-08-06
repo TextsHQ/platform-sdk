@@ -165,9 +165,15 @@ export type ThreadUpdatedEvent = {
   threadID: string
 }
 
-export type ThreadReadEvent = {
-  type: ServerEventType.THREAD_READ
+export type ThreadDeletedEvent = {
+  type: ServerEventType.THREAD_DELETED
   threadID: string
+}
+
+export type ThreadPropsUpdatedEvent = {
+  type: ServerEventType.THREAD_PROPS_UPDATED
+  threadID: string
+  props: Omit<Partial<Thread>, 'messages' | 'participants'>
 }
 
 export type ParticipantTypingEvent = {
@@ -190,7 +196,8 @@ export type UserPresenceEvent = {
 
 export type ServerEvent =
   ThreadUpdatedEvent |
-  ThreadReadEvent |
+  ThreadDeletedEvent |
+  ThreadPropsUpdatedEvent |
   ParticipantTypingEvent |
   ParticipantStoppedTypingEvent |
   UserPresenceEvent

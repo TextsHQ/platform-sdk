@@ -9,7 +9,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint -- --fix || true"
+      "pre-commit": "npm run lint -- --fix || true; git add ."
     }
   },
   "publishConfig": {

@@ -225,6 +225,7 @@ export type Thread = {
   imgURL?: string
   createdAt?: Date
   description?: string
+  lastMessageSnippet?: string
 
   messages: Message[]
   participants: Participant[]

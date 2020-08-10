@@ -303,7 +303,7 @@ export interface PlatformAPI {
   pinThread?: (threadID: string, pinned: boolean) => Awaitable<void>
 
   onThreadSelected?: (threadID: string) => Awaitable<void>
-  loadDynamicMessage?: (message: Message) => Awaitable<Message>
+  loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 }
 
 export type Reaction = {

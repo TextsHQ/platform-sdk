@@ -2,7 +2,7 @@
 
 ### Loading an external platform on Texts.app
 
-1. Create a file `~/.texts-conf.json`
+1. Create a file `~/.texts-conf.json` (`touch ~/.texts-conf.json`) and open it in an editor
 
 2. Paste in:
 

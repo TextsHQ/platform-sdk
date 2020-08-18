@@ -165,6 +165,12 @@ export type ThreadMessagesUpdatedEvent = {
   threadID: string
 }
 
+export type ThreadMessagesAddedEvent = {
+  type: ServerEventType.THREAD_MESSAGES_ADDED
+  threadID: string
+  messages: Message[]
+}
+
 export type ThreadDeletedEvent = {
   type: ServerEventType.THREAD_DELETED
   threadID: string
@@ -196,6 +202,7 @@ export type UserPresenceEvent = {
 
 export type ServerEvent =
   ThreadMessagesUpdatedEvent |
+  ThreadMessagesAddedEvent |
   ThreadDeletedEvent |
   ThreadPropsUpdatedEvent |
   ParticipantTypingEvent |

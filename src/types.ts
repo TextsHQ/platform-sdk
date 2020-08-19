@@ -257,6 +257,14 @@ export type LoginCreds = {
 
 export type PresenceMap = { [userID: string]: UserPresence }
 
+export type MessageContent = {
+  text?: string
+  filePath?: string
+  fileBuffer?: Buffer
+  fileName?: string
+  mimeType?: string
+}
+
 // also modify relayer-constants.ts
 export interface PlatformAPI {
   init: (session?: any, accountID?: string) => Awaitable<void>
@@ -284,10 +292,7 @@ export interface PlatformAPI {
   getMessages: (threadID: string, beforeCursor: string) => Awaitable<Paginated<Message>>
   createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
 
-  // sendMessage?: (threadID: string, content: { text?: string, filePaths?: string }) => Awaitable<boolean>
-  sendTextMessage: (threadID: string, text: string, options?: MessageSendOptions) => Promise<boolean>
-  sendFileFromFilePath: (threadID: string, filePath: string, mimeType: string, options?: MessageSendOptions) => Promise<boolean>
-  sendFileFromBuffer: (threadID: string, fileBuffer: Buffer, mimeType: string, fileName?: string, options?: MessageSendOptions) => Promise<boolean>
+  sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Awaitable<boolean | Message[]>
 
   forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<boolean>
 

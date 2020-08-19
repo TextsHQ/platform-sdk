@@ -292,7 +292,7 @@ export interface PlatformAPI {
   getMessages: (threadID: string, beforeCursor: string) => Awaitable<Paginated<Message>>
   createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
 
-  sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Awaitable<boolean | Message[]>
+  sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
 
   forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<boolean>
 

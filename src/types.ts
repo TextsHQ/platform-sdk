@@ -179,7 +179,7 @@ export type ThreadDeletedEvent = {
 export type ThreadPropsUpdatedEvent = {
   type: ServerEventType.THREAD_PROPS_UPDATED
   threadID: string
-  props: Omit<Partial<Thread>, 'messages' | 'participants'>
+  props: Omit<Partial<Thread>, '_original' | 'id' | 'type' | 'messages'>
 }
 
 export type ParticipantTypingEvent = {

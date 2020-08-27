@@ -46,7 +46,7 @@ export type LoginResult = {
 export type BrowserLogin = {
   loginURL: string
   authCookieName: string
-  sendPageHTML?: boolean
+  runJSOnClose?: string
 }
 
 export type MessageAttachment = {
@@ -248,7 +248,7 @@ export type MessageSendOptions = {
 
 export type LoginCreds = {
   cookieJarJSON?: CookieJar.Serialized
-  pageHTML?: string
+  jsCodeResult?: string
   username?: string
   password?: string
   code?: string

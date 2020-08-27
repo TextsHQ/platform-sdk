@@ -280,7 +280,6 @@ export interface PlatformAPI {
   serializeSession?: () => Awaitable<any>
 
   subscribeToEvents: (onEvent: OnServerEventCallback) => Awaitable<void>
-  unsubscribeToEvents: () => Awaitable<void>
   onLoginEvent?: (onEvent: Function) => Awaitable<void>
   onConnectionStateChange?: (onEvent: OnConnStateChangeCallback) => Awaitable<void>
 

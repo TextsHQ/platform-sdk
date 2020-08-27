@@ -45,7 +45,8 @@ export type LoginResult = {
 
 export type BrowserLogin = {
   loginURL: string
-  authCookieName: string
+  authCookieName?: string
+  runJSOnLaunch?: string
   runJSOnClose?: string
 }
 

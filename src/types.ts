@@ -48,6 +48,8 @@ export type BrowserLogin = {
   authCookieName?: string
   runJSOnLaunch?: string
   runJSOnClose?: string
+  windowWidth?: number
+  windowHeight?: number
 }
 
 export type MessageAttachment = {

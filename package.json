@@ -21,7 +21,7 @@
     "@types/tough-cookie": "^4"
   },
   "devDependencies": {
-    "@textshq/eslint-config": "github:textshq/eslint-config",
+    "@textshq/eslint-config": "git+https://github.com/textshq/eslint-config",
     "husky": "^4.2.5",
     "eslint": "^7.5.0",
     "typescript": "^3.9.7"

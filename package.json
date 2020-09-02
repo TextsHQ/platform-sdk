@@ -3,13 +3,14 @@
   "version": "0.4.4",
   "main": "dist/index.js",
   "scripts": {
-    "prepare": "npm run build",
+    "prepare": "tsc",
+    "postinstall": "tsc",
     "build": "tsc",
     "lint": "eslint src --ext ts,tsx,js,jsx --cache"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint -- --fix || true; git add ."
+      "pre-commit": "yarn lint --fix || true; git add ."
     }
   },
   "publishConfig": {
@@ -21,7 +22,7 @@
     "@types/tough-cookie": "^4"
   },
   "devDependencies": {
-    "@textshq/eslint-config": "git+https://github.com/textshq/eslint-config",
+    "@textshq/eslint-config": "https://github.com/textshq/eslint-config",
     "husky": "^4.2.5",
     "eslint": "^7.5.0",
     "typescript": "^3.9.7"

@@ -332,7 +332,7 @@ export type Platform = {
   supportedReactions: Record<string, Reaction>
   deletionMode: MessageDeletionMode
   attributes: Set<Attribute>
-  icon: React.ReactElement | (() => JSX.Element) | ((props: any) => JSX.Element)
+  icon: string | React.ReactElement | (() => JSX.Element) | ((props: any) => JSX.Element)
   tags?: string[]
 
   loginMode: LoginMode

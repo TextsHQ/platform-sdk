@@ -118,6 +118,7 @@ export type MessageLink = {
   url: string
   favicon?: string
   img?: string
+  imgSize?: Size
   title: string
   summary?: string
 }

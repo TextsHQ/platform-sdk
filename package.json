@@ -3,10 +3,10 @@
   "version": "0.4.4",
   "main": "dist/index.js",
   "scripts": {
-    "prepare": "tsc",
-    "postinstall": "tsc",
-    "build": "tsc",
-    "lint": "eslint src --ext ts,tsx,js,jsx --cache"
+    "prepare": "yarn tsc",
+    "postinstall": "yarn tsc",
+    "build": "yarn tsc",
+    "lint": "yarn eslint src --ext ts,tsx,js,jsx --cache"
   },
   "husky": {
     "hooks": {

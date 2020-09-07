@@ -148,7 +148,6 @@ export type Message = {
   isDynamicMessage?: boolean
   parseTemplate?: boolean
   shouldNotify?: boolean
-  cursor?: string
   linkedMessageID?: string
   linkedMessage?: MessagePreview
   action?: Action

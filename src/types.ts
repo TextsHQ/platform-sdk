@@ -312,7 +312,7 @@ export interface PlatformAPI {
   addReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>
   removeReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>
   deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<boolean>
-  sendReadReceipt: (threadID: string, messageID: string, messageCursor?: string) => Awaitable<any>
+  sendReadReceipt: (threadID: string, messageID: string) => Awaitable<any>
 
   addParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
   removeParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>

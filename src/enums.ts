@@ -43,7 +43,7 @@ export enum ServerEventType {
   THREAD_PROPS_UPDATED = 'thread_props_updated',
   PARTICIPANT_TYPING = 'participant_typing',
   PARTICIPANT_STOPPED_TYPING = 'participant_stopped_typing',
-  USER_PRESENCE_UPDATED = 'user_presence_updated'
+  USER_PRESENCE_UPDATED = 'user_presence_updated',
 }
 
 export enum CodeRequiredReason {

@@ -16,18 +16,18 @@ export type Paginated<T> = {
   newestCursor?: string
 }
 
-export type ThreadTitleUpdated = { type: ThreadActionType.THREAD_TITLE_UPDATED, title: string, actorParticipantID: string }
-export type ThreadParticipantsAdded = { type: ThreadActionType.THREAD_PARTICIPANTS_ADDED, participantIDs: string[], actorParticipantID: string, participants?: Participant[] }
-export type ThreadParticipantsRemoved = { type: ThreadActionType.THREAD_PARTICIPANTS_REMOVED, participantIDs: string[], actorParticipantID: string, participants?: Participant[] }
-export type GroupThreadCreated = { type: ThreadActionType.GROUP_THREAD_CREATED, title: string, actorParticipantID: string }
-export type MessageRequestAccepted = { type: ThreadActionType.MESSAGE_REQUEST_ACCEPTED }
+export type ThreadTitleUpdatedAction = { type: ThreadActionType.THREAD_TITLE_UPDATED, title: string, actorParticipantID: string }
+export type ThreadParticipantsAddedAction = { type: ThreadActionType.THREAD_PARTICIPANTS_ADDED, participantIDs: string[], actorParticipantID: string, participants?: Participant[] }
+export type ThreadParticipantsRemovedAction = { type: ThreadActionType.THREAD_PARTICIPANTS_REMOVED, participantIDs: string[], actorParticipantID: string, participants?: Participant[] }
+export type GroupThreadCreatedAction = { type: ThreadActionType.GROUP_THREAD_CREATED, title: string, actorParticipantID: string }
+export type MessageRequestAcceptedAction = { type: ThreadActionType.MESSAGE_REQUEST_ACCEPTED }
 
 export type Action =
-  ThreadTitleUpdated |
-  ThreadParticipantsAdded |
-  ThreadParticipantsRemoved |
-  GroupThreadCreated |
-  MessageRequestAccepted
+  ThreadTitleUpdatedAction |
+  ThreadParticipantsAddedAction |
+  ThreadParticipantsRemovedAction |
+  GroupThreadCreatedAction |
+  MessageRequestAcceptedAction
 
 export type MessageSeen =
   boolean | Date | // for single threads
@@ -205,6 +205,12 @@ export type UserPresenceEvent = {
   presence: UserPresence
 }
 
+// export type StateSyncEvent = {
+//   objectType: 'thread' | 'message' | 'participant'
+//   mutationType: 'created' | 'updated' | 'deleted'
+//   data: Partial<Thread> | Partial<Message> | Partial<Participant>
+// }
+
 export type ServerEvent =
   ThreadMessagesUpdatedEvent |
   ThreadMessagesAddedEvent |
@@ -239,8 +245,8 @@ export type Thread = {
   description?: string
   lastMessageSnippet?: string
 
-  messages: Message[]
-  participants: Participant[]
+  messages: Paginated<Message>
+  participants: Paginated<Participant>
 }
 
 export type ConnectionState = {
@@ -248,6 +254,7 @@ export type ConnectionState = {
 }
 
 export type MessageSendOptions = {
+  pendingMessageID?: string
   quotedMessageID?: string
 }
 
@@ -294,6 +301,8 @@ export interface PlatformAPI {
 
   getThreads: (inboxName: InboxName, beforeCursor?: string) => Awaitable<Paginated<Thread>>
   getMessages: (threadID: string, beforeCursor: string) => Awaitable<Paginated<Message>>
+  getParticipants?: (threadID: string, beforeCursor: string) => Awaitable<Paginated<Participant>>
+
   createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
 
   sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>

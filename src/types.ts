@@ -335,6 +335,8 @@ export type Reaction = {
   render: string
 }
 
+type ReactComponent = React.ReactElement | (() => JSX.Element) | ((props: any) => JSX.Element)
+
 export type Platform = {
   name: string
   version?: string
@@ -342,12 +344,12 @@ export type Platform = {
   supportedReactions: Record<string, Reaction>
   deletionMode: MessageDeletionMode
   attributes: Set<Attribute>
-  icon: string | React.ReactElement | (() => JSX.Element) | ((props: any) => JSX.Element)
+  icon: string | ReactComponent
   tags?: string[]
 
   loginMode: LoginMode
   browserLogin?: BrowserLogin
-  auth?: any
+  auth?: ReactComponent | any
 
   maxGroupTitleLength?: number
   typingDurationMs?: number
@@ -355,4 +357,6 @@ export type Platform = {
   getUserProfileLink?: (participant: Participant) => string
 
   mapMessage?: (...originalMsg: any) => Message
+
+  extra: any
 }

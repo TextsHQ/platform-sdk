@@ -13,9 +13,6 @@
       "pre-commit": "yarn lint --fix || true; git add ."
     }
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "dependencies": {
     "@types/node": "^14.0.23",
     "@types/react": "^16.9.43",

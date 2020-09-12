@@ -356,7 +356,7 @@ export type Platform = {
 
   getUserProfileLink?: (participant: Participant) => string
 
-  mapMessage: (...originalMsg: any) => Message
+  mapMessage?: (...originalMsg: any) => Message
 
   extra?: any
 }

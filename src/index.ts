@@ -1,3 +1,5 @@
+import type SentryNode from '@sentry/node'
+
 export * from './enums'
 export * from './errors'
 export * from './types'
@@ -8,7 +10,8 @@ export type TextsGlobals = {
   error: (...args: any[]) => void
   constants: {
     USER_AGENT: string
-  }
+  },
+  Sentry: typeof SentryNode,
 }
 
 export const texts = (globalThis as any).texts as TextsGlobals

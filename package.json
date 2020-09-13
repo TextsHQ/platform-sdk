@@ -19,9 +19,10 @@
     "@types/tough-cookie": "^4"
   },
   "devDependencies": {
+    "@sentry/node": "^5.23.0",
     "@textshq/eslint-config": "https://github.com/textshq/eslint-config",
-    "husky": "^4.2.5",
     "eslint": "^7.5.0",
+    "husky": "^4.2.5",
     "typescript": "^3.9.7"
   }
 }

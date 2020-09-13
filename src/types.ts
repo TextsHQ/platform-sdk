@@ -304,6 +304,7 @@ export interface PlatformAPI {
   getParticipants?: (threadID: string, beforeCursor: string) => Awaitable<Paginated<Participant>>
 
   createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
+  deleteThread?: (threadID: string) => Awaitable<void>
 
   sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
 

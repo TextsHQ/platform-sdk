@@ -1,6 +1,6 @@
 import type { CookieJar } from 'tough-cookie'
 import type React from 'react'
-import { ThreadActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './enums'
+import type { ThreadActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './enums'
 
 export type Awaitable<T> = T | PromiseLike<T>
 
@@ -90,6 +90,7 @@ export type User = {
   nickname?: string
   imgURL?: string
   isVerified?: boolean
+
   cannotMessage?: boolean
   isSelf?: boolean
 }
@@ -293,7 +294,7 @@ export interface PlatformAPI {
 
   takeoverConflict?: () => Awaitable<void>
 
-  searchUsers: (typed: string) => Awaitable<Participant[]>
+  searchUsers: (typed: string) => Awaitable<User[]>
   searchMessages?: (typed: string, beforeCursor?: string, threadID?: string) => Awaitable<Paginated<Message>>
 
   getPresence?: () => Awaitable<PresenceMap>

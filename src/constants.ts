@@ -1,1 +1,1 @@
-export const UNKNOWN_DATE = new Date(0)
+export const UNKNOWN_DATE = new Date(1)

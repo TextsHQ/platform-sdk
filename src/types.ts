@@ -31,7 +31,7 @@ export type Action =
 
 export type MessageSeen =
   boolean | Date | // for single threads
-  { [participantID: string]: Date | boolean } // for group threads
+  { [participantID: string]: Date } // for group threads
 
 export type LoginMode = 'browser' | 'manual' | 'custom'
 

@@ -111,6 +111,7 @@ export type MessagePreview = {
 }
 
 export type MessageReaction = {
+  id: string
   reactionName: string
   participantID: string
 }
@@ -179,14 +180,14 @@ export type UserPresenceEvent = {
 }
 
 type ObjectMutationType = 'created' | 'updated' | 'deleted'
-type ObjectName = 'thread' | 'message' | 'participant'
+type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant'
 
 export type StateSyncEvent = {
   type: ServerEventType.STATE_SYNC
   objectID: string[]
   mutationType: ObjectMutationType
   objectName: ObjectName
-  data?: Partial<Thread> | Partial<Message> | Partial<Participant>
+  data?: Partial<Thread> | Partial<Message> | Partial<Participant> | Partial<MessageReaction>
 }
 
 export type ThreadMessagesRefreshEvent = {

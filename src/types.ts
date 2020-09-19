@@ -165,39 +165,12 @@ export type UserPresence = {
   lastActive: Date
 }
 
-export type ThreadMessagesUpdatedEvent = {
-  type: ServerEventType.THREAD_MESSAGES_UPDATED
-  threadID: string
-}
-
-export type ThreadMessagesAddedEvent = {
-  type: ServerEventType.THREAD_MESSAGES_ADDED
-  threadID: string
-  messages: Message[]
-}
-
-export type ThreadDeletedEvent = {
-  type: ServerEventType.THREAD_DELETED
-  threadID: string
-}
-
-export type ThreadPropsUpdatedEvent = {
-  type: ServerEventType.THREAD_PROPS_UPDATED
-  threadID: string
-  props: Omit<Partial<Thread>, '_original' | 'id' | 'type' | 'messages'>
-}
-
 export type ParticipantTypingEvent = {
   type: ServerEventType.PARTICIPANT_TYPING
+  typing: boolean
   threadID: string
   participantID: string
-  durationMs: number
-}
-
-export type ParticipantStoppedTypingEvent = {
-  type: ServerEventType.PARTICIPANT_STOPPED_TYPING
-  threadID: string
-  participantID: string
+  durationMs?: number
 }
 
 export type UserPresenceEvent = {
@@ -205,19 +178,26 @@ export type UserPresenceEvent = {
   presence: UserPresence
 }
 
-// export type StateSyncEvent = {
-//   objectType: 'thread' | 'message' | 'participant'
-//   mutationType: 'created' | 'updated' | 'deleted'
-//   data: Partial<Thread> | Partial<Message> | Partial<Participant>
-// }
+type ObjectMutationType = 'created' | 'updated' | 'deleted'
+type ObjectName = 'thread' | 'message' | 'participant'
+
+export type StateSyncEvent = {
+  type: ServerEventType.STATE_SYNC
+  objectID: string[]
+  mutationType: ObjectMutationType
+  objectName: ObjectName
+  data?: Partial<Thread> | Partial<Message> | Partial<Participant>
+}
+
+export type ThreadMessagesRefreshEvent = {
+  type: ServerEventType.THREAD_MESSAGES_REFRESH
+  threadID: string
+}
 
 export type ServerEvent =
-  ThreadMessagesUpdatedEvent |
-  ThreadMessagesAddedEvent |
-  ThreadDeletedEvent |
-  ThreadPropsUpdatedEvent |
+  StateSyncEvent |
+  ThreadMessagesRefreshEvent |
   ParticipantTypingEvent |
-  ParticipantStoppedTypingEvent |
   UserPresenceEvent
 
 export type OnServerEventCallback = (event: ServerEvent[]) => void

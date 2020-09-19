@@ -37,12 +37,9 @@ export enum ThreadActionType {
 }
 
 export enum ServerEventType {
-  THREAD_MESSAGES_UPDATED = 'thread_messages_updated',
-  THREAD_MESSAGES_ADDED = 'thread_messages_added',
-  THREAD_DELETED = 'thread_deleted',
-  THREAD_PROPS_UPDATED = 'thread_props_updated',
+  STATE_SYNC = 'state_sync',
+  THREAD_MESSAGES_REFRESH = 'thread_messages_refresh',
   PARTICIPANT_TYPING = 'participant_typing',
-  PARTICIPANT_STOPPED_TYPING = 'participant_stopped_typing',
   USER_PRESENCE_UPDATED = 'user_presence_updated',
 }
 

@@ -316,6 +316,7 @@ export interface PlatformAPI {
 export type Reaction = {
   title: string
   render: string
+  disabled?: boolean
 }
 
 type ReactComponent = React.ReactElement | (() => JSX.Element) | ((props: any) => JSX.Element)

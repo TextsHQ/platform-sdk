@@ -1,6 +1,6 @@
 import type { CookieJar } from 'tough-cookie'
 import type React from 'react'
-import type { ThreadActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './enums'
+import type { MessageActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './enums'
 
 export type Awaitable<T> = T | PromiseLike<T>
 
@@ -16,18 +16,29 @@ export type Paginated<T> = {
   newestCursor?: string
 }
 
-export type ThreadTitleUpdatedAction = { type: ThreadActionType.THREAD_TITLE_UPDATED, title: string, actorParticipantID: string }
-export type ThreadParticipantsAddedAction = { type: ThreadActionType.THREAD_PARTICIPANTS_ADDED, participantIDs: string[], actorParticipantID: string, participants?: Participant[] }
-export type ThreadParticipantsRemovedAction = { type: ThreadActionType.THREAD_PARTICIPANTS_REMOVED, participantIDs: string[], actorParticipantID: string, participants?: Participant[] }
-export type GroupThreadCreatedAction = { type: ThreadActionType.GROUP_THREAD_CREATED, title: string, actorParticipantID: string }
-export type MessageRequestAcceptedAction = { type: ThreadActionType.MESSAGE_REQUEST_ACCEPTED }
+export type MessageReaction = {
+  id: string
+  reactionName: string
+  participantID: string
+}
 
-export type Action =
+export type ThreadTitleUpdatedAction = { type: MessageActionType.THREAD_TITLE_UPDATED, title: string, actorParticipantID: string }
+export type ThreadParticipantsAddedAction = { type: MessageActionType.THREAD_PARTICIPANTS_ADDED, participantIDs: string[], actorParticipantID: string, participants?: Participant[] }
+export type ThreadParticipantsRemovedAction = { type: MessageActionType.THREAD_PARTICIPANTS_REMOVED, participantIDs: string[], actorParticipantID: string, participants?: Participant[] }
+export type GroupThreadCreatedAction = { type: MessageActionType.GROUP_THREAD_CREATED, title: string, actorParticipantID: string }
+export type MessageRequestAcceptedAction = { type: MessageActionType.MESSAGE_REQUEST_ACCEPTED }
+
+export type MessageReactionCreatedAction = { type: MessageActionType.MESSAGE_REACTION_CREATED, messageID?: string } & Partial<MessageReaction>
+export type MessageReactionDeletedAction = { type: MessageActionType.MESSAGE_REACTION_DELETED, messageID?: string } & Partial<MessageReaction>
+
+export type MessageAction =
   ThreadTitleUpdatedAction |
   ThreadParticipantsAddedAction |
   ThreadParticipantsRemovedAction |
   GroupThreadCreatedAction |
-  MessageRequestAcceptedAction
+  MessageRequestAcceptedAction |
+  MessageReactionCreatedAction |
+  MessageReactionDeletedAction
 
 export type MessageSeen =
   boolean | Date | // for single threads
@@ -110,12 +121,6 @@ export type MessagePreview = {
   senderID: string
 }
 
-export type MessageReaction = {
-  id: string
-  reactionName: string
-  participantID: string
-}
-
 export type MessageLink = {
   url: string
   favicon?: string
@@ -152,7 +157,7 @@ export type Message = {
   shouldNotify?: boolean
   linkedMessageID?: string
   linkedMessage?: MessagePreview
-  action?: Action
+  action?: MessageAction
 
   extra?: any
 

@@ -28,12 +28,14 @@ export enum Attribute {
   SUPPORTS_FORWARD = 'supports_forward',
 }
 
-export enum ThreadActionType {
+export enum MessageActionType {
   GROUP_THREAD_CREATED = 'group_thread_created',
   THREAD_TITLE_UPDATED = 'thread_title_updated',
   THREAD_PARTICIPANTS_ADDED = 'thread_participants_added',
   THREAD_PARTICIPANTS_REMOVED = 'thread_participants_removed',
   MESSAGE_REQUEST_ACCEPTED = 'message_request_accepted',
+  MESSAGE_REACTION_CREATED = 'message_reaction_created',
+  MESSAGE_REACTION_DELETED = 'message_reaction_deleted',
 }
 
 export enum ServerEventType {

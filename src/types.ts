@@ -316,6 +316,8 @@ export interface PlatformAPI {
 
   onThreadSelected?: (threadID: string) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
+
+  getAsset?: (key: string) => Awaitable<Buffer>
 }
 
 export type Reaction = {

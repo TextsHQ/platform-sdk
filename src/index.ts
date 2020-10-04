@@ -10,7 +10,8 @@ export type TextsGlobals = {
   log: (...args: any[]) => void
   error: (...args: any[]) => void
   constants: {
-    USER_AGENT: string
+    USER_AGENT: string,
+    userDataDirPath: string,
   },
   Sentry: typeof SentryNode,
 }

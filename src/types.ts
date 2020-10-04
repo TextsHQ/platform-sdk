@@ -250,6 +250,7 @@ export type LoginCreds = {
   username?: string
   password?: string
   code?: string
+  custom?: any
   lastLoginResult?: LoginResult
 }
 

@@ -11,7 +11,8 @@ export type TextsGlobals = {
   error: (...args: any[]) => void
   constants: {
     USER_AGENT: string,
-    userDataDirPath: string,
+    USER_DATA_DIR_PATH: string,
+    APP_VERSION: string,
   },
   Sentry: typeof SentryNode,
 }

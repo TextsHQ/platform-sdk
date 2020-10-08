@@ -123,7 +123,7 @@ export type MessagePreview = {
 
 export type MessageLink = {
   url: string
-  hostname?: string
+  originalURL?: string // if the url is shortened or behind a redirector (like t.co or l.messenger.com) and we have the original url
   favicon?: string
   img?: string
   imgSize?: Size

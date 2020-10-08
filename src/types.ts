@@ -123,6 +123,7 @@ export type MessagePreview = {
 
 export type MessageLink = {
   url: string
+  hostname?: string
   favicon?: string
   img?: string
   imgSize?: Size

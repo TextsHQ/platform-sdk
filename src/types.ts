@@ -271,6 +271,11 @@ export type MessageContent = {
   mimeType?: string
 }
 
+export type PaginationArg = {
+  cursor: string
+  direction: 'after' | 'before'
+}
+
 // also modify relayer-constants.ts
 export interface PlatformAPI {
   init: (session?: any, accountID?: string) => Awaitable<void>
@@ -289,13 +294,13 @@ export interface PlatformAPI {
   takeoverConflict?: () => Awaitable<void>
 
   searchUsers: (typed: string) => Awaitable<User[]>
-  searchMessages?: (typed: string, beforeCursor?: string, threadID?: string) => Awaitable<Paginated<Message>>
+  searchMessages?: (typed: string, pagination?: PaginationArg, threadID?: string) => Awaitable<Paginated<Message>>
 
   getPresence?: () => Awaitable<PresenceMap>
 
-  getThreads: (inboxName: InboxName, beforeCursor?: string) => Awaitable<Paginated<Thread>>
-  getMessages: (threadID: string, beforeCursor: string) => Awaitable<Paginated<Message>>
-  getParticipants?: (threadID: string, beforeCursor: string) => Awaitable<Paginated<Participant>>
+  getThreads: (inboxName: InboxName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
+  getMessages: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
+  getParticipants?: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
 
   createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
   deleteThread?: (threadID: string) => Awaitable<void>

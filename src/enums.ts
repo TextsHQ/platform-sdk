@@ -14,6 +14,7 @@ export enum Attribute {
   SUBSCRIBE_TO_CONN_STATE_CHANGE = 'subscribe_to_conn_state_change',
   CAN_MESSAGE_PHONE_NUMBER = 'can_message_phone_number',
   CAN_MESSAGE_EMAIL = 'can_message_email',
+  CAN_MESSAGE_USERNAME = 'can_message_username',
   SHARES_CONTACTS = 'shares_contacts',
   SUPPORTS_SEARCH = 'supports_search',
   SUPPORTS_QUOTED_MESSAGES = 'supports_quoted_messages',

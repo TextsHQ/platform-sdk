@@ -310,10 +310,13 @@ export interface PlatformAPI {
   forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<boolean>
 
   sendTypingIndicator: (threadID: string, typing?: boolean) => Awaitable<void>
-  addReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>
-  removeReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>
   deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<boolean>
   sendReadReceipt: (threadID: string, messageID: string) => Awaitable<any>
+
+  addReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>
+  removeReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>
+
+  getLinkPreview?: (link: string) => Promise<MessageLink>
 
   addParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
   removeParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>

@@ -249,6 +249,7 @@ export type ConnectionState = {
 export type MessageSendOptions = {
   pendingMessageID?: string
   quotedMessageID?: string
+  isRecordedAudio?: boolean
 }
 
 export type LoginCreds = {

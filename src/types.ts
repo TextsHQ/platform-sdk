@@ -277,9 +277,14 @@ export type PaginationArg = {
   direction: 'after' | 'before'
 }
 
+export type AccountInfo = {
+  accountID: string
+  dataDirPath: string
+}
+
 // also modify relayer-constants.ts
 export interface PlatformAPI {
-  init: (session?: any, accountID?: string) => Awaitable<void>
+  init: (session?: any, accountInfo?: AccountInfo) => Awaitable<void>
   dispose: () => Awaitable<void>
 
   getCurrentUser: () => Awaitable<CurrentUser>
@@ -349,9 +354,6 @@ export type Platform = {
   name: string
   version?: string
   displayName: string
-  supportedReactions: Record<string, Reaction>
-  deletionMode: MessageDeletionMode
-  attributes: Set<Attribute>
   icon: string | ReactComponent
   tags?: string[]
 
@@ -359,8 +361,13 @@ export type Platform = {
   browserLogin?: BrowserLogin
   auth?: ReactComponent | any
 
+  supportedReactions: Record<string, Reaction>
+  deletionMode: MessageDeletionMode
+  attributes: Set<Attribute>
+
   maxGroupTitleLength?: number
   typingDurationMs?: number
+  audioMimeType?: string
 
   getUserProfileLink?: (participant: Participant) => string
 

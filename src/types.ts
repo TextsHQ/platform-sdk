@@ -2,6 +2,15 @@ import type { CookieJar } from 'tough-cookie'
 import type React from 'react'
 import type { MessageActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './enums'
 
+export type Without<T, U> = {
+  [P in Exclude<keyof T, keyof U>]
+  ?
+  : never
+}
+export type XOR<T, U> = (T | U) extends object
+  ? (Without<T, U> & U) | (Without<U, T> & T)
+  : T | U
+
 export type Awaitable<T> = T | PromiseLike<T>
 
 export type Size = {
@@ -73,6 +82,7 @@ export type MessageAttachment = {
   posterImg?: Buffer | string
   mimeType?: string
   fileName?: string
+  fileSize?: number
   loading?: boolean
   caption?: string
   extra?: any
@@ -134,13 +144,30 @@ export type MessageLink = {
   summary?: string
 }
 
+export type TextEntity = {
+  from: number
+  to: number
+
+  bold?: boolean
+  italic?: boolean
+  underline?: boolean
+  strikethrough?: boolean
+  monospace?: boolean
+
+  replaceWith?: string
+  link?: string
+  mentionedUser?: XOR<{ username: string }, { id: string }>
+}
+
 export type Message = {
   _original: any[]
   id: string
   textHeading?: string
   textFooter?: string
   text: string
+  textEntities?: TextEntity[]
   timestamp: Date
+  editedTimestamp?: Date
   senderID: 'none' | string
 
   attachments: MessageAttachment[]
@@ -250,6 +277,7 @@ export type MessageSendOptions = {
   pendingMessageID?: string
   quotedMessageID?: string
   isRecordedAudio?: boolean
+  audioDurationSeconds?: number
 }
 
 export type LoginCreds = {

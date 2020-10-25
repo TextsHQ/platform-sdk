@@ -234,9 +234,15 @@ export type ThreadMessagesRefreshEvent = {
   threadID: string
 }
 
+export type ThreadTrustedEvent = {
+  type: ServerEventType.THREAD_TRUSTED
+  threadID: string
+}
+
 export type ServerEvent =
   StateSyncEvent |
   ThreadMessagesRefreshEvent |
+  ThreadTrustedEvent |
   ParticipantTypingEvent |
   UserPresenceEvent
 

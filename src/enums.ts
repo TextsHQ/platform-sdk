@@ -44,6 +44,7 @@ export enum MessageActionType {
 export enum ServerEventType {
   STATE_SYNC = 'state_sync',
   THREAD_MESSAGES_REFRESH = 'thread_messages_refresh',
+  THREAD_TRUSTED = 'thread_trusted',
   PARTICIPANT_TYPING = 'participant_typing',
   USER_PRESENCE_UPDATED = 'user_presence_updated',
 }

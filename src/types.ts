@@ -159,13 +159,21 @@ export type TextEntity = {
   mentionedUser?: XOR<{ username: string }, { id: string }>
 }
 
+export type TextAttributes = {
+  entities?: TextEntity[]
+  /**
+   * decode HTML entities like > (&gt;)
+   */
+  heDecode?: boolean
+}
+
 export type Message = {
   _original: any[]
   id: string
   textHeading?: string
   textFooter?: string
   text: string
-  textEntities?: TextEntity[]
+  textAttributes?: TextAttributes
   timestamp: Date
   editedTimestamp?: Date
   senderID: 'none' | string

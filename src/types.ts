@@ -29,6 +29,7 @@ export type MessageReaction = {
   id: string
   reactionName: string
   participantID: string
+  emoji?: boolean
 }
 
 export type ThreadTitleUpdatedAction = { type: MessageActionType.THREAD_TITLE_UPDATED, title: string, actorParticipantID: string }

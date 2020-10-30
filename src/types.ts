@@ -181,7 +181,7 @@ export type Message = {
 
   attachments: MessageAttachment[]
   tweet?: Tweet
-  link?: MessageLink
+  links?: MessageLink[]
   iframeURL?: string
 
   reactions: MessageReaction[]
@@ -385,15 +385,15 @@ export interface PlatformAPI {
   getAsset?: (...args: string[]) => Awaitable<string | Buffer>
 }
 
-export type Reaction = {
+export type SupportedReaction = {
   title: string
   render: string
   disabled?: boolean
 }
 
-type ReactComponent = React.ReactElement | (() => JSX.Element) | ((props: any) => JSX.Element)
+type ReactComponent = React.ReactNode | (() => JSX.Element) | ((props: any) => JSX.Element)
 
-export type Platform = {
+export type PlatformInfo = {
   name: string
   version?: string
   displayName: string
@@ -404,7 +404,12 @@ export type Platform = {
   browserLogin?: BrowserLogin
   auth?: ReactComponent | any
 
-  supportedReactions: Record<string, Reaction>
+  reactions?: {
+    supported: Record<string, SupportedReaction>
+    supportsDynamicReactions?: boolean
+    canReactWithAllEmojis?: boolean
+    allowsMultipleReactionsToSingleMessage?: boolean
+  }
   deletionMode: MessageDeletionMode
   attributes: Set<Attribute>
 
@@ -412,9 +417,13 @@ export type Platform = {
   typingDurationMs?: number
   audioMimeType?: string
 
-  getUserProfileLink?: (participant: Participant) => string
-
-  mapMessage?: (...originalMsg: any) => Message
-
   extra?: any
+
+  getUserProfileLink?: (participant: Participant) => string
+  mapMessage?: (...originalMsg: any) => Message
+}
+
+export interface Platform {
+  info: PlatformInfo
+  api: PlatformAPI
 }

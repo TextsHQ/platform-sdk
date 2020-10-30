@@ -27,7 +27,7 @@ export type Paginated<T> = {
 
 export type MessageReaction = {
   id: string
-  reactionName: string
+  reactionKey: string
   participantID: string
   emoji?: boolean
 }
@@ -362,8 +362,8 @@ export interface PlatformAPI {
   deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<boolean>
   sendReadReceipt: (threadID: string, messageID: string) => Awaitable<any>
 
-  addReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>
-  removeReaction?: (threadID: string, messageID: string, reactionName: string) => Awaitable<any>
+  addReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<any>
+  removeReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<any>
 
   getLinkPreview?: (link: string) => Promise<MessageLink>
 

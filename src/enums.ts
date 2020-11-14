@@ -7,6 +7,7 @@ export enum Attribute {
   CAN_MESSAGE_EMAIL = 'can_message_email',
   CAN_MESSAGE_PHONE_NUMBER = 'can_message_phone_number',
   CAN_MESSAGE_USERNAME = 'can_message_username',
+  NO_CACHE = 'no_cache',
   NO_SUPPORT_DUPLICATE_GROUP_CREATION = 'no_support_duplicate_group_creation',
   NO_SUPPORT_GROUP_ADD_PARTICIPANT = 'no_support_group_add_participant',
   NO_SUPPORT_GROUP_REMOVE_PARTICIPANT = 'no_support_group_remove_participant',

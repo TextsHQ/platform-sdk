@@ -34,6 +34,7 @@ export enum Attribute {
 
 export enum MessageActionType {
   GROUP_THREAD_CREATED = 'group_thread_created',
+  THREAD_IMG_CHANGED = 'thread_img_changed',
   THREAD_TITLE_UPDATED = 'thread_title_updated',
   THREAD_PARTICIPANTS_ADDED = 'thread_participants_added',
   THREAD_PARTICIPANTS_REMOVED = 'thread_participants_removed',

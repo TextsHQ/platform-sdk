@@ -47,6 +47,7 @@ export type MessageAction =
   ThreadParticipantsAddedAction |
   ThreadParticipantsRemovedAction |
   GroupThreadCreatedAction |
+  ThreadImgCreatedAction |
   MessageRequestAcceptedAction |
   MessageReactionCreatedAction |
   MessageReactionDeletedAction

@@ -22,6 +22,6 @@
     "@textshq/eslint-config": "https://github.com/textshq/eslint-config",
     "eslint": "^7.9.0",
     "husky": "^4.3.0",
-    "typescript": "^4.0.2"
+    "typescript": "^4.1.2"
   }
 }

@@ -1,5 +1,4 @@
 import type { CookieJar } from 'tough-cookie'
-import type React from 'react'
 import type { MessageActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './enums'
 
 export type Without<T, U> = {

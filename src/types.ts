@@ -235,7 +235,7 @@ export type UserPresenceEvent = {
   presence: UserPresence
 }
 
-type ObjectMutationType = 'created' | 'updated' | 'deleted'
+type ObjectMutationType = 'upsert' | 'insert' | 'update' | 'delete'
 type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant'
 
 export type StateSyncEvent = {

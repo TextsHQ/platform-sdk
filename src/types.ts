@@ -161,6 +161,11 @@ export type TextEntity = {
   mentionedUser?: XOR<{ username: string }, { id: string }>
 }
 
+export type MessageButton = {
+  label: string
+  linkURL: string
+}
+
 export type TextAttributes = {
   entities?: TextEntity[]
   /**
@@ -202,6 +207,8 @@ export type Message = {
   linkedMessageID?: string
   linkedMessage?: MessagePreview
   action?: MessageAction
+  cursor?: string
+  buttons?: MessageButton[]
 
   extra?: any
 

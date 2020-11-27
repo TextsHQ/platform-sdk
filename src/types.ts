@@ -235,15 +235,39 @@ export type UserPresenceEvent = {
   presence: UserPresence
 }
 
-type ObjectMutationType = 'upsert' | 'insert' | 'update' | 'delete'
+// type ObjectMutationType = 'upsert' | 'insert' | 'update' | 'delete'
 type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant'
 
 export type StateSyncEvent = {
   type: ServerEventType.STATE_SYNC
-  objectID: string[]
-  mutationType: ObjectMutationType
+  objectIDs: {
+    threadID?: string
+    messageID?: string
+    reactionID?: string
+  }
+  mutationType: 'upsert'
   objectName: ObjectName
-  data?: Partial<Thread> | Partial<Message> | Partial<Participant> | Partial<MessageReaction>
+  entries: Array<Thread | Message | Participant | MessageReaction>
+} | {
+  type: ServerEventType.STATE_SYNC
+  objectIDs: {
+    threadID?: string
+    messageID?: string
+    reactionID?: string
+  }
+  mutationType: 'update'
+  objectName: ObjectName
+  entries: Array<Partial<Thread> | Partial<Message> | Partial<Participant> | Partial<MessageReaction>>
+} | {
+  type: ServerEventType.STATE_SYNC
+  objectIDs: {
+    threadID?: string
+    messageID?: string
+    reactionID?: string
+  }
+  mutationType: 'delete'
+  objectName: ObjectName
+  entries: string[]
 }
 
 export type ThreadMessagesRefreshEvent = {

@@ -324,7 +324,6 @@ export type MessageSendOptions = {
   pendingMessageID?: string
   quotedMessageID?: string
   isRecordedAudio?: boolean
-  isGif?: boolean
   audioDurationSeconds?: number
 }
 
@@ -346,6 +345,7 @@ export type MessageContent = {
   fileBuffer?: Buffer
   fileName?: string
   mimeType?: string
+  isGif?: boolean
 }
 
 export type PaginationArg = {

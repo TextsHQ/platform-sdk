@@ -324,6 +324,7 @@ export type MessageSendOptions = {
   pendingMessageID?: string
   quotedMessageID?: string
   isRecordedAudio?: boolean
+  isGif?: boolean
   audioDurationSeconds?: number
 }
 
@@ -447,7 +448,12 @@ export type PlatformInfo = {
 
   maxGroupTitleLength?: number
   typingDurationMs?: number
-  audioMimeType?: string
+  attachments?: {
+    noSupport?: boolean
+    supportsCaption?: boolean
+    audioMimeType?: string
+    gifMimeType?: string
+  }
 
   extra?: any
 

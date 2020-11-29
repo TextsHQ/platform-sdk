@@ -17,6 +17,7 @@ export enum Attribute {
   NO_SUPPORT_SINGLE_THREAD_CREATION = 'no_support_single_thread_creation',
   NO_SUPPORT_TYPING_INDICATOR = 'no_support_typing_indicator',
   SHARES_CONTACTS = 'shares_contacts',
+  SORT_MESSAGES_ON_PUSH = 'sort_messages_on_push',
   SUBSCRIBE_TO_CONN_STATE_CHANGE = 'subscribe_to_conn_state_change',
   SUBSCRIBE_TO_THREAD_SELECTION = 'subscribe_to_thread_selection',
   SUPPORTS_ARCHIVE = 'supports_archive',

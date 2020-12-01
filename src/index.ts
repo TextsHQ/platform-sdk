@@ -1,4 +1,5 @@
 import type SentryNode from '@sentry/node'
+import type React from 'react'
 
 export * from './enums'
 export * from './errors'
@@ -14,6 +15,7 @@ export type TextsGlobals = {
     APP_VERSION: string,
   },
   Sentry: typeof SentryNode,
+  React?: typeof React,
 }
 
 export const texts = (globalThis as any).texts as TextsGlobals

@@ -15,6 +15,6 @@
 }
 ```
 
-3. Each string in the `external_platforms` array is a path to a platform. This directory path should point to the JavaScript files (not TypeScript) and contain an `index.js` file and an `info.js` file.
+3. Each string in the `external_platforms` array is a path to a platform's entry point which should export a `Platform` object. This directory path should point to the JavaScript files (not TypeScript).
 
 4. Restart or launch Texts.app

@@ -175,7 +175,7 @@ export type TextAttributes = {
 }
 
 export type Message = {
-  _original: any[]
+  _original?: string
   id: string
   textHeading?: string
   textFooter?: string
@@ -294,7 +294,7 @@ export type OnConnStateChangeCallback = (state: ConnectionState) => void
 export type ThreadType = 'single' | 'group' | 'broadcast'
 
 export type Thread = {
-  _original?: any
+  _original?: string
 
   id: string
   title?: string

@@ -213,7 +213,7 @@ export type Message = {
   extra?: any
 
   threadID?: string
-  sender?: Participant
+  // sender?: Participant
 }
 
 export type UserPresence = {
@@ -450,8 +450,12 @@ export type PlatformInfo = {
   typingDurationMs?: number
   attachments?: {
     noSupport?: boolean
+    noSupportForImage?: boolean
+    noSupportForVideo?: boolean
+    noSupportForAudio?: boolean
+    noSupportForFiles?: boolean
     supportsCaption?: boolean
-    audioMimeType?: string
+    recordedAudioMimeType?: string
     gifMimeType?: string
   }
 

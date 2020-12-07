@@ -8,14 +8,18 @@ export * from './constants'
 
 export type TextsGlobals = {
   IS_DEV: boolean
+  IS_DEV_ENVIRON: boolean
+
   log: (...args: any[]) => void
   error: (...args: any[]) => void
+
   constants: {
-    USER_AGENT: string,
-    APP_VERSION: string,
-  },
-  Sentry: typeof SentryNode,
-  React?: typeof React,
+    USER_AGENT: string
+    APP_VERSION: string
+  }
+
+  Sentry: typeof SentryNode
+  React?: typeof React
 }
 
 export const texts = (globalThis as any).texts as TextsGlobals

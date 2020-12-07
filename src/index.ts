@@ -8,7 +8,6 @@ export * from './constants'
 
 export type TextsGlobals = {
   IS_DEV: boolean
-  IS_DEV_ENVIRON: boolean
 
   log: (...args: any[]) => void
   error: (...args: any[]) => void
@@ -16,6 +15,7 @@ export type TextsGlobals = {
   constants: {
     USER_AGENT: string
     APP_VERSION: string
+    BUILD_DIR_PATH: string
   }
 
   Sentry: typeof SentryNode

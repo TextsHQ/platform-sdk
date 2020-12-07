@@ -154,7 +154,9 @@ export type TextEntity = {
   italic?: boolean
   underline?: boolean
   strikethrough?: boolean
-  monospace?: boolean
+  code?: boolean
+  pre?: boolean
+  codeLanguage?: string
 
   replaceWith?: string
   link?: string

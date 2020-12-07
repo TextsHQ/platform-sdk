@@ -322,13 +322,6 @@ export type ConnectionState = {
   status: ConnectionStatus
 }
 
-export type MessageSendOptions = {
-  pendingMessageID?: string
-  quotedMessageID?: string
-  isRecordedAudio?: boolean
-  audioDurationSeconds?: number
-}
-
 export type LoginCreds = {
   cookieJarJSON?: CookieJar.Serialized
   jsCodeResult?: string
@@ -346,8 +339,16 @@ export type MessageContent = {
   filePath?: string
   fileBuffer?: Buffer
   fileName?: string
+
   mimeType?: string
   isGif?: boolean
+  isRecordedAudio?: boolean
+  audioDurationSeconds?: number
+}
+
+export type MessageSendOptions = {
+  pendingMessageID?: string
+  quotedMessageID?: string
 }
 
 export type PaginationArg = {

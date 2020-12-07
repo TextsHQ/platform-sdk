@@ -80,3 +80,10 @@ export enum ConnectionStatus {
   UNAUTHORIZED = 'unauthorized',
   DISCONNECTED = 'disconnected',
 }
+
+export enum ActivityType {
+  NONE = 'none',
+  TYPING = 'typing',
+  RECORDING_VOICE = 'recording_voice',
+  RECORDING_VIDEO = 'recording_video',
+}

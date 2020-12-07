@@ -50,7 +50,7 @@ export const PlatformAPIFuncMetadata: Record<keyof PlatformAPI, FuncMetadata> = 
 
   forwardMessage: {},
 
-  sendTypingIndicator: {},
+  sendActivityIndicator: {},
   deleteMessage: {},
   sendReadReceipt: {},
 

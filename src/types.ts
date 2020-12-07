@@ -1,5 +1,5 @@
 import type { CookieJar } from 'tough-cookie'
-import type { MessageActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus } from './enums'
+import type { MessageActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus, ActivityType } from './enums'
 
 export type Without<T, U> = {
   [P in Exclude<keyof T, keyof U>]
@@ -394,7 +394,7 @@ export interface PlatformAPI {
 
   forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<boolean>
 
-  sendTypingIndicator: (threadID: string, typing?: boolean) => Awaitable<void>
+  sendActivityIndicator: (type: ActivityType, threadID: string) => Awaitable<void>
   deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<boolean>
   sendReadReceipt: (threadID: string, messageID: string) => Awaitable<any>
 

@@ -58,7 +58,7 @@ export type MessageSeen =
 export type LoginMode = 'browser' | 'manual' | 'custom'
 
 export type LoginResult = {
-  type: 'success' | 'code_required' | 'error'
+  type: 'success' | 'code_required' | 'error' | 'wait'
   reason?: CodeRequiredReason
   metadata?: any
   title?: string

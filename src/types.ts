@@ -299,6 +299,7 @@ export type Thread = {
   _original?: string
 
   id: string
+  cursor?: string
   title?: string
   isUnread: boolean
   isReadOnly: boolean

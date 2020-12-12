@@ -100,6 +100,7 @@ export type Tweet = {
   timestamp?: Date
   url: string
   text: string
+  textAttributes?: TextAttributes
   attachments: MessageAttachment[]
   quotedTweet?: Tweet
 }

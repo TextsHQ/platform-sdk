@@ -78,6 +78,7 @@ export type MessageAttachment = {
   id: string
   type: MessageAttachmentType
   isGif?: boolean
+  isSticker?: boolean
   size?: Size
   srcURL?: string
   data?: Buffer

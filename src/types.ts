@@ -79,6 +79,7 @@ export type MessageAttachment = {
   type: MessageAttachmentType
   isGif?: boolean
   isSticker?: boolean
+  isVoiceNote?: boolean
   size?: Size
   srcURL?: string
   data?: Buffer
@@ -323,6 +324,7 @@ export type Thread = {
 
 export type ConnectionState = {
   status: ConnectionStatus
+  canRetry?: boolean
 }
 
 export type LoginCreds = {

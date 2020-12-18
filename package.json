@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@sentry/node": "^5.28.0",
-    "@textshq/eslint-config": "https://github.com/textshq/eslint-config",
+    "@textshq/eslint-config": "https://github.com/TextsHQ/eslint-config",
     "eslint": "^7.14.0",
     "husky": "^4.3.0",
     "typescript": "^4.1.2"

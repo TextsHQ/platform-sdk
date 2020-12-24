@@ -13,7 +13,6 @@ export enum Attribute {
   NO_SUPPORT_GROUP_REMOVE_PARTICIPANT = 'no_support_group_remove_participant',
   NO_SUPPORT_GROUP_THREAD_CREATION = 'no_support_group_thread_creation',
   NO_SUPPORT_GROUP_TITLE_CHANGE = 'no_support_group_title_change',
-  NO_SUPPORT_LAST_MESSAGE_IN_THREADS = 'no_support_last_message_in_threads',
   NO_SUPPORT_SINGLE_THREAD_CREATION = 'no_support_single_thread_creation',
   NO_SUPPORT_TYPING_INDICATOR = 'no_support_typing_indicator',
   SHARES_CONTACTS = 'shares_contacts',

@@ -188,7 +188,7 @@ export type Message = {
   textAttributes?: TextAttributes
   timestamp: Date
   editedTimestamp?: Date
-  senderID: 'none' | string
+  senderID: 'none' | '$thread' | string
 
   attachments: MessageAttachment[]
   tweet?: Tweet

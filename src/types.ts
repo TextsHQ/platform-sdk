@@ -285,8 +285,16 @@ export type ThreadTrustedEvent = {
   threadID: string
 }
 
+export type ToastEvent = {
+  type: ServerEventType.TOAST
+  toast: {
+    text: string
+  }
+}
+
 export type ServerEvent =
   StateSyncEvent |
+  ToastEvent |
   ThreadMessagesRefreshEvent |
   ThreadTrustedEvent |
   ParticipantTypingEvent |

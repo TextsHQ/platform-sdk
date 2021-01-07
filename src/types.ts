@@ -130,11 +130,7 @@ export type Participant = User & {
   hasExited?: boolean
 }
 
-export type MessagePreview = {
-  id: string
-  text: string
-  senderID: string
-}
+export type MessagePreview = Pick<Message, 'id' | 'text' | 'senderID' | 'attachments'>
 
 export type MessageLink = {
   url: string
@@ -188,6 +184,7 @@ export type Message = {
   textAttributes?: TextAttributes
   timestamp: Date
   editedTimestamp?: Date
+  expiresInSeconds?: number
   senderID: 'none' | '$thread' | string
 
   attachments: MessageAttachment[]

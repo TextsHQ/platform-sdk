@@ -398,6 +398,7 @@ export interface PlatformAPI {
   getParticipants?: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
 
   createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
+  updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<boolean>
   deleteThread?: (threadID: string) => Awaitable<void>
 
   sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
@@ -417,7 +418,6 @@ export interface PlatformAPI {
   removeParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
   changeParticipantRole?: (threadID: string, participantID: string, role: string) => Awaitable<boolean>
 
-  changeThreadTitle?: (threadID: string, newTitle: string) => Awaitable<boolean>
   changeThreadImage?: (threadID: string, imageBuffer: Buffer, mimeType: string) => Awaitable<void>
 
   markAsUnread?: (threadID: string) => Awaitable<void>

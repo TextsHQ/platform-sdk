@@ -407,12 +407,12 @@ export interface PlatformAPI {
 
   sendActivityIndicator: (type: ActivityType, threadID: string) => Awaitable<void>
   deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<boolean>
-  sendReadReceipt: (threadID: string, messageID: string) => Awaitable<any>
+  sendReadReceipt: (threadID: string, messageID: string) => Awaitable<void | boolean>
 
-  addReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<any>
-  removeReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<any>
+  addReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void | boolean>
+  removeReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void | boolean>
 
-  getLinkPreview?: (link: string) => Promise<MessageLink>
+  getLinkPreview?: (link: string) => Awaitable<MessageLink>
 
   addParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
   removeParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>

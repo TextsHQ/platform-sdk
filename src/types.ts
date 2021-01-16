@@ -112,6 +112,7 @@ export type User = {
   username?: string
   phoneNumber?: string
   email?: string
+
   fullName?: string
   nickname?: string
   imgURL?: string
@@ -396,6 +397,8 @@ export interface PlatformAPI {
   getThreads: (inboxName: InboxName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
   getMessages: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
   getThreadParticipants?: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
+
+  getUser?: (ids: { userID?: string } | { username?: string } | { phoneNumber?: string } | { email?: string }) => Awaitable<User>
 
   createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
   updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<boolean>

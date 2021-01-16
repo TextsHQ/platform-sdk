@@ -395,7 +395,7 @@ export interface PlatformAPI {
 
   getThreads: (inboxName: InboxName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
   getMessages: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
-  getParticipants?: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
+  getThreadParticipants?: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
 
   createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
   updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<boolean>

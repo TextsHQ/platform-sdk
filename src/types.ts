@@ -326,6 +326,7 @@ export type Thread = {
   createdAt?: Date
   description?: string
   lastMessageSnippet?: string
+  messageExpirySeconds?: number
 
   messages: Paginated<Message>
   participants: Paginated<Participant>

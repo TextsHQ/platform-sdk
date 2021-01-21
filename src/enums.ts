@@ -25,6 +25,7 @@ export enum Attribute {
   SUPPORTS_GROUP_PARTICIPANT_ROLE_CHANGE = 'supports_group_participant_role_change',
   SUPPORTS_MARK_AS_UNREAD = 'supports_mark_as_unread',
   SUPPORTS_PIN_THREAD = 'supports_pin_thread',
+  SUPPORTS_DELETE_THREAD = 'supports_delete_thread',
   SUPPORTS_PRESENCE = 'supports_presence',
   SUPPORTS_QUOTED_MESSAGES = 'supports_quoted_messages',
   SUPPORTS_REQUESTS_INBOX = 'supports_requests_inbox',

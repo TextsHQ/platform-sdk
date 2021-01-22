@@ -189,6 +189,7 @@ export type Message = {
   timestamp: Date
   editedTimestamp?: Date
   expiresInSeconds?: number
+  forwardedCount?: number
   senderID: 'none' | '$thread' | string
 
   attachments: MessageAttachment[]

@@ -69,6 +69,7 @@ export type BrowserLogin = {
   loginURL: string
   authCookieName?: string
   runJSOnLaunch?: string
+  runJSOnNavigate?: string
   runJSOnClose?: string
   windowWidth?: number
   windowHeight?: number

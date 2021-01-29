@@ -164,7 +164,7 @@ export type TextEntity = {
 
   replaceWith?: string
   link?: string
-  mentionedUser?: XOR<{ username: string }, { id: string }>
+  mentionedUser?: { username?: string, id?: string }
 }
 
 export type MessageButton = {
@@ -183,15 +183,16 @@ export type TextAttributes = {
 export type Message = {
   _original?: string
   id: string
-  textHeading?: string
-  textFooter?: string
-  text: string
-  textAttributes?: TextAttributes
   timestamp: Date
   editedTimestamp?: Date
   expiresInSeconds?: number
   forwardedCount?: number
   senderID: 'none' | '$thread' | string
+
+  text: string
+  textAttributes?: TextAttributes
+  textHeading?: string
+  textFooter?: string
 
   attachments: MessageAttachment[]
   tweet?: Tweet

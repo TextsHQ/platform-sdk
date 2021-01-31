@@ -1,5 +1,6 @@
 import type SentryNode from '@sentry/node'
 import type React from 'react'
+import type { Worker } from 'worker_threads'
 
 export * from './enums'
 export * from './errors'
@@ -20,6 +21,8 @@ export type TextsGlobals = {
 
   Sentry: typeof SentryNode
   React?: typeof React
+
+  runWorker?: (workerFilePath: string, workerData: any) => Worker
 }
 
 export const texts = (globalThis as any).texts as TextsGlobals

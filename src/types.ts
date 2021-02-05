@@ -1,3 +1,4 @@
+import type { Readable } from 'stream'
 import type { CookieJar } from 'tough-cookie'
 import type { MessageActionType, MessageAttachmentType, MessageDeletionMode, Attribute, CodeRequiredReason, InboxName, ServerEventType, ConnectionStatus, ActivityType } from './enums'
 
@@ -438,7 +439,7 @@ export interface PlatformAPI {
   onThreadSelected?: (threadID: string) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 
-  getAsset?: (...args: string[]) => Awaitable<string | Buffer>
+  getAsset?: (...args: string[]) => Awaitable<string | Buffer | Readable>
 }
 
 export type SupportedReaction = {

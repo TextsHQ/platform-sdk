@@ -22,6 +22,7 @@ export type TextsGlobals = {
   Sentry: typeof SentryNode
   React?: typeof React
 
+  trackPlatformEvent?: (data: any) => Promise<void>
   runWorker?: (workerFilePath: string, workerData: any) => Worker
 }
 

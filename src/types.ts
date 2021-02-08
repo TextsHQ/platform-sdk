@@ -204,15 +204,14 @@ export type Message = {
   seen?: MessageSeen
   isDelivered?: boolean
   isHidden?: boolean
+  /** `isSender` should be true if the logged in user sent the message */
   isSender: boolean
   isAction?: boolean
   isDeleted?: boolean
   isErrored?: boolean
   isDynamicMessage?: boolean
   parseTemplate?: boolean
-  /**
-   * `silent` messages will not mark the thread as unread, move the thread to the top of the list, or show a notification
-   */
+  /** `silent` messages will not mark the thread as unread, move the thread to the top of the list, or show a notification */
   silent?: boolean
   linkedMessageID?: string
   linkedMessage?: MessagePreview

@@ -4,18 +4,30 @@ export enum InboxName {
 }
 
 export enum Attribute {
+  /** Platform users can have an email address */
   CAN_MESSAGE_EMAIL = 'can_message_email',
+  /** Platform users can have a phone number */
   CAN_MESSAGE_PHONE_NUMBER = 'can_message_phone_number',
+  /** Platform users can have a username */
   CAN_MESSAGE_USERNAME = 'can_message_username',
+  /** Don't cache messages, threads, users for the platform */
   NO_CACHE = 'no_cache',
+  /** Platform doesn't allow creation of duplicate groups with the same set of users (Alice, Bob) */
   NO_SUPPORT_DUPLICATE_GROUP_CREATION = 'no_support_duplicate_group_creation',
+  /** Platform integration doesn't support adding participants to groups */
   NO_SUPPORT_GROUP_ADD_PARTICIPANT = 'no_support_group_add_participant',
+  /** Platform integration doesn't support removing participants from groups */
   NO_SUPPORT_GROUP_REMOVE_PARTICIPANT = 'no_support_group_remove_participant',
+  /** Platform integration doesn't support creating group threads */
   NO_SUPPORT_GROUP_THREAD_CREATION = 'no_support_group_thread_creation',
+  /** Platform integration doesn't support changing group titles */
   NO_SUPPORT_GROUP_TITLE_CHANGE = 'no_support_group_title_change',
+  /** Platform integration doesn't support creating single threads */
   NO_SUPPORT_SINGLE_THREAD_CREATION = 'no_support_single_thread_creation',
+  /** Platform integration doesn't support sending typing indicator */
   NO_SUPPORT_TYPING_INDICATOR = 'no_support_typing_indicator',
   SHARES_CONTACTS = 'shares_contacts',
+  /** Sort messages by timestamp on receiving them */
   SORT_MESSAGES_ON_PUSH = 'sort_messages_on_push',
   SUBSCRIBE_TO_CONN_STATE_CHANGE = 'subscribe_to_conn_state_change',
   SUBSCRIBE_TO_THREAD_SELECTION = 'subscribe_to_thread_selection',

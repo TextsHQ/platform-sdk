@@ -151,6 +151,12 @@ export type MessageLink = {
   summary?: string
 }
 
+export type ReplaceWithMediaEntity = {
+  mediaType: 'img' | 'video'
+  srcURL: string
+  size?: Size
+  loop?: boolean
+}
 export type TextEntity = {
   from: number
   to: number
@@ -164,12 +170,7 @@ export type TextEntity = {
   codeLanguage?: string
 
   replaceWith?: string
-  replaceWithMedia?: {
-    mediaType: 'img' | 'video'
-    srcURL: string
-    size?: Size
-    loop?: boolean
-  }
+  replaceWithMedia?: ReplaceWithMediaEntity
   link?: string
   mentionedUser?: { username?: string, id?: string }
 }

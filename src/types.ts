@@ -164,6 +164,12 @@ export type TextEntity = {
   codeLanguage?: string
 
   replaceWith?: string
+  replaceWithMedia?: {
+    mediaType: 'img' | 'video'
+    srcURL: string
+    size?: Size
+    loop?: boolean
+  }
   link?: string
   mentionedUser?: { username?: string, id?: string }
 }

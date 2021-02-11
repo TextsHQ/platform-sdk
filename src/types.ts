@@ -288,6 +288,10 @@ export type StateSyncEvent = {
   entries: string[]
 }
 
+/**
+ * Requests client to call `getMessages(threadID, undefined)` to update the latest n messages
+ * If the thread doesn't exist, client calls `getThreads`
+ * */
 export type ThreadMessagesRefreshEvent = {
   type: ServerEventType.THREAD_MESSAGES_REFRESH
   threadID: string

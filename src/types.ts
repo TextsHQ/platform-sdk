@@ -27,8 +27,10 @@ export type Paginated<T> = {
 
 export type MessageReaction = {
   id: string
+  /** this key can be three things: an emoji, URL to a reaction image, or defined in PlatformInfo.reactions.supported */
   reactionKey: string
   participantID: string
+  /** is the `reactionKey` an emoji */
   emoji?: boolean
 }
 
@@ -449,7 +451,9 @@ export interface PlatformAPI {
 }
 
 export type SupportedReaction = {
+  /** user friendly string to show, like "Laugh" */
   title: string
+  /** string to display for reaction, like "😂" */
   render: string
   disabled?: boolean
 }

@@ -222,6 +222,9 @@ export type Message = {
   parseTemplate?: boolean
   /** `silent` messages will not mark the thread as unread, move the thread to the top of the list, or show a notification */
   silent?: boolean
+  /** thread ID of the quoted message, should be null if same thread as this message */
+  linkedMessageThreadID?: string
+  /** message ID of the quoted message. also set `linkedMessageThreadID` if message belongs to a different thread */
   linkedMessageID?: string
   linkedMessage?: MessagePreview
   action?: MessageAction
@@ -425,6 +428,7 @@ export interface PlatformAPI {
   deleteThread?: (threadID: string) => Awaitable<void>
 
   sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
+  editMessage?: (threadID: string, messageID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
 
   forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<boolean>
 

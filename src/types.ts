@@ -382,6 +382,9 @@ export type MessageContent = {
 
 export type MessageSendOptions = {
   pendingMessageID?: string
+  /** thread ID of the quoted message, should be null if same thread as this message */
+  quotedMessageThreadID?: string
+  /** message ID of the quoted message. also set `quotedMessageThreadID` if message belongs to a different thread */
   quotedMessageID?: string
 }
 

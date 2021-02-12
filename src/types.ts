@@ -138,7 +138,7 @@ export type Participant = User & {
   hasExited?: boolean
 }
 
-export type MessagePreview = Pick<Message, 'id' | 'text' | 'senderID' | 'attachments'>
+export type MessagePreview = Pick<Message, 'id' | 'threadID' | 'text' | 'senderID' | 'attachments'>
 
 export type MessageLink = {
   url: string

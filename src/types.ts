@@ -400,12 +400,19 @@ export type AccountInfo = {
 
 // also modify relayer-constants.ts
 export interface PlatformAPI {
+  /**
+   * Called after new PlatformAPI()
+   * @param session - return value of `serializeSession`
+   */
   init: (session?: any, accountInfo?: AccountInfo) => Awaitable<void>
+
+  /** `dispose` disconnects all network connections and cleans up. Called when user disables account and when app exits. */
   dispose: () => Awaitable<void>
 
   getCurrentUser: () => Awaitable<CurrentUser>
 
   login?: (creds?: LoginCreds) => Awaitable<LoginResult>
+  /** `logout` logs out the user from the platform's servers, session should no longer be valid. Called when user clicks logout. */
   logout?: () => Awaitable<void>
   serializeSession?: () => Awaitable<any>
 

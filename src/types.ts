@@ -339,7 +339,7 @@ export type Thread = {
   mutedUntil?: Date | 'forever'
 
   type: ThreadType
-  timestamp: Date
+  timestamp?: Date
 
   imgURL?: string
   createdAt?: Date

@@ -344,6 +344,7 @@ export type Thread = {
   imgURL?: string
   createdAt?: Date
   description?: string
+  /** if messages haven't been fetched, use `lastMessageSnippet` to set the last message preview */
   lastMessageSnippet?: string
   messageExpirySeconds?: number
 

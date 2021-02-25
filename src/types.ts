@@ -483,7 +483,8 @@ export type PlatformInfo = {
   name: string
   version?: string
   displayName: string
-  icon: string | ReactComponent
+  /** HTML of an SVG */
+  icon: string
   tags?: string[]
 
   loginMode: LoginMode

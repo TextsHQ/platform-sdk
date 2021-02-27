@@ -516,7 +516,6 @@ export type PlatformInfo = {
   extra?: any
 
   getUserProfileLink?: (participant: Participant) => string
-  mapMessage?: (...originalMsg: any) => Message
 }
 
 export interface Platform {

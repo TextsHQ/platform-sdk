@@ -235,6 +235,7 @@ export type Message = {
 
   threadID?: string
   // sender?: Participant
+  sortKey?: string | number
 }
 
 export type UserPresence = {

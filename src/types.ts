@@ -461,7 +461,6 @@ export interface PlatformAPI {
 
   markAsUnread?: (threadID: string) => Awaitable<void>
   archiveThread?: (threadID: string, archived: boolean) => Awaitable<void>
-  muteThread?: (threadID: string, muted: boolean) => Awaitable<void>
   pinThread?: (threadID: string, pinned: boolean) => Awaitable<void>
 
   onThreadSelected?: (threadID: string) => Awaitable<void>

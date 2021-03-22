@@ -1,0 +1,134 @@
+import type { CookieJar } from 'tough-cookie'
+import type { Readable } from 'stream'
+import type { Message, MessageLink } from './Message'
+import type { User, CurrentUser, Participant } from './User'
+import type { Thread } from './Thread'
+import type { PresenceMap, ServerEvent } from './ServerEvent'
+import type { Awaitable, Paginated } from './generic'
+import type { ActivityType, CodeRequiredReason, ConnectionStatus, InboxName } from './enums'
+
+export type OnServerEventCallback = (event: ServerEvent[]) => void
+
+export type OnConnStateChangeCallback = (state: ConnectionState) => void
+
+export type MessageContent = {
+  text?: string
+  filePath?: string
+  fileBuffer?: Buffer
+  fileName?: string
+
+  mimeType?: string
+  isGif?: boolean
+  isRecordedAudio?: boolean
+  audioDurationSeconds?: number
+}
+
+export type MessageSendOptions = {
+  pendingMessageID?: string
+  /** thread ID of the quoted message, should be null if same thread as this message */
+  quotedMessageThreadID?: string
+  /** message ID of the quoted message. also set `quotedMessageThreadID` if message belongs to a different thread */
+  quotedMessageID?: string
+}
+
+export type PaginationArg = {
+  cursor: string
+  direction: 'after' | 'before'
+}
+
+export type AccountInfo = {
+  accountID: string
+  dataDirPath: string
+}
+
+export type ConnectionState = {
+  status: ConnectionStatus
+  canRetry?: boolean
+}
+
+export type LoginResult = {
+  type: 'success' | 'code_required' | 'error' | 'wait'
+  reason?: CodeRequiredReason
+  metadata?: any
+  title?: string
+  errorMessage?: string
+}
+
+export type LoginCreds = {
+  cookieJarJSON?: CookieJar.Serialized
+  jsCodeResult?: string
+  username?: string
+  password?: string
+  code?: string
+  custom?: any
+  lastLoginResult?: LoginResult
+}
+
+// also modify relayer-constants.ts
+export interface PlatformAPI {
+  /**
+   * Called after new PlatformAPI()
+   * @param session - return value of `serializeSession`
+   */
+  init: (session?: any, accountInfo?: AccountInfo) => Awaitable<void>
+
+  /** `dispose` disconnects all network connections and cleans up. Called when user disables account and when app exits. */
+  dispose: () => Awaitable<void>
+
+  getCurrentUser: () => Awaitable<CurrentUser>
+
+  login?: (creds?: LoginCreds) => Awaitable<LoginResult>
+  /** `logout` logs out the user from the platform's servers, session should no longer be valid. Called when user clicks logout. */
+  logout?: () => Awaitable<void>
+  serializeSession?: () => Awaitable<any>
+
+  subscribeToEvents: (onEvent: OnServerEventCallback) => Awaitable<void>
+  onLoginEvent?: (onEvent: Function) => Awaitable<void>
+  onConnectionStateChange?: (onEvent: OnConnStateChangeCallback) => Awaitable<void>
+
+  takeoverConflict?: () => Awaitable<void>
+
+  searchUsers: (typed: string) => Awaitable<User[]>
+  searchMessages?: (typed: string, pagination?: PaginationArg, threadID?: string) => Awaitable<Paginated<Message>>
+
+  getPresence?: () => Awaitable<PresenceMap>
+
+  getThreads: (inboxName: InboxName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
+  getMessages: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
+  getThreadParticipants?: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
+
+  getUser?: (ids: { userID?: string } | { username?: string } | { phoneNumber?: string } | { email?: string }) => Awaitable<User>
+
+  createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
+  updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<boolean>
+  deleteThread?: (threadID: string) => Awaitable<void>
+
+  sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
+  editMessage?: (threadID: string, messageID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
+
+  forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<boolean>
+
+  sendActivityIndicator: (type: ActivityType, threadID: string) => Awaitable<void>
+  deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<boolean>
+  sendReadReceipt: (threadID: string, messageID: string) => Awaitable<void | boolean>
+
+  addReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void | boolean>
+  removeReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void | boolean>
+
+  getLinkPreview?: (link: string) => Awaitable<MessageLink>
+
+  addParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
+  removeParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
+  changeParticipantRole?: (threadID: string, participantID: string, role: string) => Awaitable<boolean>
+
+  changeThreadImage?: (threadID: string, imageBuffer: Buffer, mimeType: string) => Awaitable<void>
+
+  markAsUnread?: (threadID: string) => Awaitable<void>
+  archiveThread?: (threadID: string, archived: boolean) => Awaitable<void>
+  pinThread?: (threadID: string, pinned: boolean) => Awaitable<void>
+
+  onThreadSelected?: (threadID: string) => Awaitable<void>
+  loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
+
+  getAsset?: (...args: string[]) => Awaitable<string | Buffer | Readable>
+}

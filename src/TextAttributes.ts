@@ -32,3 +32,8 @@ export type TextAttributes = {
    */
   heDecode?: boolean
 }
+
+export type AttributedText = {
+  text: string
+  attributes?: TextAttributes
+}

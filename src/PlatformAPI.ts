@@ -1,11 +1,12 @@
 import type { CookieJar } from 'tough-cookie'
 import type { Readable } from 'stream'
-import type { Message, MessageLink } from './Message'
-import type { User, CurrentUser, Participant } from './User'
-import type { Thread } from './Thread'
-import type { PresenceMap, ServerEvent } from './ServerEvent'
-import type { Awaitable, Paginated } from './generic'
 import type { ActivityType, CodeRequiredReason, ConnectionStatus, InboxName } from './enums'
+import type { Awaitable, Paginated } from './generic'
+import type { Message, MessageLink } from './Message'
+import type { PhoneNumber } from './PhoneNumber'
+import type { PresenceMap, ServerEvent } from './ServerEvent'
+import type { Thread } from './Thread'
+import type { User, CurrentUser, Participant } from './User'
 
 export type OnServerEventCallback = (event: ServerEvent[]) => void
 
@@ -97,7 +98,7 @@ export interface PlatformAPI {
   getMessages: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
   getThreadParticipants?: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
 
-  getUser?: (ids: { userID?: string } | { username?: string } | { phoneNumber?: string } | { email?: string }) => Awaitable<User>
+  getUser?: (ids: { userID?: string } | { username?: string } | { phoneNumber?: PhoneNumber } | { email?: string }) => Awaitable<User>
 
   createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
   updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<boolean>

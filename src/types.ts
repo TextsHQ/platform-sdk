@@ -1,5 +1,6 @@
 export * from './generic'
 export * from './Message'
+export * from './PhoneNumber'
 export * from './Platform'
 export * from './PlatformAPI'
 export * from './PlatformInfo'

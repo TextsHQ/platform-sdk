@@ -1,10 +1,9 @@
+import type { PhoneNumber } from './PhoneNumber'
+
 export type User = {
   id: string
   username?: string
-  /**
-   * should start with "+" and not contain any spaces, like "+14151231234"
-   */
-  phoneNumber?: string
+  phoneNumber?: PhoneNumber
   email?: string
 
   fullName?: string

@@ -5,6 +5,8 @@ type ReactComponent = React.ReactNode | (() => JSX.Element) | ((props: any) => J
 
 export type BrowserLogin = {
   loginURL: string
+  label?: string
+  description?: string
   authCookieName?: string
   runJSOnLaunch?: string
   runJSOnNavigate?: string
@@ -32,7 +34,9 @@ export type PlatformInfo = {
   tags?: string[]
 
   loginMode: LoginMode
+  /** @deprecated use `browserLogins` */
   browserLogin?: BrowserLogin
+  browserLogins?: BrowserLogin[]
   auth?: ReactComponent | any
 
   reactions?: {

@@ -1,11 +1,14 @@
 import type { Paginated } from './generic'
 import type { Message } from './Message'
 import type { Participant } from './User'
+import type { ThreadInboxName } from './ThreadInboxName'
 
 export type ThreadType = 'single' | 'group' | 'broadcast'
 
 export type Thread = {
   _original?: string
+
+  inboxName?: ThreadInboxName
 
   id: string
   cursor?: string

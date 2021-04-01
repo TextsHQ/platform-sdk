@@ -1,12 +1,13 @@
 import type { CookieJar } from 'tough-cookie'
 import type { Readable } from 'stream'
-import type { ActivityType, CodeRequiredReason, ConnectionStatus, InboxName } from './enums'
+import type { ActivityType, CodeRequiredReason, ConnectionStatus } from './enums'
 import type { Awaitable, Paginated } from './generic'
 import type { Message, MessageLink } from './Message'
 import type { PhoneNumber } from './PhoneNumber'
 import type { PresenceMap, ServerEvent } from './ServerEvent'
 import type { Thread } from './Thread'
 import type { User, CurrentUser, Participant } from './User'
+import type { ThreadInboxName } from './ThreadInboxName'
 
 export type OnServerEventCallback = (event: ServerEvent[]) => void
 
@@ -94,7 +95,7 @@ export interface PlatformAPI {
 
   getPresence?: () => Awaitable<PresenceMap>
 
-  getThreads: (inboxName: InboxName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
+  getThreads: (inboxName: ThreadInboxName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
   getMessages: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
   getThreadParticipants?: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
 

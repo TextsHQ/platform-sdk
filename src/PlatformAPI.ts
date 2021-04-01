@@ -7,7 +7,7 @@ import type { PhoneNumber } from './PhoneNumber'
 import type { PresenceMap, ServerEvent } from './ServerEvent'
 import type { Thread } from './Thread'
 import type { User, CurrentUser, Participant } from './User'
-import type { ThreadInboxName } from './ThreadInboxName'
+import type { ThreadFolderName } from './ThreadFolderName'
 
 export type OnServerEventCallback = (event: ServerEvent[]) => void
 
@@ -95,7 +95,7 @@ export interface PlatformAPI {
 
   getPresence?: () => Awaitable<PresenceMap>
 
-  getThreads: (inboxName: ThreadInboxName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
+  getThreads: (folderName: ThreadFolderName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
   getMessages: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
   getThreadParticipants?: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
 

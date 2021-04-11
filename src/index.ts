@@ -5,6 +5,7 @@ export * from './errors'
 export * from './constants'
 
 export * from './generic'
+export * from './fetch'
 export * from './Message'
 export * from './PhoneNumber'
 export * from './Platform'

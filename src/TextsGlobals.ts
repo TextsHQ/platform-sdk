@@ -1,6 +1,7 @@
 import type SentryNode from '@sentry/node'
 import type React from 'react'
 import type { Worker } from 'worker_threads'
+import type { FetchFunction, FetchStreamFunction } from './fetch'
 
 export type TextsGlobals = {
   IS_DEV: boolean
@@ -19,4 +20,7 @@ export type TextsGlobals = {
 
   trackPlatformEvent?: (data: any) => Promise<void>
   runWorker?: (workerFilePath: string, workerData: any) => Worker
+
+  fetch?: FetchFunction
+  fetchStream?: FetchStreamFunction
 }

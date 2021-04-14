@@ -135,5 +135,5 @@ export interface PlatformAPI {
   getAsset?: (...args: string[]) => Awaitable<string | Buffer | Readable>
 
   /** `getOriginalObject` returns the JSON representation of the original thread or message */
-  getOriginalObject?: (objName: 'thread' | 'message', objectID: string) => string
+  getOriginalObject?: (objName: 'thread' | 'message', objectID: string) => Awaitable<string>
 }

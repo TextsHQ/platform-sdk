@@ -133,4 +133,7 @@ export interface PlatformAPI {
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 
   getAsset?: (...args: string[]) => Awaitable<string | Buffer | Readable>
+
+  /** `getOriginalObject` returns the JSON representation of the original thread or message */
+  getOriginalObject?: (objName: 'thread' | 'message', objectID: string) => string
 }

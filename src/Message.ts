@@ -67,7 +67,7 @@ export type Tweet = {
   url: string
   text: string
   textAttributes?: TextAttributes
-  attachments: MessageAttachment[]
+  attachments?: MessageAttachment[]
   quotedTweet?: Tweet
 }
 
@@ -103,12 +103,12 @@ export type Message = {
   textHeading?: string
   textFooter?: string
 
-  attachments: MessageAttachment[]
+  attachments?: MessageAttachment[]
   tweet?: Tweet
   links?: MessageLink[]
   iframeURL?: string
 
-  reactions: MessageReaction[]
+  reactions?: MessageReaction[]
   seen?: MessageSeen
   isDelivered?: boolean
   isHidden?: boolean

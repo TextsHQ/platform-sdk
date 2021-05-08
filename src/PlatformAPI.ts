@@ -136,4 +136,6 @@ export interface PlatformAPI {
 
   /** `getOriginalObject` returns the JSON representation of the original thread or message */
   getOriginalObject?: (objName: 'thread' | 'message', objectID: string) => Awaitable<string>
+
+  handleDeepLink?: (link: string) => void
 }

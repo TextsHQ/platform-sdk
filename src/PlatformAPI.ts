@@ -23,6 +23,9 @@ export type MessageContent = {
   isGif?: boolean
   isRecordedAudio?: boolean
   audioDurationSeconds?: number
+
+  // string of participant IDs that were @-mentioned
+  mentionedUserIDs?: string[]
 }
 
 export type MessageSendOptions = {

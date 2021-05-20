@@ -27,7 +27,7 @@ export enum Attribute {
   /** Platform integration doesn't support sending typing indicator */
   NO_SUPPORT_TYPING_INDICATOR = 'no_support_typing_indicator',
   SHARES_CONTACTS = 'shares_contacts',
-  /** Sort messages by timestamp on receiving them */
+  /** Sort messages by timestamp or custom key on receiving them */
   SORT_MESSAGES_ON_PUSH = 'sort_messages_on_push',
   SUBSCRIBE_TO_CONN_STATE_CHANGE = 'subscribe_to_conn_state_change',
   SUBSCRIBE_TO_THREAD_SELECTION = 'subscribe_to_thread_selection',
@@ -43,6 +43,9 @@ export enum Attribute {
   SUPPORTS_REQUESTS_INBOX = 'supports_requests_inbox',
   SUPPORTS_SEARCH = 'supports_search',
   SUPPORTS_STOP_TYPING_INDICATOR = 'supports_stop_typing_indicator',
+
+  /** Platform integration supports editMessage() and has no rate limit */
+  SUPPORTS_LIVE_TYPING = 'supports_live_typing',
 }
 
 export enum MessageActionType {

@@ -1,11 +1,20 @@
-import type { ServerEventType } from './enums'
+import type { ActivityType, ServerEventType } from './enums'
 import type { Message, MessageReaction } from './Message'
 import type { Thread } from './Thread'
 import type { Participant } from './User'
 
+/** @deprecated use `UserActivityEvent` instead */
 export type ParticipantTypingEvent = {
   type: ServerEventType.PARTICIPANT_TYPING
   typing: boolean
+  threadID: string
+  participantID: string
+  durationMs?: number
+}
+
+export type UserActivityEvent = {
+  type: ServerEventType.USER_ACTIVITY
+  activityType: ActivityType
   threadID: string
   participantID: string
   durationMs?: number
@@ -62,6 +71,7 @@ export type StateSyncEvent = {
 /**
  * Requests client to call `getMessages(threadID, undefined)` to update the latest n messages
  * If the thread doesn't exist, client calls `getThreads`
+ * This event exists to get started quickly, you should almost always use `StateSyncEvent` instead
  * */
 export type ThreadMessagesRefreshEvent = {
   type: ServerEventType.THREAD_MESSAGES_REFRESH
@@ -86,4 +96,5 @@ export type ServerEvent =
   ThreadMessagesRefreshEvent |
   ThreadTrustedEvent |
   ParticipantTypingEvent |
+  UserActivityEvent |
   UserPresenceEvent

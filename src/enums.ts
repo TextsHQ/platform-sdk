@@ -70,6 +70,7 @@ export enum ServerEventType {
   THREAD_MESSAGES_REFRESH = 'thread_messages_refresh',
   THREAD_TRUSTED = 'thread_trusted',
   PARTICIPANT_TYPING = 'participant_typing',
+  USER_ACTIVITY = 'user_activity',
   USER_PRESENCE_UPDATED = 'user_presence_updated',
 }
 

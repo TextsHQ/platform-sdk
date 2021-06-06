@@ -1,7 +1,7 @@
 import type { CookieJar } from 'tough-cookie'
 import type { Readable } from 'stream'
 import type { ActivityType, CodeRequiredReason, ConnectionStatus } from './enums'
-import type { Awaitable, Paginated } from './generic'
+import type { Size, Awaitable, Paginated } from './generic'
 import type { Message, MessageLink } from './Message'
 import type { PhoneNumber } from './PhoneNumber'
 import type { PresenceMap, ServerEvent } from './ServerEvent'
@@ -21,6 +21,7 @@ export type MessageContent = {
 
   mimeType?: string
   isGif?: boolean
+  size?: Size
   isRecordedAudio?: boolean
   audioDurationSeconds?: number
 

@@ -23,4 +23,7 @@ export type TextsGlobals = {
 
   fetch?: FetchFunction
   fetchStream?: FetchStreamFunction
+  createHttpClient?: () => {
+    request: FetchFunction
+  }
 }

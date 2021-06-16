@@ -1,7 +1,7 @@
 import type SentryNode from '@sentry/node'
 import type React from 'react'
 import type { Worker } from 'worker_threads'
-import type { FetchFunction, FetchStreamFunction } from './fetch'
+import type { FetchFunction, FetchOptions, FetchResponse, FetchStreamFunction } from './fetch'
 
 export type TextsGlobals = {
   IS_DEV: boolean
@@ -24,6 +24,7 @@ export type TextsGlobals = {
   fetch?: FetchFunction
   fetchStream?: FetchStreamFunction
   createHttpClient?: () => {
-    request: FetchFunction
+    requestAsString: (url: string, opts?: FetchOptions) => Promise<FetchResponse<string>>
+    requestAsBuffer: (url: string, opts?: FetchOptions) => Promise<FetchResponse<Buffer>>
   }
 }

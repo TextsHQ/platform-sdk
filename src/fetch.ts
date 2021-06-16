@@ -11,12 +11,12 @@ export type FetchOptions = {
   cookieJar?: CookieJar
 }
 
-export type FetchResponse = {
+export type FetchResponse<T> = {
   statusCode: number
   headers: IncomingHttpHeaders
-  body: Buffer
+  body: T
 }
 
-export type FetchFunction = (url: string, opts?: FetchOptions) => Promise<FetchResponse>
+export type FetchFunction = (url: string, opts?: FetchOptions) => Promise<FetchResponse<Buffer>>
 
 export type FetchStreamFunction = (url: string, opts?: FetchOptions) => Promise<Readable>

@@ -1,3 +1,4 @@
+import type FormData from 'form-data'
 import type { CookieJar } from 'tough-cookie'
 import type { Readable } from 'stream'
 import type { IncomingHttpHeaders } from 'http'
@@ -7,7 +8,7 @@ export type FetchOptions = {
   headers?: Record<string, string>
   searchParams?: Record<string, number | string>
   form?: Record<string, number | string>
-  body?: string | Buffer | Readable
+  body?: string | Buffer | FormData | Readable
   cookieJar?: CookieJar
 }
 

@@ -17,6 +17,7 @@ export type TextEntity = {
   strikethrough?: boolean
   code?: boolean
   pre?: boolean
+  quote?: boolean
   codeLanguage?: string
 
   replaceWith?: string

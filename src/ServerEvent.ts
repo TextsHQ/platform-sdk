@@ -18,6 +18,8 @@ export type UserActivityEvent = {
   threadID: string
   participantID: string
   durationMs?: number
+  /** used when `activityType` is ActivityType.CUSTOM */
+  customLabel?: string
 }
 
 export type UserPresence = {

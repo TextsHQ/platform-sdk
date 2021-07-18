@@ -107,6 +107,7 @@ export enum ConnectionStatus {
 export enum ActivityType {
   NONE = 'none',
   TYPING = 'typing',
+  CUSTOM = 'custom',
   RECORDING_VOICE = 'recording_voice',
   RECORDING_VIDEO = 'recording_video',
 }

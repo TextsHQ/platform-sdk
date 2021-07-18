@@ -70,6 +70,13 @@ export type LoginCreds = {
   lastLoginResult?: LoginResult
 }
 
+export type FetchURL = string
+
+export type FetchInfo = {
+  url: string
+  headers: Record<string, string>
+}
+
 // also modify relayer-constants.ts
 export interface PlatformAPI {
   /**
@@ -136,7 +143,7 @@ export interface PlatformAPI {
   onThreadSelected?: (threadID: string) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 
-  getAsset?: (...args: string[]) => Awaitable<string | Buffer | Readable>
+  getAsset?: (...args: string[]) => Awaitable<FetchURL | FetchInfo | Buffer | Readable>
 
   /** `getOriginalObject` returns the JSON representation of the original thread or message */
   getOriginalObject?: (objName: 'thread' | 'message', objectID: string) => Awaitable<string>

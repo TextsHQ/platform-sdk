@@ -3,15 +3,6 @@ import type { Message, MessageReaction } from './Message'
 import type { Thread } from './Thread'
 import type { Participant } from './User'
 
-/** @deprecated use `UserActivityEvent` instead */
-export type ParticipantTypingEvent = {
-  type: ServerEventType.PARTICIPANT_TYPING
-  typing: boolean
-  threadID: string
-  participantID: string
-  durationMs?: number
-}
-
 export type UserActivityEvent = {
   type: ServerEventType.USER_ACTIVITY
   activityType: ActivityType
@@ -97,6 +88,5 @@ export type ServerEvent =
   ToastEvent |
   ThreadMessagesRefreshEvent |
   ThreadTrustedEvent |
-  ParticipantTypingEvent |
   UserActivityEvent |
   UserPresenceEvent

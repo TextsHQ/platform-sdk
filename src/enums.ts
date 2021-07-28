@@ -45,6 +45,7 @@ export enum Attribute {
   SUPPORTS_PIN_THREAD = 'supports_pin_thread',
   SUPPORTS_PRESENCE = 'supports_presence',
   SUPPORTS_QUOTED_MESSAGES = 'supports_quoted_messages',
+  SUPPORTS_QUOTED_MESSAGES_FROM_ANY_THREAD = 'supports_quoted_messages_from_any_thread',
   SUPPORTS_REQUESTS_INBOX = 'supports_requests_inbox',
   SUPPORTS_SEARCH = 'supports_search',
   SUPPORTS_STOP_TYPING_INDICATOR = 'supports_stop_typing_indicator',

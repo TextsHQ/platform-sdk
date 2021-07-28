@@ -16,7 +16,7 @@ export type UserActivityEvent = {
 export type UserPresence = {
   userID: string
   isActive: boolean
-  lastActive: Date
+  lastActive?: Date
 }
 
 export type PresenceMap = { [userID: string]: UserPresence }

@@ -59,6 +59,15 @@ export type StateSyncEvent = {
   mutationType: 'delete'
   objectName: ObjectName
   entries: string[]
+} | {
+  type: ServerEventType.STATE_SYNC
+  objectIDs: {
+    threadID?: string
+    messageID?: string
+    reactionID?: string
+  }
+  mutationType: 'delete-all'
+  objectName: ObjectName
 }
 
 /**

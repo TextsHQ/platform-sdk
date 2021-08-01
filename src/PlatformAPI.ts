@@ -137,7 +137,7 @@ export interface PlatformAPI {
 
   changeThreadImage?: (threadID: string, imageBuffer: Buffer, mimeType: string) => Awaitable<void>
 
-  markAsUnread?: (threadID: string) => Awaitable<void>
+  markAsUnread?: (threadID: string, messageID?: string) => Awaitable<void>
   archiveThread?: (threadID: string, archived: boolean) => Awaitable<void>
   pinThread?: (threadID: string, pinned: boolean) => Awaitable<void>
 

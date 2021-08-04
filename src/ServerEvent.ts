@@ -31,7 +31,8 @@ type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant'
 
 type PartialWithID<T> = { [P in keyof T]?: T[P] } & { id: string }
 
-export type StateSyncEvent = {
+/** update or insert (upsert) some objects */
+export type UpsertStateSyncEvent = {
   type: ServerEventType.STATE_SYNC
   objectIDs: {
     threadID?: string
@@ -41,7 +42,9 @@ export type StateSyncEvent = {
   mutationType: 'upsert'
   objectName: ObjectName
   entries: Array<Thread | Message | Participant | MessageReaction>
-} | {
+}
+/** update some objects */
+export type UpdateStateSyncEvent = {
   type: ServerEventType.STATE_SYNC
   objectIDs: {
     threadID?: string
@@ -51,7 +54,9 @@ export type StateSyncEvent = {
   mutationType: 'update'
   objectName: ObjectName
   entries: Array<PartialWithID<Thread> | PartialWithID<Message> | PartialWithID<Participant> | PartialWithID<MessageReaction>>
-} | {
+}
+/** delete some objects */
+export type DeleteStateSyncEvent = {
   type: ServerEventType.STATE_SYNC
   objectIDs: {
     threadID?: string
@@ -61,7 +66,9 @@ export type StateSyncEvent = {
   mutationType: 'delete'
   objectName: ObjectName
   entries: string[]
-} | {
+}
+/** delete everything from some array */
+export type DeleteAllStateSyncEvent = {
   type: ServerEventType.STATE_SYNC
   objectIDs: {
     threadID?: string
@@ -71,6 +78,12 @@ export type StateSyncEvent = {
   mutationType: 'delete-all'
   objectName: ObjectName
 }
+
+export type StateSyncEvent =
+  UpsertStateSyncEvent |
+  UpdateStateSyncEvent |
+  DeleteStateSyncEvent |
+  DeleteAllStateSyncEvent
 
 /**
  * Requests client to call `getMessages(threadID, undefined)` to update the latest n messages

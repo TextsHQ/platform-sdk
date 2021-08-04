@@ -29,6 +29,8 @@ export type UserPresenceEvent = {
 // type ObjectMutationType = 'upsert' | 'insert' | 'update' | 'delete'
 type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant'
 
+type PartialWithID<T> = { [P in keyof T]?: T[P] } & { id: string }
+
 export type StateSyncEvent = {
   type: ServerEventType.STATE_SYNC
   objectIDs: {
@@ -48,7 +50,7 @@ export type StateSyncEvent = {
   }
   mutationType: 'update'
   objectName: ObjectName
-  entries: Array<Partial<Thread> | Partial<Message> | Partial<Participant> | Partial<MessageReaction>>
+  entries: Array<PartialWithID<Thread> | PartialWithID<Message> | PartialWithID<Participant> | PartialWithID<MessageReaction>>
 } | {
   type: ServerEventType.STATE_SYNC
   objectIDs: {

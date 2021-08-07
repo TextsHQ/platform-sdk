@@ -35,6 +35,9 @@ export enum Attribute {
   SUBSCRIBE_TO_THREAD_SELECTION = 'subscribe_to_thread_selection',
 
   SUPPORTS_ARCHIVE = 'supports_archive',
+  /** Platform supports reacting with custom emojis and sending custom emojis in Message.text
+   *  and platform integration implements PlatformAPI.getCustomEmojis */
+  SUPPORTS_CUSTOM_EMOJIS = 'supports_custom_emojis',
   SUPPORTS_DELETE_THREAD = 'supports_delete_thread',
   /** Platform integration implements PlatformAPI.editMessage */
   SUPPORTS_EDIT_MESSAGE = 'supports_edit_message',

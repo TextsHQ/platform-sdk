@@ -77,6 +77,12 @@ export type FetchInfo = {
   headers: Record<string, string>
 }
 
+/**
+ * { shortcode: url }
+ * { "squirrel": "https://emoji.slack-edge.com/T01QMMLU7JL/squirrel/465f40c0e0.png" }
+ */
+export type CustomEmojiMap = { [shortcode: string]: string }
+
 // also modify relayer-constants.ts
 export interface PlatformAPI {
   /**
@@ -106,6 +112,7 @@ export interface PlatformAPI {
   searchMessages?: (typed: string, pagination?: PaginationArg, threadID?: string) => Awaitable<Paginated<Message>>
 
   getPresence?: () => Awaitable<PresenceMap>
+  getCustomEmojis?: () => Awaitable<CustomEmojiMap>
 
   getThreads: (folderName: ThreadFolderName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
   getMessages: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Message>>

@@ -21,6 +21,8 @@ export type TextsGlobals = {
   trackPlatformEvent?: (data: any) => Promise<void>
   runWorker?: (workerFilePath: string, workerData: any) => Worker
 
+  getOriginalObject?: (platformName: string, accountID: string, args: [string, string]) => string
+
   fetch?: FetchFunction
   fetchStream?: FetchStreamFunction
   createHttpClient?: () => {

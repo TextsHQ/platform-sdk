@@ -1,3 +1,4 @@
+import type { CustomEmoji } from './CustomEmoji'
 import type { ActivityType, ServerEventType } from './enums'
 import type { Message, MessageReaction } from './Message'
 import type { Thread } from './Thread'
@@ -27,9 +28,9 @@ export type UserPresenceEvent = {
 }
 
 // type ObjectMutationType = 'upsert' | 'insert' | 'update' | 'delete'
-type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant'
+type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant' | 'custom_emoji'
 
-type PartialWithID<T> = { [P in keyof T]?: T[P] } & { id: string }
+type PartialWithID<T> = Partial<T> & { id: string }
 
 /** update or insert (upsert) some objects */
 export type UpsertStateSyncEvent = {
@@ -37,11 +38,10 @@ export type UpsertStateSyncEvent = {
   objectIDs: {
     threadID?: string
     messageID?: string
-    reactionID?: string
   }
   mutationType: 'upsert'
   objectName: ObjectName
-  entries: Array<Thread | Message | Participant | MessageReaction>
+  entries: Array<Thread | Message | Participant | MessageReaction | CustomEmoji>
 }
 /** update some objects */
 export type UpdateStateSyncEvent = {
@@ -49,11 +49,10 @@ export type UpdateStateSyncEvent = {
   objectIDs: {
     threadID?: string
     messageID?: string
-    reactionID?: string
   }
   mutationType: 'update'
   objectName: ObjectName
-  entries: Array<PartialWithID<Thread> | PartialWithID<Message> | PartialWithID<Participant> | PartialWithID<MessageReaction>>
+  entries: Array<PartialWithID<Thread> | PartialWithID<Message> | PartialWithID<Participant> | PartialWithID<MessageReaction> | PartialWithID<CustomEmoji>>
 }
 /** delete some objects */
 export type DeleteStateSyncEvent = {
@@ -61,7 +60,6 @@ export type DeleteStateSyncEvent = {
   objectIDs: {
     threadID?: string
     messageID?: string
-    reactionID?: string
   }
   mutationType: 'delete'
   objectName: ObjectName
@@ -73,7 +71,6 @@ export type DeleteAllStateSyncEvent = {
   objectIDs: {
     threadID?: string
     messageID?: string
-    reactionID?: string
   }
   mutationType: 'delete-all'
   objectName: ObjectName

@@ -91,6 +91,9 @@ export type ThreadMessagesRefreshEvent = {
   type: ServerEventType.THREAD_MESSAGES_REFRESH
   threadID: string
 }
+export type ThreadMessagesRefreshAllEvent = {
+  type: ServerEventType.THREAD_MESSAGES_REFRESH_ALL
+}
 
 export type ThreadTrustedEvent = {
   type: ServerEventType.THREAD_TRUSTED
@@ -108,6 +111,7 @@ export type ServerEvent =
   StateSyncEvent |
   ToastEvent |
   ThreadMessagesRefreshEvent |
+  ThreadMessagesRefreshAllEvent |
   ThreadTrustedEvent |
   UserActivityEvent |
   UserPresenceEvent

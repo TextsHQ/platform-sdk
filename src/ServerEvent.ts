@@ -1,5 +1,6 @@
 import type { CustomEmoji } from './CustomEmoji'
 import type { ActivityType, ServerEventType } from './enums'
+import type { PartialWithID } from './generic'
 import type { Message, MessageReaction } from './Message'
 import type { Thread } from './Thread'
 import type { Participant } from './User'
@@ -29,8 +30,6 @@ export type UserPresenceEvent = {
 
 // type ObjectMutationType = 'upsert' | 'insert' | 'update' | 'delete'
 type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant' | 'custom_emoji'
-
-type PartialWithID<T> = Partial<T> & { id: string }
 
 /** update or insert (upsert) some objects */
 export type UpsertStateSyncEvent = {

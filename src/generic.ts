@@ -20,3 +20,5 @@ export type Paginated<T> = {
   oldestCursor?: string
   newestCursor?: string
 }
+
+export type PartialWithID<T> = Partial<T> & { id: string }

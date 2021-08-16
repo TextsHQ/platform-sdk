@@ -6,8 +6,10 @@ import type { Participant } from './User'
 export type MessageReaction = {
   /** `id` should be `${participantID}${reactionKey}` if PlatformInfo.reactions.allowsMultipleReactionsToSingleMessage is true and just participantID otherwise */
   id: string
-  /** this key can be three things: an emoji, URL to a reaction image, or defined in PlatformInfo.reactions.supported */
+  /** this key can be three things: an emoji (😄), a key defined in PlatformInfo.reactions.supported, or a shortcode like `smiling-face` */
   reactionKey: string
+  /** URL to the reaction's image */
+  imgURL?: string
   participantID: string
   /** is the `reactionKey` an emoji */
   emoji?: boolean

@@ -140,5 +140,4 @@ export type Message = {
   accountID?: string
   threadID?: string
   // sender?: Participant
-  sortKey?: string | number
 }

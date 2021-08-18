@@ -107,7 +107,9 @@ export type Message = {
   textFooter?: string
 
   attachments?: MessageAttachment[]
+  /** @deprecated */
   tweet?: Tweet
+  tweets?: Tweet[]
   links?: MessageLink[]
   iframeURL?: string
 

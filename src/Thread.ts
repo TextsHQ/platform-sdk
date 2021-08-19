@@ -31,4 +31,6 @@ export type Thread = {
 
   messages: Paginated<Message>
   participants: Paginated<Participant>
+
+  extra?: any
 }

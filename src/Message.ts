@@ -141,5 +141,4 @@ export type Message = {
 
   accountID?: string
   threadID?: string
-  // sender?: Participant
 }

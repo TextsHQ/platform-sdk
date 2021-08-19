@@ -116,3 +116,12 @@ export enum ActivityType {
   RECORDING_VOICE = 'recording_voice',
   RECORDING_VIDEO = 'recording_video',
 }
+
+export enum MessageBehavior {
+  /** keep the thread read, don't move the thread to the top of the list, don't show a notification */
+  SILENT = 'silent',
+  /** keep the thread read, don't show a notification */
+  KEEP_READ = 'keep_read',
+  /** don't show a notification */
+  DONT_NOTIFY = 'dont_notify',
+}

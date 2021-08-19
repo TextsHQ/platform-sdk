@@ -1,4 +1,4 @@
-import type { MessageActionType, MessageAttachmentType } from './enums'
+import type { MessageActionType, MessageAttachmentType, MessageBehavior } from './enums'
 import type { TextAttributes } from './TextAttributes'
 import type { Size } from './generic'
 import type { Participant } from './User'
@@ -124,8 +124,6 @@ export type Message = {
   isErrored?: boolean
   isDynamicMessage?: boolean
   parseTemplate?: boolean
-  /** `silent` messages will not mark the thread as unread, move the thread to the top of the list, or show a notification */
-  silent?: boolean
   /** thread ID of the quoted message, should be null if same thread as this message */
   linkedMessageThreadID?: string
   /** message ID of the quoted message. also set `linkedMessageThreadID` if message belongs to a different thread */
@@ -136,6 +134,10 @@ export type Message = {
   buttons?: MessageButton[]
 
   extra?: any
+
+  /** @deprecated `silent` messages will not mark the thread as unread, move the thread to the top of the list, or show a notification */
+  silent?: boolean
+  behavior?: MessageBehavior
 
   accountID?: string
   threadID?: string

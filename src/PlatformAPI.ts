@@ -77,6 +77,8 @@ export type FetchInfo = {
   headers: Record<string, string>
 }
 
+type SerializedSession = any
+
 /**
  * { shortcode: url }
  * { "squirrel": "https://emoji.slack-edge.com/T01QMMLU7JL/squirrel/465f40c0e0.png" }
@@ -87,9 +89,9 @@ export type CustomEmojiMap = { [shortcode: string]: string }
 export interface PlatformAPI {
   /**
    * Called after new PlatformAPI()
-   * @param session - return value of `serializeSession`
+   * @param session - return value of `serializeSession`, `undefined` if not logged in
    */
-  init: (session?: any, accountInfo?: AccountInfo) => Awaitable<void>
+  init: (session?: SerializedSession, accountInfo?: AccountInfo) => Awaitable<void>
 
   /** `dispose` disconnects all network connections and cleans up. Called when user disables account and when app exits. */
   dispose: () => Awaitable<void>
@@ -99,7 +101,7 @@ export interface PlatformAPI {
   login?: (creds?: LoginCreds) => Awaitable<LoginResult>
   /** `logout` logs out the user from the platform's servers, session should no longer be valid. Called when user clicks logout. */
   logout?: () => Awaitable<void>
-  serializeSession?: () => Awaitable<any>
+  serializeSession?: () => Awaitable<SerializedSession>
 
   subscribeToEvents: (onEvent: OnServerEventCallback) => Awaitable<void>
   onLoginEvent?: (onEvent: Function) => Awaitable<void>

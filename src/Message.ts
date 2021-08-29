@@ -101,7 +101,7 @@ export type Message = {
   forwardedCount?: number
   senderID: 'none' | '$thread' | string
 
-  text: string
+  text?: string
   textAttributes?: TextAttributes
   textHeading?: string
   textFooter?: string

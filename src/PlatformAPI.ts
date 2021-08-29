@@ -125,26 +125,26 @@ export interface PlatformAPI {
   getUser?: (ids: { userID?: string } | { username?: string } | { phoneNumber?: PhoneNumber } | { email?: string }) => Awaitable<User | undefined>
 
   createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
-  updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<boolean>
+  updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<void | boolean>
   deleteThread?: (threadID: string) => Awaitable<void>
 
   sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
   editMessage?: (threadID: string, messageID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
 
-  forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<boolean>
+  forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<void | boolean>
 
   sendActivityIndicator: (type: ActivityType, threadID: string) => Awaitable<void>
-  deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<boolean>
+  deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<void | boolean>
   sendReadReceipt: (threadID: string, messageID: string) => Awaitable<void | boolean>
 
-  addReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void | boolean>
-  removeReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void | boolean>
+  addReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void>
+  removeReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void>
 
   getLinkPreview?: (link: string) => Awaitable<MessageLink>
 
-  addParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
-  removeParticipant?: (threadID: string, participantID: string) => Awaitable<boolean>
-  changeParticipantRole?: (threadID: string, participantID: string, role: string) => Awaitable<boolean>
+  addParticipant?: (threadID: string, participantID: string) => Awaitable<void | boolean>
+  removeParticipant?: (threadID: string, participantID: string) => Awaitable<void | boolean>
+  changeParticipantRole?: (threadID: string, participantID: string, role: string) => Awaitable<void | boolean>
 
   changeThreadImage?: (threadID: string, imageBuffer: Buffer, mimeType: string) => Awaitable<void>
 

@@ -5,6 +5,7 @@ export type ReplaceWithMediaEntity = {
   srcURL: string
   size?: Size
   loop?: boolean
+  rounded?: boolean
 }
 
 export type TextEntity = {

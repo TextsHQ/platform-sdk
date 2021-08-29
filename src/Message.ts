@@ -66,9 +66,9 @@ export type Tweet = {
     name: string
     username: string
   }
-  timestamp?: Date
-  url: string
   text: string
+  timestamp?: Date
+  url?: string
   textAttributes?: TextAttributes
   attachments?: MessageAttachment[]
   quotedTweet?: Tweet
@@ -117,8 +117,8 @@ export type Message = {
   seen?: MessageSeen
   isDelivered?: boolean
   isHidden?: boolean
-  /** `isSender` should be true if the logged in user sent the message */
-  isSender: boolean
+  /** `isSender` should be true if the logged in user sent the message, default = false */
+  isSender?: boolean
   isAction?: boolean
   isDeleted?: boolean
   isErrored?: boolean

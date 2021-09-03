@@ -25,6 +25,13 @@ export type SupportedReaction = {
   disabled?: boolean
 }
 
+export type Pref = {
+  label: string
+  description?: string
+  type: 'select' | 'checkbox'
+  default: boolean | string
+}
+
 export type PlatformInfo = {
   name: string
   version?: string
@@ -60,6 +67,8 @@ export type PlatformInfo = {
     recordedAudioMimeType?: string
     gifMimeType?: string
   }
+
+  prefs?: Record<string, Pref>
 
   extra?: any
 

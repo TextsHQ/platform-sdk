@@ -13,6 +13,9 @@ export enum Attribute {
   /** Don't cache messages, threads, users for the platform */
   NO_CACHE = 'no_cache',
 
+  /** When it's a group thread and user does an @-mention, search all users in the autocomplete */
+  SEARCH_ALL_USERS_FOR_GROUP_MENTIONS = 'search_all_users_for_group_mentions',
+
   /** Platform doesn't allow creation of duplicate groups with the same set of users (Alice, Bob) */
   NO_SUPPORT_DUPLICATE_GROUP_CREATION = 'no_support_duplicate_group_creation',
   /** Platform integration doesn't support adding participants to groups */

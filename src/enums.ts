@@ -13,6 +13,9 @@ export enum Attribute {
   /** Don't cache messages, threads, users for the platform */
   NO_CACHE = 'no_cache',
 
+  /** Platform defines Message.cursor. If it's missing for any message, error checker plugin will complain. */
+  DEFINES_MESSAGE_CURSOR = 'defines_message_cursor',
+
   /** When it's a group thread and user does an @-mention, search all users in the autocomplete */
   SEARCH_ALL_USERS_FOR_GROUP_MENTIONS = 'search_all_users_for_group_mentions',
 

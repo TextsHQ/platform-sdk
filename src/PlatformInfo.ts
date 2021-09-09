@@ -5,6 +5,11 @@ type ReactComponent = React.ReactNode | (() => JSX.Element) | ((props: any) => J
 
 export type BrowserLogin = {
   loginURL: string
+
+  /**
+   * Attempt to prompt the user to autofill credentials.
+   */
+  autofill: boolean,
   label?: string
   description?: string
   authCookieName?: string

@@ -7,10 +7,17 @@ export type BrowserLogin = {
   loginURL: string
   label?: string
   description?: string
+
+  /** Closes the browser login window when a cookie with this name is found */
   authCookieName?: string
+
+  /** Closes the browser login window when the page is redirected to a URL matching the regex */
+  closeOnRedirectRegex?: string
+
   runJSOnLaunch?: string
   runJSOnNavigate?: string
   runJSOnClose?: string
+
   windowWidth?: number
   windowHeight?: number
 }

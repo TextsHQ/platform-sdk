@@ -63,6 +63,7 @@ export type LoginResult = {
 export type LoginCreds = {
   cookieJarJSON?: CookieJar.Serialized
   jsCodeResult?: string
+  lastURL?: string
   username?: string
   password?: string
   code?: string

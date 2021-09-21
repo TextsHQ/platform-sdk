@@ -5,6 +5,7 @@ import type { FetchFunction, FetchOptions, FetchResponse, FetchStreamFunction } 
 
 export type TextsGlobals = {
   IS_DEV: boolean
+  isLoggingEnabled: boolean
 
   log: (...args: any[]) => void
   error: (...args: any[]) => void

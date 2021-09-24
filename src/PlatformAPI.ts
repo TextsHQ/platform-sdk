@@ -118,6 +118,7 @@ export interface PlatformAPI {
   getCustomEmojis?: () => Awaitable<CustomEmojiMap>
 
   getThreads: (folderName: ThreadFolderName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
+  /** Messages should be sorted by timestamp asc → desc */
   getMessages: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
   getThreadParticipants?: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
 
@@ -125,7 +126,7 @@ export interface PlatformAPI {
   getMessage?: (messageID: string) => Awaitable<Message>
   getUser?: (ids: { userID?: string } | { username?: string } | { phoneNumber?: PhoneNumber } | { email?: string }) => Awaitable<User | undefined>
 
-  createThread: (userIDs: string[], title?: string) => Awaitable<boolean | Thread>
+  createThread: (userIDs: string[], title?: string, messageText?: string) => Awaitable<boolean | Thread>
   updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<void | boolean>
   deleteThread?: (threadID: string) => Awaitable<void>
 

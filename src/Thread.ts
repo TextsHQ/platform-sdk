@@ -11,7 +11,6 @@ export type Thread = {
   folderName?: ThreadFolderName
 
   id: string
-  cursor?: string
   title?: string
   isUnread: boolean
   isReadOnly: boolean

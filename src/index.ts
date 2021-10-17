@@ -17,5 +17,6 @@ export * from './TextAttributes'
 export * from './Thread'
 export * from './ThreadFolderName'
 export * from './User'
+export * from './IAsyncSqlite'
 
 export const texts = (globalThis as any).texts as TextsGlobals

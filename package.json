@@ -1,6 +1,7 @@
 {
   "name": "@textshq/platform-sdk",
   "version": "0.4.4",
+  "main": "dist/index.js",
   "files": ["dist/*"],
   "scripts": {
     "prepack": "tsc",

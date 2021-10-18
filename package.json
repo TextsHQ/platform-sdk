@@ -2,7 +2,10 @@
   "name": "@textshq/platform-sdk",
   "version": "0.4.4",
   "main": "./dist/index.js",
-  "files": ["dist/**/*", "package.json"],
+  "files": [
+    "dist/**/*",
+    "package.json"
+  ],
   "scripts": {
     "prepack": "tsc",
     "build": "yarn tsc",
@@ -26,5 +29,6 @@
     "husky": "^4.3.0",
     "typescript": "^4.1.2"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "packageManager": "yarn@3.0.2"
 }

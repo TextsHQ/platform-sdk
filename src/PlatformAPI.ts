@@ -130,6 +130,8 @@ export interface PlatformAPI {
   updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<void | boolean>
   deleteThread?: (threadID: string) => Awaitable<void>
 
+  reportThread?: (type: 'spam', threadID: string, firstMessageID?: string) => Awaitable<boolean>
+
   sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
   editMessage?: (threadID: string, messageID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
 

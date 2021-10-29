@@ -47,6 +47,7 @@ export enum Attribute {
    *  and platform integration implements PlatformAPI.getCustomEmojis */
   SUPPORTS_CUSTOM_EMOJIS = 'supports_custom_emojis',
   SUPPORTS_DELETE_THREAD = 'supports_delete_thread',
+  SUPPORTS_REPORT_THREAD = 'supports_report_thread',
   /** Platform integration implements PlatformAPI.editMessage */
   SUPPORTS_EDIT_MESSAGE = 'supports_edit_message',
   SUPPORTS_FORWARD = 'supports_forward',

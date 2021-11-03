@@ -83,8 +83,6 @@ export enum ServerEventType {
   THREAD_MESSAGES_REFRESH = 'thread_messages_refresh',
   THREAD_MESSAGES_REFRESH_ALL = 'thread_messages_refresh_all',
   THREAD_TRUSTED = 'thread_trusted',
-  /** @deprecated use `USER_ACTIVITY` instead */
-  PARTICIPANT_TYPING = 'participant_typing',
   USER_ACTIVITY = 'user_activity',
   USER_PRESENCE_UPDATED = 'user_presence_updated',
 }

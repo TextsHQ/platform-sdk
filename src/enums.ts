@@ -33,8 +33,10 @@ export enum Attribute {
   NO_SUPPORT_SINGLE_THREAD_CREATION = 'no_support_single_thread_creation',
   /** Platform integration doesn't support sending typing indicator */
   NO_SUPPORT_TYPING_INDICATOR = 'no_support_typing_indicator',
-  /** Creating a group requires the message param to be present in PlatformAPI.createThread */
-  GROUP_CREATION_REQUIRES_MESSAGE = 'group_creation_requires_message',
+  /** Creating a group thread requires the message arg to be present in PlatformAPI.createThread */
+  GROUP_THREAD_CREATION_REQUIRES_MESSAGE = 'group_thread_creation_requires_message',
+  /** Creating a single thread requires the message arg to be present in PlatformAPI.createThread */
+  SINGLE_THREAD_CREATION_REQUIRES_MESSAGE = 'single_thread_creation_requires_message',
 
   SHARES_CONTACTS = 'shares_contacts',
   /** Sort messages by timestamp or custom key on receiving them */

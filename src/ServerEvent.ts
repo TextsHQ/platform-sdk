@@ -10,6 +10,7 @@ export type UserActivityEvent = {
   activityType: ActivityType
   threadID: string
   participantID: string
+  /** ttl */
   durationMs?: number
   /** used when `activityType` is ActivityType.CUSTOM */
   customLabel?: string
@@ -17,8 +18,14 @@ export type UserActivityEvent = {
 
 export type UserPresence = {
   userID: string
+  /** @deprecated use status instead */
   isActive: boolean
+  status: 'online' | 'dnd' | 'idle' | 'invisible' | 'custom'
+  /** used when `status` is custom */
+  customStatus?: string
   lastActive?: Date
+  /** ttl (how long should this status be active) */
+  durationMs?: number
 }
 
 export type PresenceMap = { [userID: string]: UserPresence }

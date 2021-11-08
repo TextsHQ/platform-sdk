@@ -165,4 +165,5 @@ export interface PlatformAPI {
   getOriginalObject?: (objName: 'thread' | 'message', objectID: string) => Awaitable<string>
 
   handleDeepLink?: (link: string) => void
+  onResumeFromSleep?: () => void
 }

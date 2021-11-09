@@ -21,7 +21,7 @@ export type UserPresence = {
   userID: string
   /** @deprecated use status instead */
   isActive: boolean
-  status: 'online' | 'dnd' | 'idle' | 'invisible' | 'custom'
+  status: 'online' | 'offline' | 'dnd' | 'idle' | 'invisible' | 'custom'
   /** used when `status` is custom */
   customStatus?: string
   lastActive?: Date

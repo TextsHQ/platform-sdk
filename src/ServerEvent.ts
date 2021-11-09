@@ -1,3 +1,4 @@
+import type { CookieJar } from 'tough-cookie'
 import type { CustomEmoji } from './CustomEmoji'
 import type { ActivityType, ServerEventType } from './enums'
 import type { PartialWithID } from './generic'
@@ -113,11 +114,21 @@ export type ToastEvent = {
   }
 }
 
+export type OpenWindowEvent = {
+  type: ServerEventType.OPEN_WINDOW
+  url?: string
+  windowTitle?: string
+  windowWidth?: number
+  windowHeight?: number
+  cookieJar?: CookieJar.Serialized
+}
+
 export type ServerEvent =
   StateSyncEvent |
-  ToastEvent |
   ThreadMessagesRefreshEvent |
   ThreadMessagesRefreshAllEvent |
   ThreadTrustedEvent |
+  ToastEvent |
+  OpenWindowEvent |
   UserActivityEvent |
   UserPresenceEvent

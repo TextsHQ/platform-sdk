@@ -82,6 +82,7 @@ export enum MessageActionType {
 export enum ServerEventType {
   STATE_SYNC = 'state_sync',
   TOAST = 'toast',
+  OPEN_WINDOW = 'open_window',
   THREAD_MESSAGES_REFRESH = 'thread_messages_refresh',
   THREAD_MESSAGES_REFRESH_ALL = 'thread_messages_refresh_all',
   THREAD_TRUSTED = 'thread_trusted',

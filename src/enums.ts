@@ -33,8 +33,10 @@ export enum Attribute {
   NO_SUPPORT_SINGLE_THREAD_CREATION = 'no_support_single_thread_creation',
   /** Platform integration doesn't support sending typing indicator */
   NO_SUPPORT_TYPING_INDICATOR = 'no_support_typing_indicator',
-  /** Creating a group requires the message param to be present in PlatformAPI.createThread */
-  GROUP_CREATION_REQUIRES_MESSAGE = 'group_creation_requires_message',
+  /** Creating a group thread requires the message arg to be present in PlatformAPI.createThread */
+  GROUP_THREAD_CREATION_REQUIRES_MESSAGE = 'group_thread_creation_requires_message',
+  /** Creating a single thread requires the message arg to be present in PlatformAPI.createThread */
+  SINGLE_THREAD_CREATION_REQUIRES_MESSAGE = 'single_thread_creation_requires_message',
 
   SHARES_CONTACTS = 'shares_contacts',
   /** Sort messages by timestamp or custom key on receiving them */
@@ -47,6 +49,7 @@ export enum Attribute {
    *  and platform integration implements PlatformAPI.getCustomEmojis */
   SUPPORTS_CUSTOM_EMOJIS = 'supports_custom_emojis',
   SUPPORTS_DELETE_THREAD = 'supports_delete_thread',
+  SUPPORTS_REPORT_THREAD = 'supports_report_thread',
   /** Platform integration implements PlatformAPI.editMessage */
   SUPPORTS_EDIT_MESSAGE = 'supports_edit_message',
   SUPPORTS_FORWARD = 'supports_forward',
@@ -79,11 +82,10 @@ export enum MessageActionType {
 export enum ServerEventType {
   STATE_SYNC = 'state_sync',
   TOAST = 'toast',
+  OPEN_WINDOW = 'open_window',
   THREAD_MESSAGES_REFRESH = 'thread_messages_refresh',
   THREAD_MESSAGES_REFRESH_ALL = 'thread_messages_refresh_all',
   THREAD_TRUSTED = 'thread_trusted',
-  /** @deprecated use `USER_ACTIVITY` instead */
-  PARTICIPANT_TYPING = 'participant_typing',
   USER_ACTIVITY = 'user_activity',
   USER_PRESENCE_UPDATED = 'user_presence_updated',
 }

@@ -16,9 +16,11 @@ export type TextEntity = {
   italic?: boolean
   underline?: boolean
   strikethrough?: boolean
+  quote?: boolean
+  spoiler?: boolean
+
   code?: boolean
   pre?: boolean
-  quote?: boolean
   codeLanguage?: string
 
   replaceWith?: string

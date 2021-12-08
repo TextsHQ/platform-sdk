@@ -8,6 +8,9 @@ export type BrowserLogin = {
   label?: string
   description?: string
 
+  /** User-Agent to use for all requests in the window */
+  userAgent?: string
+
   /** Closes the browser login window when a cookie with this name is found */
   authCookieName?: string
 

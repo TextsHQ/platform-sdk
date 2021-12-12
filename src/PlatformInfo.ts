@@ -30,8 +30,11 @@ export type LoginMode = 'browser' | 'manual' | 'custom'
 export type SupportedReaction = {
   /** user friendly string to show, like "Laugh" */
   title: string
-  /** string to display for reaction, like "😂" */
-  render: string
+  /** string to display for reaction, like "😂". either `render` or `imgURL` must be specified */
+  render?: string
+  /** URL to the reaction's image. either `render` or `imgURL` must be specified */
+  imgURL?: string
+  /** hide reaction from list */
   disabled?: boolean
 }
 

@@ -30,6 +30,7 @@ export type MessageContent = {
 }
 
 export type MessageSendOptions = {
+  /** random UUID for the sent message */
   pendingMessageID?: string
   /** thread ID of the quoted message, should be null if same thread as this message */
   quotedMessageThreadID?: string

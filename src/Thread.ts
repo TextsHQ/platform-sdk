@@ -11,8 +11,12 @@ export type Thread = {
   folderName?: ThreadFolderName
 
   id: string
+  /** Title of the thread if manually set by a human. If not present, the client will auto infer this for both single and group threads */
   title?: string
   isUnread: boolean
+  /** ID of the last message that the current user has read */
+  lastReadMessageID?: string
+  /** If true, messages cannot be sent in the thread */
   isReadOnly: boolean
   isArchived?: boolean
   isPinned?: boolean
@@ -24,12 +28,13 @@ export type Thread = {
   imgURL?: string
   createdAt?: Date
   description?: string
-  /** if messages haven't been fetched, use `lastMessageSnippet` to set the last message preview */
+  /** If Thread.messages is empty, use `lastMessageSnippet` to set the last message preview */
   lastMessageSnippet?: string
   messageExpirySeconds?: number
 
   messages: Paginated<Message>
   participants: Paginated<Participant>
 
+  /** Any arbitrary data */
   extra?: any
 }

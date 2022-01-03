@@ -9,7 +9,7 @@ import type { Thread } from './Thread'
 import type { User, CurrentUser, Participant } from './User'
 import type { ThreadFolderName } from './ThreadFolderName'
 
-export type OnServerEventCallback = (event: ServerEvent[]) => void
+export type OnServerEventCallback = (events: ServerEvent[]) => void
 
 export type OnConnStateChangeCallback = (state: ConnectionState) => void
 

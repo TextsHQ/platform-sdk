@@ -68,6 +68,7 @@ export type PlatformInfo = {
   deletionMode: MessageDeletionMode
   attributes: Set<Attribute>
 
+  maxMessageLength?: number
   maxGroupTitleLength?: number
   typingDurationMs?: number
   attachments?: {

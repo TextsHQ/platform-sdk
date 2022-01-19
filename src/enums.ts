@@ -43,6 +43,8 @@ export enum Attribute {
   SORT_MESSAGES_ON_PUSH = 'sort_messages_on_push',
   SUBSCRIBE_TO_CONN_STATE_CHANGE = 'subscribe_to_conn_state_change',
   SUBSCRIBE_TO_THREAD_SELECTION = 'subscribe_to_thread_selection',
+  /** Send ONLINE/OFFLINE activity via sendActivityIndicator */
+  SUBSCRIBE_TO_ONLINE_OFFLINE_ACTIVITY = 'subscribe_to_online_offline_activity',
 
   SUPPORTS_ARCHIVE = 'supports_archive',
   /** Platform supports reacting with custom emojis and sending custom emojis in Message.text

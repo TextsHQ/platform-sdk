@@ -1,5 +1,6 @@
 import type SentryNode from '@sentry/node'
 import type React from 'react'
+import type ReactDOM from 'react-dom'
 import type { Worker } from 'worker_threads'
 import type { FetchFunction, FetchOptions, FetchResponse, FetchStreamFunction } from './fetch'
 
@@ -18,6 +19,7 @@ export type TextsGlobals = {
 
   Sentry: typeof SentryNode
   React?: typeof React
+  ReactDOM?: typeof ReactDOM
 
   trackPlatformEvent?: (data: any) => Promise<void>
   runWorker?: (workerFilePath: string, workerData: any) => Worker

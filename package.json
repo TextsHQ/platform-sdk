@@ -17,13 +17,15 @@
     }
   },
   "dependencies": {
-    "form-data": "^4.0.0"
+    "form-data": "^4.0.0",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@sentry/node": "^6.15.0",
     "@textshq/eslint-config": "https://github.com/TextsHQ/eslint-config",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.35",
+    "@types/react-dom": "^17.0.11",
     "@types/tough-cookie": "^4",
     "eslint": "^8.2.0",
     "husky": "^4.3.0",

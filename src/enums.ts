@@ -120,8 +120,12 @@ export enum ConnectionStatus {
 }
 
 export enum ActivityType {
+  /** when the user has stopped typing/recording */
   NONE = 'none',
+  /** when the user has focused the app */
   ONLINE = 'online',
+  /** when the user has unfocused the app */
+  OFFLINE = 'offline',
   TYPING = 'typing',
   CUSTOM = 'custom',
   RECORDING_VOICE = 'recording_voice',

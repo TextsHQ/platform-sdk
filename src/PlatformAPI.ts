@@ -138,7 +138,7 @@ export interface PlatformAPI {
 
   forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<void | boolean>
 
-  sendActivityIndicator: (type: ActivityType, threadID: string) => Awaitable<void>
+  sendActivityIndicator: (type: ActivityType, threadID?: string) => Awaitable<void>
   deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<void | boolean>
   sendReadReceipt: (threadID: string, messageID: string, messageCursor?: string) => Awaitable<void | boolean>
 

@@ -156,6 +156,7 @@ export interface PlatformAPI {
   markAsUnread?: (threadID: string, messageID?: string) => Awaitable<void>
   archiveThread?: (threadID: string, archived: boolean) => Awaitable<void>
   pinThread?: (threadID: string, pinned: boolean) => Awaitable<void>
+  notifyAnyway?: (threadID: string) => Awaitable<void>
 
   onThreadSelected?: (threadID: string) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>

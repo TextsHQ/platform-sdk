@@ -19,7 +19,7 @@ export type UserActivityEvent = {
 
 export type UserPresence = {
   userID: string
-  status: 'online' | 'offline' | 'dnd' | 'idle' | 'invisible' | 'custom'
+  status: 'online' | 'offline' | 'dnd' | 'dnd_can_notify' | 'idle' | 'invisible' | 'custom'
   /** used when `status` is custom */
   customStatus?: string
   lastActive?: Date

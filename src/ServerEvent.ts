@@ -108,7 +108,11 @@ export type ThreadTrustedEvent = {
 export type ToastEvent = {
   type: ServerEventType.TOAST
   toast: {
+    /** random ID of the toast, can be used to update the same toast */
+    id?: string
     text: string
+    /** how long should the toast be displayed */
+    timeoutMs?: number
   }
 }
 

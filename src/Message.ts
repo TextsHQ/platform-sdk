@@ -65,6 +65,7 @@ export type Tweet = {
     imgURL: string
     name: string
     username: string
+    isVerified?: boolean
   }
   text: string
   timestamp?: Date

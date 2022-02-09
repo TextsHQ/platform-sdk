@@ -71,15 +71,25 @@ export type PlatformInfo = {
   maxMessageLength?: number
   maxGroupTitleLength?: number
   typingDurationMs?: number
+
   attachments?: {
     noSupport?: boolean
     noSupportForImage?: boolean
     noSupportForVideo?: boolean
     noSupportForAudio?: boolean
     noSupportForFiles?: boolean
+
     supportsCaption?: boolean
     recordedAudioMimeType?: string
     gifMimeType?: string
+
+    /** max sendable attachment size in bytes */
+    maxSize?: {
+      image?: number
+      video?: number
+      audio?: number
+      files?: number
+    }
   }
 
   prefs?: Record<string, Pref>

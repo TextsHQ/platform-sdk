@@ -54,6 +54,7 @@ export type PlatformInfo = {
   tags?: string[]
 
   loginMode: LoginMode
+  autofillHostnames?: string[]
   /** @deprecated use `browserLogins` */
   browserLogin?: BrowserLogin
   browserLogins?: BrowserLogin[]

@@ -168,4 +168,6 @@ export interface PlatformAPI {
 
   handleDeepLink?: (link: string) => void
   onResumeFromSleep?: () => void
+
+  onNetworkStatusChanged?: (status: 'online' | 'offline') => Awaitable<void>
 }

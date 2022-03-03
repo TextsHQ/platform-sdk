@@ -1,11 +1,11 @@
-import type { Paginated } from './generic'
+import type { Identifiable, Paginated } from './generic'
 import type { Message } from './Message'
 import type { Participant } from './User'
 import type { ThreadFolderName } from './ThreadFolderName'
 
 export type ThreadType = 'single' | 'group' | 'channel' | 'broadcast'
 
-export type Thread = {
+export interface Thread extends Identifiable {
   _original?: string
 
   folderName?: ThreadFolderName

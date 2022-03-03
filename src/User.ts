@@ -1,3 +1,4 @@
+import type { Identifiable } from './generic'
 import type { PhoneNumber } from './PhoneNumber'
 import type { AttributedText } from './TextAttributes'
 
@@ -21,7 +22,7 @@ export type UserSocialAttributes = {
   followedBy?: boolean
 }
 
-export type User = {
+export interface User extends Identifiable {
   id: string
   username?: string
   phoneNumber?: PhoneNumber

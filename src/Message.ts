@@ -1,9 +1,9 @@
 import type { MessageActionType, MessageAttachmentType, MessageBehavior } from './enums'
 import type { TextAttributes } from './TextAttributes'
-import type { Size } from './generic'
+import type { Identifiable, Size } from './generic'
 import type { Participant } from './User'
 
-export type MessageReaction = {
+export interface MessageReaction extends Identifiable {
   /** `id` should be `${participantID}${reactionKey}` if PlatformInfo.reactions.allowsMultipleReactionsToSingleMessage is true and just participantID otherwise */
   id: string
   /** this key can be three things: an emoji (😄), a key defined in PlatformInfo.reactions.supported, or a shortcode like `smiling-face` */
@@ -41,7 +41,7 @@ export type MessageSeen =
 
 export type MessagePreview = Pick<Message, 'id' | 'threadID' | 'text' | 'senderID' | 'attachments'>
 
-export type MessageAttachment = {
+export interface MessageAttachment extends Identifiable {
   id: string
   type: MessageAttachmentType
   isGif?: boolean
@@ -59,7 +59,7 @@ export type MessageAttachment = {
   extra?: any
 }
 
-export type Tweet = {
+export interface Tweet extends Identifiable {
   id: string
   user: {
     imgURL: string
@@ -93,7 +93,7 @@ export type MessageButton = {
   linkURL: string
 }
 
-export type Message = {
+export interface Message extends Identifiable {
   _original?: string
   id: string
   timestamp: Date

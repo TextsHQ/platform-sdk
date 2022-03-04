@@ -79,6 +79,14 @@ export type FetchInfo = {
   headers: Record<string, string>
 }
 
+export type Asset = {
+  /** Content-Length header to set */
+  contentLength?: number
+  /** Content-Type header to set */
+  contentType?: string
+  data: FetchURL | FetchInfo | Buffer | Readable
+}
+
 type SerializedSession = any
 
 /**
@@ -161,7 +169,7 @@ export interface PlatformAPI {
   onThreadSelected?: (threadID: string) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 
-  getAsset?: (...args: string[]) => Awaitable<FetchURL | FetchInfo | Buffer | Readable>
+  getAsset?: (...args: string[]) => Awaitable<FetchURL | FetchInfo | Buffer | Readable | Asset>
 
   /** `getOriginalObject` returns the JSON representation of the original thread or message */
   getOriginalObject?: (objName: 'thread' | 'message', objectID: string) => Awaitable<string>

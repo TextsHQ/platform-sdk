@@ -95,6 +95,10 @@ type SerializedSession = any
  */
 export type CustomEmojiMap = { [shortcode: string]: string }
 
+export type GetAssetOptions = {
+  range?: { start: number, end: number }
+}
+
 // also modify relayer-constants.ts
 export interface PlatformAPI {
   /**
@@ -169,7 +173,7 @@ export interface PlatformAPI {
   onThreadSelected?: (threadID: string) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 
-  getAsset?: (...args: string[]) => Awaitable<FetchURL | FetchInfo | Buffer | Readable | Asset>
+  getAsset?: (fetchOptions?: GetAssetOptions, ...args: string[]) => Awaitable<FetchURL | FetchInfo | Buffer | Readable | Asset>
 
   /** `getOriginalObject` returns the JSON representation of the original thread or message */
   getOriginalObject?: (objName: 'thread' | 'message', objectID: string) => Awaitable<string>

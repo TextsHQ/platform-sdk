@@ -5,7 +5,7 @@ const POSTFIX = 'END:VCARD'
  * Return json representation of vCard
  */
 export function parseVCard(string: string) {
-  const result = {}
+  const result: Record<string, any> = {}
   const lines = string.split(/\r\n|\r|\n/)
   const count = lines.length
 
@@ -33,10 +33,10 @@ export function parseVCard(string: string) {
     }
 
     const pieces = data.split(':')
-    let key = pieces.shift()
+    let key = pieces.shift()!
     let value: string | string[] = pieces.join(':')
     let namespace = ''
-    const meta = {}
+    const meta: Record<string, any> = {}
 
     // meta fields in property
     if (key.match(/;/)) {
@@ -44,7 +44,7 @@ export function parseVCard(string: string) {
         .replace(/\\;/g, 'ΩΩΩ')
         .replace(/\\,/, ',')
       const metaArr = key.split(';').map(item => item.replace(/ΩΩΩ/g, ';'))
-      key = metaArr.shift()
+      key = metaArr.shift()!
       metaArr.forEach(item => {
         const arr = item.split('=')
         arr[0] = arr[0].toLowerCase()
@@ -124,7 +124,7 @@ function splitValue(value: any, separator: string): string | string[] {
   value = value.replace(escapedSeparatorRegexp, 'ΩΩΩ')
   if (value.match(separatorRegexp)) {
     value = value.split(separator)
-    value = value.map(item => item.replace(/ΩΩΩ/g, separator))
+    value = value.map((item: any) => item.replace(/ΩΩΩ/g, separator))
   } else {
     value = value.replace(/ΩΩΩ/g, separator)
   }

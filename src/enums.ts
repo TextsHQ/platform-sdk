@@ -70,6 +70,9 @@ export enum Attribute {
 
   /** Platform integration implements editMessage() and has no rate limit for message edits */
   SUPPORTS_LIVE_TYPING = 'supports_live_typing',
+
+  /** PlatformAPI.getMessages supports `direction=after` */
+  GET_MESSAGES_SUPPORTS_AFTER_DIRECTION = 'get_messages_supports_after_direction',
 }
 
 export enum MessageActionType {

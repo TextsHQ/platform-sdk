@@ -78,7 +78,7 @@ export interface Tweet extends Identifiable {
 export type MessageLink = {
   url: string
   /**
-   * if the url is shortened or behind a redirector (like t.co or l.messenger.com) and we have the original url
+   * originalURL should be set if the url is shortened or behind a redirector (like t.co or l.messenger.com) and we have the original url
    */
   originalURL?: string
   favicon?: string

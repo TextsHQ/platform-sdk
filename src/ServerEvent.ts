@@ -99,6 +99,9 @@ export type ThreadMessagesRefreshEvent = {
 export type ThreadMessagesRefreshAllEvent = {
   type: ServerEventType.THREAD_MESSAGES_REFRESH_ALL
 }
+export type SessionUpdatedEvent = {
+  type: ServerEventType.SESSION_UPDATED
+}
 export type ReloadAllThreadsEvent = {
   type: ServerEventType.RELOAD_ALL_THREADS
 }
@@ -133,6 +136,7 @@ export type ServerEvent =
   ThreadMessagesRefreshEvent |
   ThreadMessagesRefreshAllEvent |
   ReloadAllThreadsEvent |
+  SessionUpdatedEvent |
   ThreadTrustedEvent |
   ToastEvent |
   OpenWindowEvent |

@@ -96,6 +96,7 @@ export enum ServerEventType {
   THREAD_TRUSTED = 'thread_trusted',
   USER_ACTIVITY = 'user_activity',
   USER_PRESENCE_UPDATED = 'user_presence_updated',
+  SESSION_UPDATED = 'session_updated',
 }
 
 export enum CodeRequiredReason {

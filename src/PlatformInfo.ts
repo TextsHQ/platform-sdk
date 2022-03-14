@@ -1,7 +1,7 @@
+import type React from 'react'
 import type { MessageDeletionMode, Attribute } from './enums'
+import type { PlatformAPI, LoginCreds, LoginResult } from './PlatformAPI'
 import type { Participant } from './User'
-
-type ReactComponent = React.ReactNode | (() => JSX.Element) | ((props: any) => JSX.Element)
 
 export type BrowserLogin = {
   loginURL: string
@@ -45,6 +45,20 @@ export type Pref = {
   default: boolean | string
 }
 
+export type AuthProps = {
+  isReauthing?: boolean
+  api?: PlatformAPI
+  login?: (creds?: LoginCreds) => Promise<LoginResult>
+  meContact?: {
+    fullName?: string
+    phoneNumbers?: string[]
+    emailAddresses?: string[]
+  }
+
+  nmp?: any
+  Tooltip?: React.FC<any>
+}
+
 export type PlatformInfo = {
   name: string
   version?: string
@@ -58,7 +72,7 @@ export type PlatformInfo = {
   /** @deprecated use `browserLogins` */
   browserLogin?: BrowserLogin
   browserLogins?: BrowserLogin[]
-  auth?: ReactComponent | any
+  auth?: React.FC<AuthProps>
 
   reactions?: {
     supported: Record<string, SupportedReaction>

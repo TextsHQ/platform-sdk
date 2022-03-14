@@ -72,7 +72,7 @@ export type PlatformInfo = {
   /** @deprecated use `browserLogins` */
   browserLogin?: BrowserLogin
   browserLogins?: BrowserLogin[]
-  auth?: React.FC<AuthProps>
+  auth?: React.LazyExoticComponent<React.FC<AuthProps>> | React.FC<AuthProps>
 
   reactions?: {
     supported: Record<string, SupportedReaction>

@@ -79,11 +79,13 @@ export type FetchInfo = {
   headers: Record<string, string>
 }
 
-export type Asset = {
+export type AssetInfo = {
   /** Content-Length header to set */
   contentLength?: number
   /** Content-Type header to set */
   contentType?: string
+}
+export type Asset = AssetInfo & {
   data: FetchURL | FetchInfo | Buffer | Readable
 }
 
@@ -174,6 +176,8 @@ export interface PlatformAPI {
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 
   getAsset?: (fetchOptions?: GetAssetOptions, ...args: string[]) => Awaitable<FetchURL | FetchInfo | Buffer | Readable | Asset>
+  /** `getAssetInfo` must be implemented if getAsset supports fetchOptions.range */
+  getAssetInfo?: (fetchOptions?: GetAssetOptions, ...args: string[]) => Awaitable<AssetInfo>
 
   /** `getOriginalObject` returns the JSON representation of the original thread or message */
   getOriginalObject?: (objName: 'thread' | 'message', objectID: string) => Awaitable<string>

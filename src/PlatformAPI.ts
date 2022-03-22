@@ -175,6 +175,9 @@ export interface PlatformAPI {
   onThreadSelected?: (threadID: string) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 
+  registerForPushNotifications?: (deviceToken: string) => Awaitable<boolean>
+  unregisterForPushNotifications?: (deviceToken: string) => Awaitable<boolean>
+
   getAsset?: (fetchOptions?: GetAssetOptions, ...args: string[]) => Awaitable<FetchURL | FetchInfo | Buffer | Readable | Asset>
   /** `getAssetInfo` must be implemented if getAsset supports fetchOptions.range */
   getAssetInfo?: (fetchOptions?: GetAssetOptions, ...args: string[]) => Awaitable<AssetInfo>

@@ -67,6 +67,7 @@ export enum Attribute {
   SUPPORTS_REQUESTS_INBOX = 'supports_requests_inbox',
   SUPPORTS_SEARCH = 'supports_search',
   SUPPORTS_STOP_TYPING_INDICATOR = 'supports_stop_typing_indicator',
+  SUPPORTS_PUSH_NOTIFICATIONS = 'supports_push_notifications',
 
   /** Platform integration implements editMessage() and has no rate limit for message edits */
   SUPPORTS_LIVE_TYPING = 'supports_live_typing',

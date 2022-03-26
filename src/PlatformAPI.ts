@@ -175,7 +175,8 @@ export interface PlatformAPI {
   onThreadSelected?: (threadID: string) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 
-  registerForPushNotifications?: (deviceToken: string) => Awaitable<boolean>
+  /** `registerForPushNotifications` secret is the encryption key used for notifications */
+  registerForPushNotifications?: (deviceToken: string, secret?: Buffer) => Awaitable<boolean>
   unregisterForPushNotifications?: (deviceToken: string) => Awaitable<boolean>
 
   getAsset?: (fetchOptions?: GetAssetOptions, ...args: string[]) => Awaitable<FetchURL | FetchInfo | Buffer | Readable | Asset>

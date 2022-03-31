@@ -62,6 +62,7 @@ export type AuthProps = {
 export type PlatformInfo = {
   name: string
   version?: string
+  commitHash?: string
   displayName: string
   /** HTML of an SVG */
   icon: string

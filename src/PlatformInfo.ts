@@ -112,4 +112,5 @@ export type PlatformInfo = {
   extra?: any
 
   getUserProfileLink?: (participant: Participant) => string
+  generateUniqueMessageID?: () => string
 }

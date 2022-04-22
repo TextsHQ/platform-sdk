@@ -101,6 +101,14 @@ export type GetAssetOptions = {
   range?: { start: number, end: number }
 }
 
+export type StickerInfo = {
+  id: number
+  mimeType: string
+  name?: string
+  stickerPackName?: string
+  file?: string | Buffer
+}
+
 // also modify relayer-constants.ts
 export interface PlatformAPI {
   /**
@@ -188,4 +196,7 @@ export interface PlatformAPI {
 
   handleDeepLink?: (link: string) => void
   onResumeFromSleep?: () => void
+
+  // we can either call this at init or lazy load stickers as they appear
+  addStickers?: (stickerinfoArray: StickerInfo[]) => Awaitable<StickerInfo[]>
 }

@@ -105,7 +105,6 @@ export type StickerInfo = {
   id: number
   mimeType: string
   name?: string
-  stickerPackName?: string
   file?: string | Buffer
 }
 
@@ -139,6 +138,8 @@ export interface PlatformAPI {
 
   getPresence?: () => Awaitable<PresenceMap>
   getCustomEmojis?: () => Awaitable<CustomEmojiMap>
+  // we can load  stickers only when user selects a sticker pack tab
+  getStickers?: (pack?: string) => Awaitable<StickerInfo[]>
 
   getThreads: (folderName: ThreadFolderName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
   /** Messages should be sorted by timestamp asc → desc */
@@ -196,7 +197,4 @@ export interface PlatformAPI {
 
   handleDeepLink?: (link: string) => void
   onResumeFromSleep?: () => void
-
-  // we can either call this at init or lazy load stickers as they appear
-  addStickers?: (stickerinfoArray: StickerInfo[]) => Awaitable<StickerInfo[]>
 }

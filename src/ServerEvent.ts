@@ -3,6 +3,7 @@ import type { CustomEmoji } from './CustomEmoji'
 import type { ActivityType, ServerEventType } from './enums'
 import type { PartialWithID } from './generic'
 import type { Message, MessageReaction } from './Message'
+import type { StickerInfo } from './PlatformAPI'
 import type { Thread } from './Thread'
 import type { Participant } from './User'
 
@@ -35,7 +36,7 @@ export type UserPresenceEvent = {
 }
 
 // type ObjectMutationType = 'upsert' | 'insert' | 'update' | 'delete'
-type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant' | 'custom_emoji'
+type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant' | 'custom_emoji' | 'sticker'
 
 /** update or insert (upsert) some objects */
 export type UpsertStateSyncEvent = {
@@ -46,7 +47,7 @@ export type UpsertStateSyncEvent = {
   }
   mutationType: 'upsert'
   objectName: ObjectName
-  entries: Array<Thread | Message | Participant | MessageReaction | CustomEmoji>
+  entries: Array<Thread | Message | Participant | MessageReaction | CustomEmoji | StickerInfo>
 }
 /** update some objects */
 export type UpdateStateSyncEvent = {

@@ -187,5 +187,7 @@ export interface PlatformAPI {
   getOriginalObject?: (objName: 'thread' | 'message', objectID: string) => Awaitable<string>
 
   handleDeepLink?: (link: string) => void
-  onResumeFromSleep?: () => void
+
+  /** reconnect any websocket, mqtt or network connections since client thinks it's likely to have broken */
+  reconnectRealtime?: () => void
 }

@@ -89,7 +89,7 @@ export type Asset = AssetInfo & {
   data: FetchURL | FetchInfo | Buffer | Readable
 }
 
-type SerializedSession = any
+export type SerializedSession = any
 
 /**
  * { shortcode: url }

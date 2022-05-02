@@ -37,7 +37,7 @@ export type MessageAction =
 
 export type MessageSeen =
   boolean | Date | // for single threads
-  { [participantID: string]: Date } // for group threads
+  { [participantID: string]: boolean | Date } // for group threads
 
 export type MessagePreview = Pick<Message, 'id' | 'threadID' | 'text' | 'senderID' | 'attachments'>
 

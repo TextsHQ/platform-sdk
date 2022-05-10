@@ -1,7 +1,7 @@
 import type { CookieJar } from 'tough-cookie'
 import type { Readable } from 'stream'
 import type { ActivityType, CodeRequiredReason, ConnectionStatus } from './enums'
-import type { Size, Awaitable, Paginated } from './generic'
+import type { Size, Awaitable, Paginated, FSPath } from './generic'
 import type { Message, MessageLink } from './Message'
 import type { PhoneNumber } from './PhoneNumber'
 import type { PresenceMap, ServerEvent } from './ServerEvent'
@@ -15,7 +15,7 @@ export type OnConnStateChangeCallback = (state: ConnectionState) => void
 
 export type MessageContent = {
   text?: string
-  filePath?: string
+  filePath?: FSPath
   fileBuffer?: Buffer
   fileName?: string
 
@@ -45,7 +45,7 @@ export type PaginationArg = {
 
 export type AccountInfo = {
   accountID: string
-  dataDirPath: string
+  dataDirPath: FSPath
 }
 
 export type ConnectionState = {

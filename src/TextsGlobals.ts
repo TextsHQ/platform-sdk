@@ -3,6 +3,7 @@ import type React from 'react'
 import type ReactDOM from 'react-dom'
 import type { Worker } from 'worker_threads'
 import type { FetchFunction, FetchOptions, FetchResponse, FetchStreamFunction } from './fetch'
+import type { FSPath } from './generic'
 
 export type TextsGlobals = {
   IS_DEV: boolean
@@ -14,7 +15,7 @@ export type TextsGlobals = {
   constants: {
     USER_AGENT: string
     APP_VERSION: string
-    BUILD_DIR_PATH: string
+    BUILD_DIR_PATH: FSPath
   }
 
   Sentry: typeof SentryNode
@@ -22,7 +23,7 @@ export type TextsGlobals = {
   ReactDOM?: typeof ReactDOM
 
   trackPlatformEvent?: (data: any) => Promise<void>
-  runWorker?: (workerFilePath: string, workerData: any) => Worker
+  runWorker?: (workerFilePath: FSPath, workerData: any) => Worker
 
   getOriginalObject?: (platformName: string, accountID: string, args: [string, string]) => string
 

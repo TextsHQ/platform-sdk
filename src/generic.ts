@@ -24,3 +24,5 @@ export type Paginated<T> = {
 }
 
 export type PartialWithID<T> = Partial<T> & { id: string }
+
+export type FSPath = string

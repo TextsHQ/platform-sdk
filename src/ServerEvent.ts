@@ -34,51 +34,34 @@ export type UserPresenceEvent = {
   presence: UserPresence
 }
 
-// type ObjectMutationType = 'upsert' | 'insert' | 'update' | 'delete'
 type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant' | 'custom_emoji'
-
-/** update or insert (upsert) some objects */
-export type UpsertStateSyncEvent = {
+type Object = Thread | Message | Participant | MessageReaction | CustomEmoji
+type StateSyncEventBase = {
   type: ServerEventType.STATE_SYNC
   objectIDs: {
     threadID?: string
     messageID?: string
   }
-  mutationType: 'upsert'
   objectName: ObjectName
-  entries: Array<Thread | Message | Participant | MessageReaction | CustomEmoji>
+}
+/** update or insert (upsert) some objects */
+export type UpsertStateSyncEvent = StateSyncEventBase & {
+  mutationType: 'upsert'
+  entries: Array<Object>
 }
 /** update some objects */
-export type UpdateStateSyncEvent = {
-  type: ServerEventType.STATE_SYNC
-  objectIDs: {
-    threadID?: string
-    messageID?: string
-  }
+export type UpdateStateSyncEvent = StateSyncEventBase & {
   mutationType: 'update'
-  objectName: ObjectName
-  entries: Array<PartialWithID<Thread> | PartialWithID<Message> | PartialWithID<Participant> | PartialWithID<MessageReaction> | PartialWithID<CustomEmoji>>
+  entries: Array<PartialWithID<Object>>
 }
 /** delete some objects */
-export type DeleteStateSyncEvent = {
-  type: ServerEventType.STATE_SYNC
-  objectIDs: {
-    threadID?: string
-    messageID?: string
-  }
+export type DeleteStateSyncEvent = StateSyncEventBase & {
   mutationType: 'delete'
-  objectName: ObjectName
   entries: string[]
 }
 /** delete everything from some array */
-export type DeleteAllStateSyncEvent = {
-  type: ServerEventType.STATE_SYNC
-  objectIDs: {
-    threadID?: string
-    messageID?: string
-  }
+export type DeleteAllStateSyncEvent = StateSyncEventBase & {
   mutationType: 'delete-all'
-  objectName: ObjectName
 }
 
 export type StateSyncEvent =

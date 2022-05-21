@@ -1,5 +1,6 @@
 import type React from 'react'
 import type { MessageDeletionMode, Attribute } from './enums'
+import type { NotificationsInfo } from './Notifications'
 import type { PlatformAPI, LoginCreds, LoginResult } from './PlatformAPI'
 import type { Participant } from './User'
 
@@ -106,6 +107,8 @@ export type PlatformInfo = {
       files?: number
     }
   }
+
+  notifications?: NotificationsInfo
 
   prefs?: Record<string, Pref>
 

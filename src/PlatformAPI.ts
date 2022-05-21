@@ -8,6 +8,7 @@ import type { PresenceMap, ServerEvent } from './ServerEvent'
 import type { Thread } from './Thread'
 import type { User, CurrentUser, Participant } from './User'
 import type { ThreadFolderName } from './ThreadFolderName'
+import type { NotificationsInfo } from './Notifications'
 
 export type OnServerEventCallback = (events: ServerEvent[]) => void
 
@@ -175,9 +176,10 @@ export interface PlatformAPI {
   onThreadSelected?: (threadID: string) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 
-  /** `registerForPushNotifications` secret is the encryption key used for notifications */
-  registerForPushNotifications?: (deviceToken: string, secret?: Buffer) => Awaitable<boolean>
-  unregisterForPushNotifications?: (deviceToken: string) => Awaitable<boolean>
+  // web: token = pushSubscription.toJSON()
+  // apple: token = apns device token
+  registerForPushNotifications?: (type: keyof NotificationsInfo, token: string) => Awaitable<void>
+  unregisterForPushNotifications?: (type: keyof NotificationsInfo, token: string) => Awaitable<void>
 
   getAsset?: (fetchOptions?: GetAssetOptions, ...args: string[]) => Awaitable<FetchURL | FetchInfo | Buffer | Readable | Asset>
   /** `getAssetInfo` must be implemented if getAsset supports fetchOptions.range */

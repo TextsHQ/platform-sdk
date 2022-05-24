@@ -3,10 +3,15 @@ export type WebNotifications = {
   vapidKey?: string
 }
 
+export type AndroidNotifications = {
+  senderID: string
+}
+
 export type AppleNotifications = {}
 
 /** A platform may support multiple notification delivery mechanisms */
 export type NotificationsInfo = {
   web?: WebNotifications
   apple?: AppleNotifications
+  android?: AndroidNotifications
 }

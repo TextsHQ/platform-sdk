@@ -178,6 +178,7 @@ export interface PlatformAPI {
 
   // web: token = pushSubscription.toJSON()
   // apple: token = apns device token
+  // android: token = FCM InstanceID token
   registerForPushNotifications?: (type: keyof NotificationsInfo, token: string) => Awaitable<void>
   unregisterForPushNotifications?: (type: keyof NotificationsInfo, token: string) => Awaitable<void>
 

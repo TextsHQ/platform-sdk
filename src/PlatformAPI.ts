@@ -143,7 +143,7 @@ export interface PlatformAPI {
   getUser?: (ids: { userID?: string } | { username?: string } | { phoneNumber?: PhoneNumber } | { email?: string }) => Awaitable<User | undefined>
 
   createThread: (userIDs: string[], title?: string, messageText?: string) => Awaitable<boolean | Thread>
-  updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<void | boolean>
+  updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<void>
   deleteThread?: (threadID: string) => Awaitable<void>
 
   reportThread?: (type: 'spam', threadID: string, firstMessageID?: string) => Awaitable<boolean>
@@ -151,20 +151,20 @@ export interface PlatformAPI {
   sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
   editMessage?: (threadID: string, messageID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
 
-  forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<void | boolean>
+  forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<void>
 
   sendActivityIndicator: (type: ActivityType, threadID?: string) => Awaitable<void>
-  deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<void | boolean>
-  sendReadReceipt: (threadID: string, messageID: string, messageCursor?: string) => Awaitable<void | boolean>
+  deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<void>
+  sendReadReceipt: (threadID: string, messageID: string, messageCursor?: string) => Awaitable<void>
 
   addReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void>
   removeReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void>
 
   getLinkPreview?: (link: string) => Awaitable<MessageLink>
 
-  addParticipant?: (threadID: string, participantID: string) => Awaitable<void | boolean>
-  removeParticipant?: (threadID: string, participantID: string) => Awaitable<void | boolean>
-  changeParticipantRole?: (threadID: string, participantID: string, role: string) => Awaitable<void | boolean>
+  addParticipant?: (threadID: string, participantID: string) => Awaitable<void>
+  removeParticipant?: (threadID: string, participantID: string) => Awaitable<void>
+  changeParticipantRole?: (threadID: string, participantID: string, role: string) => Awaitable<void>
 
   changeThreadImage?: (threadID: string, imageBuffer: Buffer, mimeType: string) => Awaitable<void>
 

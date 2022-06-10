@@ -1,11 +1,16 @@
 const PREFIX = 'BEGIN:VCARD'
 const POSTFIX = 'END:VCARD'
 
+type Value = {
+  value: string | string[]
+  meta?: Record<string, string[]>
+  namespace?: string
+}
 /**
  * Return json representation of vCard
  */
 export function parseVCard(string: string) {
-  const result: Record<string, any> = {}
+  const result: Record<string, Value[]> = {}
   const lines = string.split(/\r\n|\r|\n/)
   const count = lines.length
 
@@ -36,7 +41,7 @@ export function parseVCard(string: string) {
     let key = pieces.shift()!
     let value: string | string[] = pieces.join(':')
     let namespace = ''
-    const meta: Record<string, any> = {}
+    const meta: Record<string, string[]> = {}
 
     // meta fields in property
     if (key.match(/;/)) {
@@ -48,14 +53,9 @@ export function parseVCard(string: string) {
       metaArr.forEach(item => {
         const arr = item.split('=')
         arr[0] = arr[0].toLowerCase()
-        if (arr[0].length === 0) {
-          return
-        }
-        if (meta[arr[0]]) {
-          meta[arr[0]].push(arr[1])
-        } else {
-          meta[arr[0]] = [arr[1]]
-        }
+        if (arr[0].length === 0) return
+        meta[arr[0]] ||= []
+        meta[arr[0]].push(arr[1])
       })
     }
 
@@ -71,9 +71,7 @@ export function parseVCard(string: string) {
       [namespace, key] = arr
     }
 
-    const newValue: any = {
-      value,
-    }
+    const newValue: Value = { value }
     if (Object.keys(meta).length) {
       newValue.meta = meta
     }
@@ -81,15 +79,12 @@ export function parseVCard(string: string) {
       newValue.namespace = namespace
     }
 
-    if (key.indexOf('X-') !== 0) {
+    if (!key.startsWith('X-')) {
       key = key.toLowerCase()
     }
 
-    if (typeof result[key] === 'undefined') {
-      result[key] = [newValue]
-    } else {
-      result[key].push(newValue)
-    }
+    result[key] ||= []
+    result[key].push(newValue)
   }
 
   return result
@@ -103,11 +98,12 @@ const HAS_COMMA_SEPARATOR = /[^\\],|^,/
  */
 function tryToSplit(value: string): string | string[] {
   if (value.match(HAS_SEMICOLON_SEPARATOR)) {
-    value = value.replace(/\\,/g, ',')
-    return splitValue(value, ';')
-  } if (value.match(HAS_COMMA_SEPARATOR)) {
-    value = value.replace(/\\;/g, ';')
-    return splitValue(value, ',')
+    const replaced = value.replace(/\\,/g, ',')
+    return splitValue(replaced, ';')
+  }
+  if (value.match(HAS_COMMA_SEPARATOR)) {
+    const replaced = value.replace(/\\;/g, ';')
+    return splitValue(replaced, ',')
   }
   return value
     .replace(/\\,/g, ',')
@@ -115,18 +111,14 @@ function tryToSplit(value: string): string | string[] {
 }
 /**
 * Split vcard field value by separator
-* @param {string|string[]} value
 */
-function splitValue(value: any, separator: string): string | string[] {
+function splitValue(value: string, separator: string): string | string[] {
   const separatorRegexp = new RegExp(separator)
   const escapedSeparatorRegexp = new RegExp('\\\\' + separator, 'g')
   // easiest way, replace it with really rare character sequence
-  value = value.replace(escapedSeparatorRegexp, 'ΩΩΩ')
-  if (value.match(separatorRegexp)) {
-    value = value.split(separator)
-    value = value.map((item: any) => item.replace(/ΩΩΩ/g, separator))
-  } else {
-    value = value.replace(/ΩΩΩ/g, separator)
+  const replaced = value.replace(escapedSeparatorRegexp, 'ΩΩΩ')
+  if (replaced.match(separatorRegexp)) {
+    return replaced.split(separator).map(item => item.replace(/ΩΩΩ/g, separator))
   }
-  return value
+  return replaced.replace(/ΩΩΩ/g, separator)
 }

@@ -93,7 +93,6 @@ export enum ServerEventType {
   TOAST = 'toast',
   OPEN_WINDOW = 'open_window',
   THREAD_MESSAGES_REFRESH = 'thread_messages_refresh',
-  THREAD_MESSAGES_REFRESH_ALL = 'thread_messages_refresh_all',
   THREAD_TRUSTED = 'thread_trusted',
   USER_ACTIVITY = 'user_activity',
   USER_PRESENCE_UPDATED = 'user_presence_updated',

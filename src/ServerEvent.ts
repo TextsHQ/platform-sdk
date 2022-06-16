@@ -79,9 +79,6 @@ export type ThreadMessagesRefreshEvent = {
   type: ServerEventType.THREAD_MESSAGES_REFRESH
   threadID: string
 }
-export type ThreadMessagesRefreshAllEvent = {
-  type: ServerEventType.THREAD_MESSAGES_REFRESH_ALL
-}
 export type SessionUpdatedEvent = {
   type: ServerEventType.SESSION_UPDATED
 }
@@ -114,7 +111,6 @@ export type OpenWindowEvent = {
 export type ServerEvent =
   StateSyncEvent |
   ThreadMessagesRefreshEvent |
-  ThreadMessagesRefreshAllEvent |
   SessionUpdatedEvent |
   ThreadTrustedEvent |
   ToastEvent |

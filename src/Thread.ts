@@ -1,21 +1,23 @@
-import type { Identifiable, Paginated } from './generic'
-import type { Message } from './Message'
+import type { ID, Identifiable, Paginated } from './generic'
+import type { Message, MessageID } from './Message'
 import type { Participant } from './User'
 import type { ThreadFolderName } from './ThreadFolderName'
 
 export type ThreadType = 'single' | 'group' | 'channel' | 'broadcast'
+
+export type ThreadID = ID
 
 export interface Thread extends Identifiable {
   _original?: string
 
   folderName?: ThreadFolderName
 
-  id: string
+  id: ThreadID
   /** Title of the thread if manually set by a human. If not present, the client will auto infer this for both single and group threads */
   title?: string
   isUnread: boolean
   /** ID of the last message that the current user has read */
-  lastReadMessageID?: string
+  lastReadMessageID?: MessageID
   /** If true, messages cannot be sent in the thread */
   isReadOnly: boolean
   isArchived?: boolean

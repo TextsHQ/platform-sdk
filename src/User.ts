@@ -1,6 +1,8 @@
-import type { Identifiable } from './generic'
+import type { ID, Identifiable } from './generic'
 import type { PhoneNumber } from './PhoneNumber'
 import type { AttributedText } from './TextAttributes'
+
+export type UserID = ID
 
 export type UsersOrCount = {
   userIDs?: string[]

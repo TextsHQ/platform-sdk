@@ -1,29 +1,33 @@
 import type { MessageActionType, MessageAttachmentType, MessageBehavior } from './enums'
 import type { TextAttributes } from './TextAttributes'
-import type { Identifiable, Size } from './generic'
+import type { ThreadID } from './Thread'
+import type { UserID } from './User'
+import type { Identifiable, Size, ID } from './generic'
 import type { Participant } from './User'
+
+export type MessageID = ID
 
 export interface MessageReaction extends Identifiable {
   /** `id` should be `${participantID}${reactionKey}` if PlatformInfo.reactions.allowsMultipleReactionsToSingleMessage is true and just participantID otherwise */
-  id: string
+  id: ID
   /** this key can be three things: an emoji (😄), a key defined in PlatformInfo.reactions.supported, or a shortcode like `smiling-face` */
   reactionKey: string
   /** URL to the reaction's image */
   imgURL?: string
-  participantID: string
+  participantID: UserID
   /** is the `reactionKey` an emoji */
   emoji?: boolean
 }
 
-export type ThreadTitleUpdatedAction = { type: MessageActionType.THREAD_TITLE_UPDATED, title: string, actorParticipantID: string }
-export type ThreadParticipantsAddedAction = { type: MessageActionType.THREAD_PARTICIPANTS_ADDED, participantIDs: string[], actorParticipantID: string, participants?: Participant[] }
-export type ThreadParticipantsRemovedAction = { type: MessageActionType.THREAD_PARTICIPANTS_REMOVED, participantIDs: string[], actorParticipantID: string, participants?: Participant[] }
-export type GroupThreadCreatedAction = { type: MessageActionType.GROUP_THREAD_CREATED, title: string, actorParticipantID: string }
-export type ThreadImgCreatedAction = { type: MessageActionType.THREAD_IMG_CHANGED, actorParticipantID: string }
+export type ThreadTitleUpdatedAction = { type: MessageActionType.THREAD_TITLE_UPDATED, title: string, actorParticipantID: UserID }
+export type ThreadParticipantsAddedAction = { type: MessageActionType.THREAD_PARTICIPANTS_ADDED, participantIDs: string[], actorParticipantID: UserID, participants?: Participant[] }
+export type ThreadParticipantsRemovedAction = { type: MessageActionType.THREAD_PARTICIPANTS_REMOVED, participantIDs: string[], actorParticipantID: UserID, participants?: Participant[] }
+export type GroupThreadCreatedAction = { type: MessageActionType.GROUP_THREAD_CREATED, title: string, actorParticipantID: UserID }
+export type ThreadImgCreatedAction = { type: MessageActionType.THREAD_IMG_CHANGED, actorParticipantID: UserID }
 export type MessageRequestAcceptedAction = { type: MessageActionType.MESSAGE_REQUEST_ACCEPTED }
 
-export type MessageReactionCreatedAction = { type: MessageActionType.MESSAGE_REACTION_CREATED, messageID?: string } & Partial<MessageReaction>
-export type MessageReactionDeletedAction = { type: MessageActionType.MESSAGE_REACTION_DELETED, messageID?: string } & Partial<MessageReaction>
+export type MessageReactionCreatedAction = { type: MessageActionType.MESSAGE_REACTION_CREATED, messageID?: MessageID } & Partial<MessageReaction>
+export type MessageReactionDeletedAction = { type: MessageActionType.MESSAGE_REACTION_DELETED, messageID?: MessageID } & Partial<MessageReaction>
 
 export type MessageAction =
   ThreadTitleUpdatedAction |
@@ -126,9 +130,9 @@ export interface Message extends Identifiable {
   isDynamicMessage?: boolean
   parseTemplate?: boolean
   /** thread ID of the quoted message, should be null if same thread as this message */
-  linkedMessageThreadID?: string
+  linkedMessageThreadID?: ThreadID
   /** message ID of the quoted message. also set `linkedMessageThreadID` if message belongs to a different thread */
-  linkedMessageID?: string
+  linkedMessageID?: MessageID
   linkedMessage?: MessagePreview
   action?: MessageAction
   cursor?: string
@@ -141,7 +145,7 @@ export interface Message extends Identifiable {
   behavior?: MessageBehavior
 
   accountID?: string
-  threadID?: string
+  threadID?: ThreadID
 
   sortKey?: string | number
 }

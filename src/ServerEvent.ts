@@ -2,15 +2,15 @@ import type { CookieJar } from 'tough-cookie'
 import type { CustomEmoji } from './CustomEmoji'
 import type { ActivityType, ServerEventType } from './enums'
 import type { PartialWithID } from './generic'
-import type { Message, MessageReaction } from './Message'
-import type { Thread } from './Thread'
-import type { Participant } from './User'
+import type { Message, MessageID, MessageReaction } from './Message'
+import type { Thread, ThreadID } from './Thread'
+import type { Participant, UserID } from './User'
 
 export type UserActivityEvent = {
   type: ServerEventType.USER_ACTIVITY
   activityType: ActivityType
-  threadID: string
-  participantID: string
+  threadID: ThreadID
+  participantID: UserID
   /** ttl */
   durationMs?: number
   /** used when `activityType` is ActivityType.CUSTOM */
@@ -18,7 +18,7 @@ export type UserActivityEvent = {
 }
 
 export type UserPresence = {
-  userID: string
+  userID: UserID
   status: 'online' | 'offline' | 'dnd' | 'dnd_can_notify' | 'idle' | 'invisible' | 'custom'
   /** used when `status` is custom */
   customStatus?: string
@@ -39,8 +39,8 @@ type Object = Thread | Message | Participant | MessageReaction | CustomEmoji
 type StateSyncEventBase = {
   type: ServerEventType.STATE_SYNC
   objectIDs: {
-    threadID?: string
-    messageID?: string
+    threadID?: ThreadID
+    messageID?: MessageID
   }
   objectName: ObjectName
 }
@@ -77,7 +77,7 @@ export type StateSyncEvent =
  * */
 export type ThreadMessagesRefreshEvent = {
   type: ServerEventType.THREAD_MESSAGES_REFRESH
-  threadID: string
+  threadID: ThreadID
 }
 export type SessionUpdatedEvent = {
   type: ServerEventType.SESSION_UPDATED
@@ -85,7 +85,7 @@ export type SessionUpdatedEvent = {
 
 export type ThreadTrustedEvent = {
   type: ServerEventType.THREAD_TRUSTED
-  threadID: string
+  threadID: ThreadID
 }
 
 export type ToastEvent = {

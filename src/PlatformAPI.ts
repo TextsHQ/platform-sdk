@@ -2,11 +2,11 @@ import type { CookieJar } from 'tough-cookie'
 import type { Readable } from 'stream'
 import type { ActivityType, CodeRequiredReason, ConnectionStatus } from './enums'
 import type { Size, Awaitable, Paginated, FSPath } from './generic'
-import type { Message, MessageLink } from './Message'
+import type { Message, MessageID, MessageLink } from './Message'
 import type { PhoneNumber } from './PhoneNumber'
 import type { PresenceMap, ServerEvent } from './ServerEvent'
-import type { Thread } from './Thread'
-import type { User, CurrentUser, Participant } from './User'
+import type { Thread, ThreadID } from './Thread'
+import type { User, UserID, CurrentUser, Participant } from './User'
 import type { ThreadFolderName } from './ThreadFolderName'
 import type { NotificationsInfo } from './Notifications'
 
@@ -32,11 +32,11 @@ export type MessageContent = {
 
 export type MessageSendOptions = {
   /** random UUID for the sent message */
-  pendingMessageID?: string
+  pendingMessageID?: MessageID
   /** thread ID of the quoted message, should be null if same thread as this message */
-  quotedMessageThreadID?: string
+  quotedMessageThreadID?: ThreadID
   /** message ID of the quoted message. also set `quotedMessageThreadID` if message belongs to a different thread */
-  quotedMessageID?: string
+  quotedMessageID?: MessageID
 }
 
 export type PaginationArg = {
@@ -128,52 +128,52 @@ export interface PlatformAPI {
 
   searchUsers: (typed: string) => Awaitable<User[]>
   searchThreads?: (typed: string) => Awaitable<Thread[]>
-  searchMessages?: (typed: string, pagination?: PaginationArg, threadID?: string) => Awaitable<Paginated<Message>>
+  searchMessages?: (typed: string, pagination?: PaginationArg, threadID?: ThreadID) => Awaitable<Paginated<Message>>
 
   getPresence?: () => Awaitable<PresenceMap>
   getCustomEmojis?: () => Awaitable<CustomEmojiMap>
 
   getThreads: (folderName: ThreadFolderName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
   /** Messages should be sorted by timestamp asc → desc */
-  getMessages: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
-  getThreadParticipants?: (threadID: string, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
+  getMessages: (threadID: ThreadID, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
+  getThreadParticipants?: (threadID: ThreadID, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
 
-  getThread?: (threadID: string) => Awaitable<Thread>
-  getMessage?: (threadID: string, messageID: string) => Awaitable<Message>
+  getThread?: (threadID: ThreadID) => Awaitable<Thread>
+  getMessage?: (threadID: ThreadID, messageID: MessageID) => Awaitable<Message>
   getUser?: (ids: { userID?: string } | { username?: string } | { phoneNumber?: PhoneNumber } | { email?: string }) => Awaitable<User | undefined>
 
   createThread: (userIDs: string[], title?: string, messageText?: string) => Awaitable<boolean | Thread>
-  updateThread?: (threadID: string, updates: Partial<Thread>) => Awaitable<void>
-  deleteThread?: (threadID: string) => Awaitable<void>
+  updateThread?: (threadID: ThreadID, updates: Partial<Thread>) => Awaitable<void>
+  deleteThread?: (threadID: ThreadID) => Awaitable<void>
 
-  reportThread?: (type: 'spam', threadID: string, firstMessageID?: string) => Awaitable<boolean>
+  reportThread?: (type: 'spam', threadID: ThreadID, firstMessageID?: MessageID) => Awaitable<boolean>
 
-  sendMessage?: (threadID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
-  editMessage?: (threadID: string, messageID: string, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
+  sendMessage?: (threadID: ThreadID, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
+  editMessage?: (threadID: ThreadID, messageID: MessageID, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
 
-  forwardMessage?: (threadID: string, messageID: string, threadIDs?: string[], userIDs?: string[]) => Promise<void>
+  forwardMessage?: (threadID: ThreadID, messageID: MessageID, threadIDs?: string[], userIDs?: string[]) => Promise<void>
 
-  sendActivityIndicator: (type: ActivityType, threadID?: string) => Awaitable<void>
-  deleteMessage?: (threadID: string, messageID: string, forEveryone?: boolean) => Awaitable<void>
-  sendReadReceipt: (threadID: string, messageID: string, messageCursor?: string) => Awaitable<void>
+  sendActivityIndicator: (type: ActivityType, threadID?: ThreadID) => Awaitable<void>
+  deleteMessage?: (threadID: ThreadID, messageID: MessageID, forEveryone?: boolean) => Awaitable<void>
+  sendReadReceipt: (threadID: ThreadID, messageID: MessageID, messageCursor?: string) => Awaitable<void>
 
-  addReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void>
-  removeReaction?: (threadID: string, messageID: string, reactionKey: string) => Awaitable<void>
+  addReaction?: (threadID: ThreadID, messageID: MessageID, reactionKey: string) => Awaitable<void>
+  removeReaction?: (threadID: ThreadID, messageID: MessageID, reactionKey: string) => Awaitable<void>
 
   getLinkPreview?: (link: string) => Awaitable<MessageLink>
 
-  addParticipant?: (threadID: string, participantID: string) => Awaitable<void>
-  removeParticipant?: (threadID: string, participantID: string) => Awaitable<void>
-  changeParticipantRole?: (threadID: string, participantID: string, role: string) => Awaitable<void>
+  addParticipant?: (threadID: ThreadID, participantID: UserID) => Awaitable<void>
+  removeParticipant?: (threadID: ThreadID, participantID: UserID) => Awaitable<void>
+  changeParticipantRole?: (threadID: ThreadID, participantID: UserID, role: string) => Awaitable<void>
 
-  changeThreadImage?: (threadID: string, imageBuffer: Buffer, mimeType: string) => Awaitable<void>
+  changeThreadImage?: (threadID: ThreadID, imageBuffer: Buffer, mimeType: string) => Awaitable<void>
 
-  markAsUnread?: (threadID: string, messageID?: string) => Awaitable<void>
-  archiveThread?: (threadID: string, archived: boolean) => Awaitable<void>
-  pinThread?: (threadID: string, pinned: boolean) => Awaitable<void>
-  notifyAnyway?: (threadID: string) => Awaitable<void>
+  markAsUnread?: (threadID: ThreadID, messageID?: MessageID) => Awaitable<void>
+  archiveThread?: (threadID: ThreadID, archived: boolean) => Awaitable<void>
+  pinThread?: (threadID: ThreadID, pinned: boolean) => Awaitable<void>
+  notifyAnyway?: (threadID: ThreadID) => Awaitable<void>
 
-  onThreadSelected?: (threadID: string) => Awaitable<void>
+  onThreadSelected?: (threadID: ThreadID) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 
   // web: token = pushSubscription.toJSON()

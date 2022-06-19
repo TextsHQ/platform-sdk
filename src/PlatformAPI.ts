@@ -138,8 +138,8 @@ export interface PlatformAPI {
   getMessages: (threadID: ThreadID, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
   getThreadParticipants?: (threadID: ThreadID, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
 
-  getThread?: (threadID: ThreadID) => Awaitable<Thread>
-  getMessage?: (threadID: ThreadID, messageID: MessageID) => Awaitable<Message>
+  getThread?: (threadID: ThreadID) => Awaitable<Thread | undefined>
+  getMessage?: (threadID: ThreadID, messageID: MessageID) => Awaitable<Message | undefined>
   getUser?: (ids: { userID?: string } | { username?: string } | { phoneNumber?: PhoneNumber } | { email?: string }) => Awaitable<User | undefined>
 
   createThread: (userIDs: string[], title?: string, messageText?: string) => Awaitable<boolean | Thread>

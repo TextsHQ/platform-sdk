@@ -1,9 +1,8 @@
 import type { MessageActionType, MessageAttachmentType, MessageBehavior } from './enums'
 import type { TextAttributes } from './TextAttributes'
 import type { ThreadID } from './Thread'
-import type { UserID } from './User'
+import type { Participant, UserID } from './User'
 import type { Identifiable, Size, ID } from './generic'
-import type { Participant } from './User'
 
 export type MessageID = ID
 

@@ -65,6 +65,7 @@ export enum Attribute {
   SUPPORTS_QUOTED_MESSAGES = 'supports_quoted_messages',
   SUPPORTS_QUOTED_MESSAGES_FROM_ANY_THREAD = 'supports_quoted_messages_from_any_thread',
   SUPPORTS_REQUESTS_INBOX = 'supports_requests_inbox',
+  SUPPORTS_MOVING_THREAD_TO_INBOX = 'supports_moving_thread_to_inbox',
   SUPPORTS_SEARCH = 'supports_search',
   SUPPORTS_STOP_TYPING_INDICATOR = 'supports_stop_typing_indicator',
   SUPPORTS_PUSH_NOTIFICATIONS = 'supports_push_notifications',

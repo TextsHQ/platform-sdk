@@ -27,7 +27,7 @@ export type MessageContent = {
   audioDurationSeconds?: number
 
   // string of participant IDs that were @-mentioned
-  mentionedUserIDs?: string[]
+  mentionedUserIDs?: UserID[]
 }
 
 export type MessageSendOptions = {
@@ -140,9 +140,9 @@ export interface PlatformAPI {
 
   getThread?: (threadID: ThreadID) => Awaitable<Thread | undefined>
   getMessage?: (threadID: ThreadID, messageID: MessageID) => Awaitable<Message | undefined>
-  getUser?: (ids: { userID?: string } | { username?: string } | { phoneNumber?: PhoneNumber } | { email?: string }) => Awaitable<User | undefined>
+  getUser?: (ids: { userID?: UserID } | { username?: string } | { phoneNumber?: PhoneNumber } | { email?: string }) => Awaitable<User | undefined>
 
-  createThread: (userIDs: string[], title?: string, messageText?: string) => Awaitable<boolean | Thread>
+  createThread: (userIDs: UserID[], title?: string, messageText?: string) => Awaitable<boolean | Thread>
   updateThread?: (threadID: ThreadID, updates: Partial<Thread>) => Awaitable<void>
   deleteThread?: (threadID: ThreadID) => Awaitable<void>
 
@@ -151,7 +151,7 @@ export interface PlatformAPI {
   sendMessage?: (threadID: ThreadID, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
   editMessage?: (threadID: ThreadID, messageID: MessageID, content: MessageContent, options?: MessageSendOptions) => Promise<boolean | Message[]>
 
-  forwardMessage?: (threadID: ThreadID, messageID: MessageID, threadIDs?: string[], userIDs?: string[]) => Promise<void>
+  forwardMessage?: (threadID: ThreadID, messageID: MessageID, threadIDs?: ThreadID[], userIDs?: UserID[]) => Promise<void>
 
   sendActivityIndicator: (type: ActivityType, threadID?: ThreadID) => Awaitable<void>
   deleteMessage?: (threadID: ThreadID, messageID: MessageID, forEveryone?: boolean) => Awaitable<void>
@@ -187,7 +187,7 @@ export interface PlatformAPI {
   getAssetInfo?: (fetchOptions?: GetAssetOptions, ...args: string[]) => Awaitable<AssetInfo>
 
   /** `getOriginalObject` returns the JSON representation of the original thread or message */
-  getOriginalObject?: (objName: 'thread' | 'message', objectID: string) => Awaitable<string>
+  getOriginalObject?: (objName: 'thread' | 'message', objectID: ThreadID | MessageID) => Awaitable<string>
 
   handleDeepLink?: (link: string) => void
 

@@ -113,6 +113,10 @@ export interface PlatformAPI {
   /** `dispose` disconnects all network connections and cleans up. Called when user disables account and when app exits. */
   dispose: () => Awaitable<void>
 
+  subscribeToEvents: (onEvent: OnServerEventCallback) => Awaitable<void>
+  onLoginEvent?: (onEvent: Function) => Awaitable<void>
+  onConnectionStateChange?: (onEvent: OnConnStateChangeCallback) => Awaitable<void>
+
   getCurrentUser: () => Awaitable<CurrentUser>
 
   login?: (creds?: LoginCreds) => Awaitable<LoginResult>
@@ -120,11 +124,7 @@ export interface PlatformAPI {
   logout?: () => Awaitable<void>
   serializeSession?: () => Awaitable<SerializedSession>
 
-  subscribeToEvents: (onEvent: OnServerEventCallback) => Awaitable<void>
-  onLoginEvent?: (onEvent: Function) => Awaitable<void>
-  onConnectionStateChange?: (onEvent: OnConnStateChangeCallback) => Awaitable<void>
-
-  takeoverConflict?: () => Awaitable<void>
+  // takeoverConflict?: () => Awaitable<void>
 
   searchUsers: (typed: string) => Awaitable<User[]>
   searchThreads?: (typed: string) => Awaitable<Thread[]>

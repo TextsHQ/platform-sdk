@@ -2,7 +2,7 @@ import type { CookieJar } from 'tough-cookie'
 import type { CustomEmoji } from './CustomEmoji'
 import type { ActivityType, ServerEventType } from './enums'
 import type { PartialWithID } from './generic'
-import type { Message, MessageID, MessageReaction } from './Message'
+import type { Message, MessageID, MessageReaction, MessageSeen } from './Message'
 import type { Thread, ThreadID } from './Thread'
 import type { Participant, UserID } from './User'
 
@@ -34,8 +34,8 @@ export type UserPresenceEvent = {
   presence: UserPresence
 }
 
-type ObjectName = 'thread' | 'message' | 'message_reaction' | 'participant' | 'custom_emoji'
-type Object = Thread | Message | Participant | MessageReaction | CustomEmoji
+type ObjectName = 'thread' | 'message' | 'message_reaction' | 'message_seen' | 'participant' | 'custom_emoji'
+type Object = Thread | Message | Participant | MessageReaction | MessageSeen | CustomEmoji
 type StateSyncEventBase = {
   type: ServerEventType.STATE_SYNC
   objectIDs: {

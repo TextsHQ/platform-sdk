@@ -7,6 +7,8 @@ export type ThreadType = 'single' | 'group' | 'channel' | 'broadcast'
 
 export type ThreadID = ID
 
+export type PartialLastMessage = Partial<Pick<Message, 'id' | 'text' | 'isSender' | 'senderID'>>
+
 export interface Thread extends Identifiable {
   _original?: string
 
@@ -30,8 +32,8 @@ export interface Thread extends Identifiable {
   imgURL?: string
   createdAt?: Date
   description?: string
-  /** If Thread.messages is empty, use `lastMessageSnippet` to set the last message preview */
-  lastMessageSnippet?: string
+  /** If Thread.messages is empty, use `lastMessage` to set the last message preview */
+  partialLastMessage?: PartialLastMessage
   messageExpirySeconds?: number
 
   messages: Paginated<Message>

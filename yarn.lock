@@ -1682,6 +1682,7 @@ __metadata:
     "@types/react": ^17.0.35
     "@types/react-dom": ^17.0.11
     "@types/tough-cookie": ^4
+    emoji-regex: ^10.1.0
     eslint: ^8.2.0
     form-data: ^4.0.0
     husky: ^4.3.0
@@ -2476,6 +2477,13 @@ __metadata:
   version: 1.4.118
   resolution: "electron-to-chromium@npm:1.4.118"
   checksum: b1941bdff3ff8cb10a6f75f60527bff37fc43878b2ff4e0c1b5d6aa5062ea97df4e8c75e6d4c6eb97f0bab1cac6f8f1d799b7316e69f66b6a4b9b6773af97de2
+  languageName: node
+  linkType: hard
+
+"emoji-regex@npm:^10.1.0":
+  version: 10.1.0
+  resolution: "emoji-regex@npm:10.1.0"
+  checksum: 5bc780fc4d75f89369155a87c55f7e83a0bf72bcccda7df7f2c570cde4738d8b17d112d12afdadfec16647d1faef6501307b4304f81d35c823a938fe6547df0f
   languageName: node
   linkType: hard
 

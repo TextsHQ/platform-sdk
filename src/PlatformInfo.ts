@@ -1,7 +1,5 @@
-import type React from 'react'
 import type { MessageDeletionMode, Attribute } from './enums'
 import type { NotificationsInfo } from './Notifications'
-import type { PlatformAPI, LoginCreds, LoginResult } from './PlatformAPI'
 import type { Participant } from './User'
 
 export type BrowserLogin = {
@@ -46,20 +44,6 @@ export type Pref = {
   default: boolean | string
 }
 
-export type AuthProps = {
-  isReauthing?: boolean
-  api?: PlatformAPI
-  login?: (creds?: LoginCreds) => Promise<LoginResult>
-  meContact?: {
-    fullName?: string
-    phoneNumbers?: string[]
-    emailAddresses?: string[]
-  }
-
-  nmp?: any
-  Tooltip?: React.FC<any>
-}
-
 export type PlatformInfo = {
   name: string
   version?: string
@@ -73,7 +57,6 @@ export type PlatformInfo = {
   /** @deprecated use `browserLogins` */
   browserLogin?: BrowserLogin
   browserLogins?: BrowserLogin[]
-  auth?: React.LazyExoticComponent<React.FC<AuthProps>> | React.FC<AuthProps>
 
   reactions?: {
     supported: Record<string, SupportedReaction>

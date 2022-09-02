@@ -126,7 +126,7 @@ export interface PlatformAPI {
 
   // takeoverConflict?: () => Awaitable<void>
 
-  searchUsers: (typed: string) => Awaitable<User[]>
+  searchUsers?: (typed: string) => Awaitable<User[]>
   searchThreads?: (typed: string) => Awaitable<Thread[]>
   searchMessages?: (typed: string, pagination?: PaginationArg, threadID?: ThreadID) => Awaitable<Paginated<Message>>
 

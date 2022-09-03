@@ -76,6 +76,8 @@ export enum Attribute {
 
   /** PlatformAPI.getMessages supports `direction=after` */
   GET_MESSAGES_SUPPORTS_AFTER_DIRECTION = 'get_messages_supports_after_direction',
+
+  CANNOT_REMOVE_LINK_PREVIEW = 'cannot_remove_link_preview',
 }
 
 export enum MessageActionType {

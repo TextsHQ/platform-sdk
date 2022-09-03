@@ -26,7 +26,10 @@ export type MessageContent = {
   isRecordedAudio?: boolean
   audioDurationSeconds?: number
 
-  // string of participant IDs that were @-mentioned
+  /* any links present in `text`. doesn't always include a protocol, could be like [{ link: "texts.com" }] */
+  links?: { link: string, includePreview?: boolean }[]
+
+  /* string of participant IDs that were @-mentioned */
   mentionedUserIDs?: UserID[]
 }
 

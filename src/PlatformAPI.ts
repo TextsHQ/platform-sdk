@@ -163,7 +163,7 @@ export interface PlatformAPI {
   addReaction?: (threadID: ThreadID, messageID: MessageID, reactionKey: string) => Awaitable<void>
   removeReaction?: (threadID: ThreadID, messageID: MessageID, reactionKey: string) => Awaitable<void>
 
-  getLinkPreview?: (link: string) => Awaitable<MessageLink>
+  getLinkPreview?: (link: string) => Awaitable<MessageLink | undefined>
 
   addParticipant?: (threadID: ThreadID, participantID: UserID) => Awaitable<void>
   removeParticipant?: (threadID: ThreadID, participantID: UserID) => Awaitable<void>

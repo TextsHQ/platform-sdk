@@ -22,6 +22,7 @@ export type MessageContent = {
 
   mimeType?: string
   isGif?: boolean
+  giphyID?: string
   size?: Size
   isRecordedAudio?: boolean
   audioDurationSeconds?: number

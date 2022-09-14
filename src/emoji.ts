@@ -1,6 +1,6 @@
 import getEmojiRegex from 'emoji-regex'
 
-const emojiRegex = getEmojiRegex()
+export const emojiRegex = getEmojiRegex()
 const whitespaceRegexGlobal = /[\s\u200B-\u200D\uFEFF]+/g
 
 // export const isEmojiOnlyString = (string: string) =>

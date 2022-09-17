@@ -25,7 +25,7 @@ export type UserSocialAttributes = {
 }
 
 export interface User extends Identifiable {
-  id: string
+  id: UserID
   username?: string
   phoneNumber?: PhoneNumber
   email?: string

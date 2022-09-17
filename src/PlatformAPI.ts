@@ -106,6 +106,11 @@ export type GetAssetOptions = {
   range?: { start: number, end: number }
 }
 
+export type SearchMessageOptions = {
+  threadID?: ThreadID
+  mediaType?: 'all' | 'video' | 'audio' | 'img' | 'unknown'
+}
+
 // also modify relayer-constants.ts
 export interface PlatformAPI {
   /**
@@ -132,7 +137,7 @@ export interface PlatformAPI {
 
   searchUsers?: (typed: string) => Awaitable<User[]>
   searchThreads?: (typed: string) => Awaitable<Thread[]>
-  searchMessages?: (typed: string, pagination?: PaginationArg, threadID?: ThreadID) => Awaitable<Paginated<Message>>
+  searchMessages?: (typed: string, pagination?: PaginationArg, options?: SearchMessageOptions) => Awaitable<Paginated<Message>>
 
   getPresence?: () => Awaitable<PresenceMap>
   getCustomEmojis?: () => Awaitable<CustomEmojiMap>

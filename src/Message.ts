@@ -98,7 +98,7 @@ export type MessageButton = {
 
 export interface Message extends Identifiable {
   _original?: string
-  id: string
+  id: MessageID
   timestamp: Date
   editedTimestamp?: Date
   expiresInSeconds?: number

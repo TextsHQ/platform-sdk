@@ -5,7 +5,7 @@ import type { AttributedText } from './TextAttributes'
 export type UserID = ID
 
 export type UsersOrCount = {
-  userIDs?: string[]
+  userIDs?: UserID[]
   count?: number
 }
 

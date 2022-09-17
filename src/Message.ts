@@ -19,10 +19,10 @@ export interface MessageReaction extends Identifiable {
 }
 
 export type ThreadTitleUpdatedAction = { type: MessageActionType.THREAD_TITLE_UPDATED, title: string, actorParticipantID: UserID }
-export type ThreadParticipantsAddedAction = { type: MessageActionType.THREAD_PARTICIPANTS_ADDED, participantIDs: string[], actorParticipantID: UserID, participants?: Participant[] }
-export type ThreadParticipantsRemovedAction = { type: MessageActionType.THREAD_PARTICIPANTS_REMOVED, participantIDs: string[], actorParticipantID: UserID, participants?: Participant[] }
+export type ThreadParticipantsAddedAction = { type: MessageActionType.THREAD_PARTICIPANTS_ADDED, participantIDs: UserID[], actorParticipantID: UserID, participants?: Participant[] }
+export type ThreadParticipantsRemovedAction = { type: MessageActionType.THREAD_PARTICIPANTS_REMOVED, participantIDs: UserID[], actorParticipantID: UserID, participants?: Participant[] }
 export type GroupThreadCreatedAction = { type: MessageActionType.GROUP_THREAD_CREATED, title: string, actorParticipantID: UserID }
-export type ThreadImgCreatedAction = { type: MessageActionType.THREAD_IMG_CHANGED, actorParticipantID: UserID }
+export type ThreadImgChangedAction = { type: MessageActionType.THREAD_IMG_CHANGED, actorParticipantID: UserID }
 export type MessageRequestAcceptedAction = { type: MessageActionType.MESSAGE_REQUEST_ACCEPTED }
 
 export type MessageReactionCreatedAction = { type: MessageActionType.MESSAGE_REACTION_CREATED, messageID?: MessageID } & Partial<MessageReaction>
@@ -33,7 +33,7 @@ export type MessageAction =
   ThreadParticipantsAddedAction |
   ThreadParticipantsRemovedAction |
   GroupThreadCreatedAction |
-  ThreadImgCreatedAction |
+  ThreadImgChangedAction |
   MessageRequestAcceptedAction |
   MessageReactionCreatedAction |
   MessageReactionDeletedAction
@@ -126,7 +126,6 @@ export interface Message extends Identifiable {
   isAction?: boolean
   isDeleted?: boolean
   isErrored?: boolean
-  isDynamicMessage?: boolean
   parseTemplate?: boolean
   /** thread ID of the quoted message, should be null if same thread as this message */
   linkedMessageThreadID?: ThreadID

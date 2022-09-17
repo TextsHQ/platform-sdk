@@ -1,4 +1,5 @@
 import type React from 'react'
+import type { PhoneNumber } from './PhoneNumber'
 import type { PlatformAPI, LoginCreds, LoginResult } from './PlatformAPI'
 import type { PlatformInfo } from './PlatformInfo'
 
@@ -8,7 +9,7 @@ export type AuthProps = {
   login?: (creds?: LoginCreds) => Promise<LoginResult>
   meContact?: {
     fullName?: string
-    phoneNumbers?: string[]
+    phoneNumbers?: PhoneNumber[]
     emailAddresses?: string[]
   }
 

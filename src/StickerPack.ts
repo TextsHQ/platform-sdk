@@ -8,7 +8,7 @@ export interface Sticker extends Identifiable {
   type: 'img' | 'video'
   size: Size
   mimeType?: string
-  emojis?: string
+  emojis?: string[]
 }
 
 export interface StickerPack extends Identifiable {

@@ -9,6 +9,7 @@ import type { Thread, ThreadID } from './Thread'
 import type { User, UserID, CurrentUser, Participant } from './User'
 import type { ThreadFolderName } from './ThreadFolderName'
 import type { NotificationsInfo } from './Notifications'
+import type { Sticker, StickerPack } from './StickerPack'
 
 export type OnServerEventCallback = (events: ServerEvent[]) => void
 
@@ -146,6 +147,9 @@ export interface PlatformAPI {
   /** Messages should be sorted by timestamp asc → desc */
   getMessages: (threadID: ThreadID, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
   getThreadParticipants?: (threadID: ThreadID, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
+
+  getStickerPacks?: (pagination?: PaginationArg) => Awaitable<Paginated<StickerPack>>
+  getStickers?: (stickerPackID: string, pagination?: PaginationArg) => Awaitable<Paginated<Sticker>>
 
   getThread?: (threadID: ThreadID) => Awaitable<Thread | undefined>
   getMessage?: (threadID: ThreadID, messageID: MessageID) => Awaitable<Message | undefined>

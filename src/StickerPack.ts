@@ -1,6 +1,7 @@
 import type { ID, Identifiable, Paginated, Size } from './generic'
 
 export type StickerPackID = ID
+export type StickerID = ID
 
 export interface Sticker extends Identifiable {
   id: StickerPackID
@@ -12,7 +13,7 @@ export interface Sticker extends Identifiable {
 }
 
 export interface StickerPack extends Identifiable {
-  id: StickerPackID
+  id: StickerID
   imgURL: string
   name: string
   publisher?: string

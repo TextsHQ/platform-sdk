@@ -79,6 +79,7 @@ export type PlatformInfo = {
     noSupportForFiles?: boolean
 
     supportsCaption?: boolean
+    supportsStickers?: boolean
     recordedAudioMimeType?: string
     gifMimeType?: string
 

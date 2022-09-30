@@ -52,6 +52,8 @@ export type PaginationArg = {
 export type AccountInfo = {
   accountID: string
   dataDirPath: FSPath
+  // two-letter ISO 3166 country code. like "US"
+  country?: string
 }
 
 export type ConnectionState = {

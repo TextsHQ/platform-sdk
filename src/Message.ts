@@ -1,8 +1,9 @@
-import type { MessageActionType, MessageAttachmentType, MessageBehavior } from './enums'
+import type { MessageActionType, MessageBehavior } from './enums'
 import type { TextAttributes } from './TextAttributes'
 import type { ThreadID } from './Thread'
 import type { Participant, UserID } from './User'
-import type { Identifiable, Size, ID } from './generic'
+import type { Identifiable, Size, ID, ExtraProp, OriginalProp } from './generic'
+import type { Attachment } from './Attachment'
 
 export type MessageID = ID
 
@@ -44,24 +45,6 @@ export type MessageSeen =
 
 export type MessagePreview = Pick<Message, 'id' | 'threadID' | 'text' | 'senderID' | 'attachments'>
 
-export interface MessageAttachment extends Identifiable {
-  id: string
-  type: MessageAttachmentType
-  isGif?: boolean
-  isSticker?: boolean
-  isVoiceNote?: boolean
-  size?: Size
-  srcURL?: string
-  data?: Buffer
-  posterImg?: Buffer | string
-  mimeType?: string
-  fileName?: string
-  fileSize?: number
-  loading?: boolean
-  caption?: string
-  extra?: any
-}
-
 export interface Tweet extends Identifiable {
   id: string
   user: {
@@ -74,7 +57,7 @@ export interface Tweet extends Identifiable {
   timestamp?: Date
   url?: string
   textAttributes?: TextAttributes
-  attachments?: MessageAttachment[]
+  attachments?: Attachment[]
   quotedTweet?: Tweet
 }
 
@@ -96,8 +79,7 @@ export type MessageButton = {
   linkURL: string
 }
 
-export interface Message extends Identifiable {
-  _original?: string
+export interface Message extends Identifiable, ExtraProp, OriginalProp {
   id: MessageID
   timestamp: Date
   editedTimestamp?: Date
@@ -110,7 +92,7 @@ export interface Message extends Identifiable {
   textHeading?: string
   textFooter?: string
 
-  attachments?: MessageAttachment[]
+  attachments?: Attachment[]
   /** @deprecated */
   tweet?: Tweet
   tweets?: Tweet[]
@@ -135,8 +117,6 @@ export interface Message extends Identifiable {
   action?: MessageAction
   cursor?: string
   buttons?: MessageButton[]
-
-  extra?: any
 
   /** @deprecated `silent` messages will not mark the thread as unread, move the thread to the top of the list, or show a notification */
   silent?: boolean

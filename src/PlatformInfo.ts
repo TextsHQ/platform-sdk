@@ -1,4 +1,5 @@
 import type { MessageDeletionMode, Attribute } from './enums'
+import type { ExtraProp } from './generic'
 import type { NotificationsInfo } from './Notifications'
 import type { Participant } from './User'
 
@@ -44,7 +45,7 @@ export type Pref = {
   default: boolean | string
 }
 
-export type PlatformInfo = {
+export interface PlatformInfo extends ExtraProp {
   name: string
   version?: string
   displayName: string
@@ -95,8 +96,6 @@ export type PlatformInfo = {
   notifications?: NotificationsInfo
 
   prefs?: Record<string, Pref>
-
-  extra?: any
 
   getUserProfileLink?: (participant: Participant) => string
   generateUniqueMessageID?: () => string

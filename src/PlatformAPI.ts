@@ -9,7 +9,8 @@ import type { Thread, ThreadID } from './Thread'
 import type { User, UserID, CurrentUser, Participant } from './User'
 import type { ThreadFolderName } from './ThreadFolderName'
 import type { NotificationsInfo } from './Notifications'
-import type { Sticker, StickerID, StickerPack } from './StickerPack'
+import type { StickerID, StickerPack } from './StickerPack'
+import type { Attachment } from './Attachment'
 
 export type OnServerEventCallback = (events: ServerEvent[]) => void
 
@@ -152,7 +153,7 @@ export interface PlatformAPI {
   getThreadParticipants?: (threadID: ThreadID, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
 
   getStickerPacks?: (pagination?: PaginationArg) => Awaitable<Paginated<StickerPack>>
-  getStickers?: (stickerPackID: string, pagination?: PaginationArg) => Awaitable<Paginated<Sticker>>
+  getStickers?: (stickerPackID: string, pagination?: PaginationArg) => Awaitable<Paginated<Attachment>>
 
   getThread?: (threadID: ThreadID) => Awaitable<Thread | undefined>
   getMessage?: (threadID: ThreadID, messageID: MessageID) => Awaitable<Message | undefined>

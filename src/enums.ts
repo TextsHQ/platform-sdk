@@ -116,12 +116,15 @@ export enum MessageDeletionMode {
   NONE = 'none',
 }
 
-export enum MessageAttachmentType {
+export enum AttachmentType {
   UNKNOWN = 'unknown',
   IMG = 'img',
   VIDEO = 'video',
   AUDIO = 'audio',
 }
+
+/** @deprecated renamed to AttachmentType */
+export const MessageAttachmentType = AttachmentType
 
 export enum ConnectionStatus {
   UNKNOWN = 'unknown',

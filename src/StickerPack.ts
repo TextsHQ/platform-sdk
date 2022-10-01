@@ -1,22 +1,14 @@
-import type { ID, Identifiable, Paginated, Size } from './generic'
+import type { ID, Identifiable, Paginated } from './generic'
+import type { Attachment } from './Attachment'
 
 export type StickerPackID = ID
 export type StickerID = ID
 
-export interface Sticker extends Identifiable {
-  id: StickerPackID
-  url: string
-  type: 'img' | 'video'
-  size: Size
-  mimeType?: string
-  emojis?: string[]
-}
-
 export interface StickerPack extends Identifiable {
-  id: StickerID
+  id: StickerPackID
   imgURL: string
   name: string
   publisher?: string
   description?: string
-  stickers: Paginated<Sticker>
+  stickers: Paginated<Attachment>
 }

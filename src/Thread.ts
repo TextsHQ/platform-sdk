@@ -1,4 +1,4 @@
-import type { ID, Identifiable, Paginated } from './generic'
+import type { ExtraProp, ID, Identifiable, OriginalProp, Paginated } from './generic'
 import type { Message, MessageID } from './Message'
 import type { Participant } from './User'
 import type { ThreadFolderName } from './ThreadFolderName'
@@ -9,9 +9,7 @@ export type ThreadID = ID
 
 export type PartialLastMessage = Partial<Pick<Message, 'id' | 'text' | 'isSender' | 'senderID'>>
 
-export interface Thread extends Identifiable {
-  _original?: string
-
+export interface Thread extends Identifiable, ExtraProp, OriginalProp {
   folderName?: ThreadFolderName
 
   id: ThreadID
@@ -38,7 +36,4 @@ export interface Thread extends Identifiable {
 
   messages: Paginated<Message>
   participants: Paginated<Participant>
-
-  /** Any arbitrary data */
-  extra?: any
 }

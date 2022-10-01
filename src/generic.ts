@@ -1,5 +1,13 @@
-export type Identifiable = {
+export interface Identifiable {
   id: string
+}
+
+export interface ExtraProp {
+  extra?: any
+}
+
+export interface OriginalProp {
+  _original?: string
 }
 
 export type Without<T, U> = {

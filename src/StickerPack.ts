@@ -6,7 +6,7 @@ export type StickerID = ID
 
 export interface StickerPack extends Identifiable {
   id: StickerPackID
-  imgURL: string
+  preview: Attachment
   name: string
   publisher?: string
   description?: string

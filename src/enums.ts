@@ -10,6 +10,7 @@ export enum Attribute {
   CAN_MESSAGE_PHONE_NUMBER = 'can_message_phone_number',
   /** Platform users can have a username */
   CAN_MESSAGE_USERNAME = 'can_message_username',
+  CANNOT_MESSAGE_SELF = 'cannot_message_self',
   /** Don't cache messages, threads, users for the platform */
   NO_CACHE = 'no_cache',
 

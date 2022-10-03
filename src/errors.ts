@@ -1,15 +1,9 @@
-const createError = (name: string, parent = Error) => class extends parent {
-  constructor(message?: string) {
-    super(message)
-    this.name = name
-  }
-}
 
-export const ReAuthError = createError('ReAuthError')
+export class ReAuthError extends Error { }
 
-export const RateLimitError = createError('RateLimitError')
+export class RateLimitError extends Error { }
 
-export const ConnectionError = createError('ConnectionError')
+export class ConnectionError extends Error { }
 
 export enum PlatformErrorName {
   'ReAuthError' = 'ReAuthError',

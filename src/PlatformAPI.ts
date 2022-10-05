@@ -9,8 +9,8 @@ import type { Thread, ThreadID } from './Thread'
 import type { User, UserID, CurrentUser, Participant } from './User'
 import type { ThreadFolderName } from './ThreadFolderName'
 import type { NotificationsInfo } from './Notifications'
-import type { StickerID, StickerPack } from './StickerPack'
-import type { Attachment } from './Attachment'
+import type { StickerPack } from './StickerPack'
+import type { Attachment, AttachmentID } from './Attachment'
 
 export type OnServerEventCallback = (events: ServerEvent[]) => void
 
@@ -25,7 +25,7 @@ export type MessageContent = {
   mimeType?: string
   isGif?: boolean
   giphyID?: string
-  stickerID?: StickerID
+  stickerID?: AttachmentID
   size?: Size
   isRecordedAudio?: boolean
   audioDurationSeconds?: number

@@ -102,6 +102,7 @@ export enum ServerEventType {
   USER_ACTIVITY = 'user_activity',
   USER_PRESENCE_UPDATED = 'user_presence_updated',
   SESSION_UPDATED = 'session_updated',
+  REFRESH_ACCOUNT = 'refresh_account',
 }
 
 export enum CodeRequiredReason {

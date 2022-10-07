@@ -79,8 +79,13 @@ export type ThreadMessagesRefreshEvent = {
   type: ServerEventType.THREAD_MESSAGES_REFRESH
   threadID: ThreadID
 }
+/** Client will call serializeSession() and update the session on this event */
 export type SessionUpdatedEvent = {
   type: ServerEventType.SESSION_UPDATED
+}
+/** Client will call dispose() and init() */
+export type RefreshAccountEvent = {
+  type: ServerEventType.REFRESH_ACCOUNT
 }
 
 export type ThreadTrustedEvent = {
@@ -94,7 +99,7 @@ export type ToastEvent = {
     /** random ID of the toast, can be used to update the same toast */
     id?: string
     text: string
-    /** how long should the toast be displayed */
+    /** how long should the toast be displayed, -1 is indefinite */
     timeoutMs?: number
   }
 }
@@ -112,6 +117,7 @@ export type ServerEvent =
   StateSyncEvent |
   ThreadMessagesRefreshEvent |
   SessionUpdatedEvent |
+  RefreshAccountEvent |
   ThreadTrustedEvent |
   ToastEvent |
   OpenWindowEvent |

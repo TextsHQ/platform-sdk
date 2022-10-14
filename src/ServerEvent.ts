@@ -88,11 +88,6 @@ export type RefreshAccountEvent = {
   type: ServerEventType.REFRESH_ACCOUNT
 }
 
-export type ThreadTrustedEvent = {
-  type: ServerEventType.THREAD_TRUSTED
-  threadID: ThreadID
-}
-
 export type ToastEvent = {
   type: ServerEventType.TOAST
   toast: {
@@ -118,7 +113,6 @@ export type ServerEvent =
   ThreadMessagesRefreshEvent |
   SessionUpdatedEvent |
   RefreshAccountEvent |
-  ThreadTrustedEvent |
   ToastEvent |
   OpenWindowEvent |
   UserActivityEvent |

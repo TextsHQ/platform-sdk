@@ -118,8 +118,6 @@ export interface Message extends Identifiable, ExtraProp, OriginalProp {
   cursor?: string
   buttons?: MessageButton[]
 
-  /** @deprecated `silent` messages will not mark the thread as unread, move the thread to the top of the list, or show a notification */
-  silent?: boolean
   behavior?: MessageBehavior
 
   accountID?: string

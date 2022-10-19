@@ -36,3 +36,8 @@ export type PartialWithID<T> = Partial<T> & { id: string }
 export type FSPath = string
 
 export type ID = string
+
+export type Button = {
+  label: string
+  linkURL: string
+}

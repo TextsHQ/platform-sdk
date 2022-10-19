@@ -1,7 +1,7 @@
 import type { CookieJar } from 'tough-cookie'
 import type { CustomEmoji } from './CustomEmoji'
 import type { ActivityType, ServerEventType } from './enums'
-import type { PartialWithID } from './generic'
+import type { Button, PartialWithID } from './generic'
 import type { Message, MessageID, MessageReaction, MessageSeen } from './Message'
 import type { Thread, ThreadID } from './Thread'
 import type { Participant, UserID } from './User'
@@ -96,6 +96,7 @@ export type ToastEvent = {
     text: string
     /** how long should the toast be displayed, -1 is indefinite */
     timeoutMs?: number
+    buttons?: Button[]
   }
 }
 

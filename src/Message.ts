@@ -2,8 +2,8 @@ import type { MessageActionType, MessageBehavior } from './enums'
 import type { TextAttributes } from './TextAttributes'
 import type { ThreadID } from './Thread'
 import type { Participant, UserID } from './User'
-import type { Identifiable, Size, ID, ExtraProp, OriginalProp } from './generic'
 import type { Attachment } from './Attachment'
+import type { Identifiable, Size, ID, ExtraProp, OriginalProp, Button } from './generic'
 
 export type MessageID = ID
 
@@ -74,10 +74,7 @@ export type MessageLink = {
   summary?: string
 }
 
-export type MessageButton = {
-  label: string
-  linkURL: string
-}
+export type MessageButton = Button
 
 export interface Message extends Identifiable, ExtraProp, OriginalProp {
   id: MessageID

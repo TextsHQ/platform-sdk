@@ -1,4 +1,5 @@
 import type { Size } from './generic'
+import type { UserID } from './User'
 
 export type ReplaceWithMediaEntity = {
   mediaType: 'img' | 'video'
@@ -26,7 +27,7 @@ export type TextEntity = {
   replaceWith?: string
   replaceWithMedia?: ReplaceWithMediaEntity
   link?: string
-  mentionedUser?: { username?: string, id?: string }
+  mentionedUser?: { username?: string, id?: UserID }
 }
 
 export type TextAttributes = {

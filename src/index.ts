@@ -21,5 +21,6 @@ export * from './ThreadFolderName'
 export * from './User'
 export * from './StickerPack'
 export * from './IAsyncSqlite'
+export * from './util'
 
 export const texts = (globalThis as any).texts as TextsGlobals

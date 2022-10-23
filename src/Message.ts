@@ -90,8 +90,6 @@ export interface Message extends Identifiable, ExtraProp, OriginalProp {
   textFooter?: string
 
   attachments?: Attachment[]
-  /** @deprecated */
-  tweet?: Tweet
   tweets?: Tweet[]
   links?: MessageLink[]
   iframeURL?: string

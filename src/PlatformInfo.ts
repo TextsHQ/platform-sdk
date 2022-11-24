@@ -93,6 +93,8 @@ export interface PlatformInfo extends ExtraProp {
     }
   }
 
+  urlScheme: string
+
   notifications?: NotificationsInfo
 
   prefs?: Record<string, Pref>

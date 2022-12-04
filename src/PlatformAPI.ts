@@ -159,7 +159,7 @@ export interface PlatformAPI {
   getMessage?: (threadID: ThreadID, messageID: MessageID) => Awaitable<Message | undefined>
   getUser?: (ids: { userID: UserID } | { username: string } | { phoneNumber: PhoneNumber } | { email: string }) => Awaitable<User | undefined>
 
-  createThread: (userIDs: UserID[], title?: string, messageText?: string) => Awaitable<boolean | Thread>
+  createThread?: (userIDs: UserID[], title?: string, messageText?: string) => Awaitable<boolean | Thread>
   updateThread?: (threadID: ThreadID, updates: Partial<Thread>) => Awaitable<void>
   deleteThread?: (threadID: ThreadID) => Awaitable<void>
 

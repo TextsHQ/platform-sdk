@@ -16,3 +16,11 @@ export const smartJSONStringify = (obj: unknown, space?: string | number) =>
     if (isBufferLike(value)) return getDataURI(Buffer.from(value.data))
     return value
   }, space)
+
+export function tryParseJSON<FallbackType>(json: string, fallback?: FallbackType) {
+  try {
+    return JSON.parse(json)
+  } catch {
+    return fallback
+  }
+}

@@ -1,29 +1,39 @@
+import type { CookieJar } from 'tough-cookie'
 import type { MessageDeletionMode, Attribute } from './enums'
 import type { ExtraProp } from './generic'
 import type { NotificationsInfo } from './Notifications'
 import type { Participant } from './User'
 
-export type BrowserLogin = {
-  loginURL: string
-  label?: string
-  description?: string
+export type BrowserWindowProps = {
+  url: string
 
   /** User-Agent to use for all requests in the window */
   userAgent?: string
 
-  /** Closes the browser login window when a cookie with this name is found */
+  /** Closes the browser window when a cookie with this name is found */
   authCookieName?: string
 
-  /** Closes the browser login window when the page is redirected to a URL matching the regex */
+  /** Closes the browser window when the page is redirected to a URL matching the regex */
   closeOnRedirectRegex?: string
 
   runJSOnLaunch?: string
   runJSOnNavigate?: string
   runJSOnClose?: string
 
+  windowTitle?: string
   windowWidth?: number
   windowHeight?: number
+
+  /** Existing cookies to be set */
+  cookieJar?: CookieJar.Serialized
 }
+
+export type BrowserLogin = {
+  /** @deprecated use `url` instead */
+  loginURL?: string
+  label?: string
+  description?: string
+} & BrowserWindowProps
 
 export type LoginMode = 'browser' | 'manual' | 'custom'
 

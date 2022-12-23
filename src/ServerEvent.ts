@@ -3,6 +3,7 @@ import type { CustomEmoji } from './CustomEmoji'
 import type { ActivityType, ServerEventType } from './enums'
 import type { Button, PartialWithID } from './generic'
 import type { Message, MessageID, MessageReaction, MessageSeen } from './Message'
+import type { BrowserWindowProps } from './PlatformInfo'
 import type { Thread, ThreadID } from './Thread'
 import type { Participant, UserID } from './User'
 
@@ -102,12 +103,7 @@ export type ToastEvent = {
 
 export type OpenWindowEvent = {
   type: ServerEventType.OPEN_WINDOW
-  url?: string
-  windowTitle?: string
-  windowWidth?: number
-  windowHeight?: number
-  cookieJar?: CookieJar.Serialized
-}
+} & BrowserWindowProps
 
 export type ServerEvent =
   StateSyncEvent |

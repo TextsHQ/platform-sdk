@@ -157,3 +157,8 @@ export enum MessageBehavior {
   /** don't show a notification */
   DONT_NOTIFY = 'dont_notify',
 }
+
+export enum PlayStatus {
+  UNPLAYED = 'UNPLAYED',
+  PLAYED = 'PLAYED',
+}

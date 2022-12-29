@@ -9,7 +9,7 @@ import type { Thread, ThreadID } from './Thread'
 import type { User, UserID, CurrentUser, Participant } from './User'
 import type { ThreadFolderName } from './ThreadFolderName'
 import type { NotificationsInfo } from './Notifications'
-import type { StickerPack } from './StickerPack'
+import type { StickerPack, StickerPackID } from './StickerPack'
 import type { Attachment, AttachmentID } from './Attachment'
 
 export type OnServerEventCallback = (events: ServerEvent[]) => void
@@ -153,7 +153,7 @@ export interface PlatformAPI {
   getThreadParticipants?: (threadID: ThreadID, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
 
   getStickerPacks?: (pagination?: PaginationArg) => Awaitable<Paginated<StickerPack>>
-  getStickers?: (stickerPackID: string, pagination?: PaginationArg) => Awaitable<Paginated<Attachment>>
+  getStickers?: (stickerPackID: StickerPackID, pagination?: PaginationArg) => Awaitable<Paginated<Attachment>>
 
   getThread?: (threadID: ThreadID) => Awaitable<Thread | undefined>
   getMessage?: (threadID: ThreadID, messageID: MessageID) => Awaitable<Message | undefined>
@@ -190,6 +190,8 @@ export interface PlatformAPI {
   pinThread?: (threadID: ThreadID, pinned: boolean) => Awaitable<void>
   notifyAnyway?: (threadID: ThreadID) => Awaitable<void>
 
+  /** called by the client when an attachment (video/audio/image) is marked as played by user */
+  markAttachmentPlayed?: (attachmentID: AttachmentID, messageID?: MessageID) => Awaitable<void>
   onThreadSelected?: (threadID: ThreadID) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 

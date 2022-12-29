@@ -1,4 +1,4 @@
-import type { AttachmentType } from './enums'
+import type { AttachmentType, PlayStatus } from './enums'
 import type { ExtraProp, ID, Identifiable, Size, XOR } from './generic'
 
 export type AttachmentID = ID
@@ -17,6 +17,8 @@ export interface AttachmentBase extends Identifiable, ExtraProp {
   isGif?: boolean
   isSticker?: boolean
   isVoiceNote?: boolean
+
+  playStatus?: PlayStatus
 
   /** @deprecated */
   caption?: string

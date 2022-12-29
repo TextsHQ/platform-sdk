@@ -19,9 +19,6 @@ export interface AttachmentBase extends Identifiable, ExtraProp {
   isVoiceNote?: boolean
 
   playStatus?: PlayStatus
-
-  /** @deprecated */
-  caption?: string
 }
 
 export type AttachmentWithURL = AttachmentBase & { srcURL: string }

@@ -29,8 +29,6 @@ export type BrowserWindowProps = {
 }
 
 export type BrowserLogin = {
-  /** @deprecated use `url` instead */
-  loginURL?: string
   label?: string
   description?: string
 } & BrowserWindowProps

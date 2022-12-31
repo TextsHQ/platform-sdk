@@ -53,33 +53,12 @@ export type Pref = {
   default: boolean | string
 }
 
-export interface PlatformInfo extends ExtraProp {
-  name: string
-  version?: string
-  displayName: string
-  /** HTML of an SVG */
-  icon: string
-  tags?: string[]
-
-  loginMode: LoginMode
-  autofillHostnames?: string[]
-  /** @deprecated use `browserLogins` */
-  browserLogin?: BrowserLogin
-  browserLogins?: BrowserLogin[]
-
+export interface OverridablePlatformInfo {
   reactions?: {
     supported: Record<string, SupportedReaction>
-    supportsDynamicReactions?: boolean
     canReactWithAllEmojis?: boolean
     allowsMultipleReactionsToSingleMessage?: boolean
   }
-  deletionMode: MessageDeletionMode
-  attributes: Set<Attribute>
-
-  maxMessageLength?: number
-  maxGroupTitleLength?: number
-  typingDurationMs?: number
-
   attachments?: {
     noSupport?: boolean
     noSupportForImage?: boolean
@@ -100,6 +79,28 @@ export interface PlatformInfo extends ExtraProp {
       files?: number
     }
   }
+}
+
+export interface PlatformInfo extends OverridablePlatformInfo, ExtraProp {
+  name: string
+  version?: string
+  displayName: string
+  /** HTML of an SVG */
+  icon: string
+  tags?: string[]
+
+  loginMode: LoginMode
+  autofillHostnames?: string[]
+  /** @deprecated use `browserLogins` */
+  browserLogin?: BrowserLogin
+  browserLogins?: BrowserLogin[]
+
+  deletionMode: MessageDeletionMode
+  attributes: Set<Attribute>
+
+  maxMessageLength?: number
+  maxGroupTitleLength?: number
+  typingDurationMs?: number
 
   notifications?: NotificationsInfo
 

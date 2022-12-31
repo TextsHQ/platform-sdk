@@ -11,6 +11,7 @@ import type { ThreadFolderName } from './ThreadFolderName'
 import type { NotificationsInfo } from './Notifications'
 import type { StickerPack, StickerPackID } from './StickerPack'
 import type { Attachment, AttachmentID } from './Attachment'
+import type { OverridablePlatformInfo } from './PlatformInfo'
 
 export type OnServerEventCallback = (events: ServerEvent[]) => void
 
@@ -126,6 +127,8 @@ export interface PlatformAPI {
 
   /** `dispose` disconnects all network connections and cleans up. Called when user disables account and when app exits. */
   dispose: () => Awaitable<void>
+
+  getPlatformInfo?: () => Awaitable<Partial<OverridablePlatformInfo>>
 
   subscribeToEvents: (onEvent: OnServerEventCallback) => Awaitable<void>
   onLoginEvent?: (onEvent: Function) => Awaitable<void>

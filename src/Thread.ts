@@ -25,6 +25,7 @@ export interface Thread extends Identifiable, ExtraProp, OriginalProp {
   mutedUntil?: Date | 'forever'
 
   type: ThreadType
+  /** If null, thread won't be visible to the user in the UI unless they explicitly search for it  */
   timestamp?: Date
 
   imgURL?: string

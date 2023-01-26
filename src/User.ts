@@ -10,6 +10,7 @@ export type UsersOrCount = {
 }
 
 export type UserSocialAttributes = {
+  location?: string
   coverImgURL?: string
   bio?: AttributedText
   website?: string

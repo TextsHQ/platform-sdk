@@ -30,8 +30,12 @@ export type TextEntity = {
   mentionedUser?: { username?: string, id?: UserID }
 }
 
+export type TextEntityNode = TextEntity & {
+  children: TextEntityNode[]
+}
+
 export type TextAttributes = {
-  entities?: TextEntity[]
+  entities?: TextEntityNode[]
   /**
    * decode HTML entities like > (&gt;)
    */

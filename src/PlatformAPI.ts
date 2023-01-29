@@ -216,3 +216,5 @@ export interface PlatformAPI {
   /** reconnect any websocket, mqtt or network connections since client thinks it's likely to have broken */
   reconnectRealtime?: () => void
 }
+
+export type ConstructiblePlatformAPI = PlatformAPI & { new(accountID: string): PlatformAPI }

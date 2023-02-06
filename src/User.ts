@@ -43,7 +43,7 @@ export interface User extends Identifiable {
 }
 
 export type CurrentUser = User & {
-  displayText: string
+  displayText?: string
 }
 
 export type Participant = User & {

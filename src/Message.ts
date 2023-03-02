@@ -82,6 +82,7 @@ export interface Message extends Identifiable, ExtraProp, OriginalProp {
   editedTimestamp?: Date
   expiresInSeconds?: number
   forwardedCount?: number
+  forwardedFrom?: { text?: string } & ({ threadID: ThreadID } | { userID: UserID })
   senderID: 'none' | '$thread' | string
 
   text?: string

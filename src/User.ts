@@ -47,6 +47,7 @@ export type CurrentUser = User & {
 }
 
 export type Participant = User & {
+  addedBy?: UserID
   isAdmin?: boolean
   hasExited?: boolean
 }

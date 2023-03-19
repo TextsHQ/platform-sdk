@@ -20,5 +20,5 @@ export type AuthProps = {
 export interface Platform {
   info: PlatformInfo
   api: PlatformAPI
-  auth?: React.LazyExoticComponent<React.FC<AuthProps>>
+  auth?: React.LazyExoticComponent<React.FC<AuthProps> | React.ComponentClass<AuthProps>>
 }

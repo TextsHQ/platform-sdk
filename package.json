@@ -3,7 +3,8 @@
   "version": "0.4.4",
   "main": "./dist/index.js",
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "tsconfig.json"
   ],
   "scripts": {
     "postinstall": "yarn tsc || true",

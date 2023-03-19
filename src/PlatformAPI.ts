@@ -125,7 +125,7 @@ export interface PlatformAPI {
    * Called after new PlatformAPI()
    * @param session - return value of `serializeSession`, `undefined` if not logged in
    */
-  init: (session?: SerializedSession, accountInfo?: AccountInfo, prefs?: Record<string, boolean | string>) => Awaitable<void>
+  init: (session: SerializedSession, accountInfo: AccountInfo, prefs?: Record<string, boolean | string>) => Awaitable<void>
 
   /** `dispose` disconnects all network connections and cleans up. Called when user disables account and when app exits. */
   dispose: () => Awaitable<void>

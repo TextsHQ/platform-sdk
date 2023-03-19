@@ -13,6 +13,8 @@ import type { StickerPack, StickerPackID } from './StickerPack'
 import type { Attachment, AttachmentID } from './Attachment'
 import type { OverridablePlatformInfo } from './PlatformInfo'
 
+export type OnLoginEventCallback = (data: any) => void
+
 export type OnServerEventCallback = (events: ServerEvent[]) => void
 
 export type OnConnStateChangeCallback = (state: ConnectionState) => void
@@ -131,7 +133,7 @@ export interface PlatformAPI {
   getPlatformInfo?: () => Awaitable<Partial<OverridablePlatformInfo>>
 
   subscribeToEvents: (onEvent: OnServerEventCallback) => Awaitable<void>
-  onLoginEvent?: (onEvent: Function) => Awaitable<void>
+  onLoginEvent?: (onEvent: OnLoginEventCallback) => Awaitable<void>
   onConnectionStateChange?: (onEvent: OnConnStateChangeCallback) => Awaitable<void>
 
   getCurrentUser: () => Awaitable<CurrentUser>

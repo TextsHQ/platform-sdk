@@ -33,7 +33,7 @@ export type BrowserLogin = {
   description?: string
 } & BrowserWindowProps
 
-export type LoginMode = 'browser' | 'manual' | 'custom'
+export type LoginMode = 'browser-extension' | 'browser' | 'manual' | 'custom'
 
 export type SupportedReaction = {
   /** user friendly string to show, like "Laugh" */

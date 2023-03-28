@@ -117,6 +117,7 @@ export type GetAssetOptions = {
 export type SearchMessageOptions = {
   threadID?: ThreadID
   mediaType?: 'all' | 'video' | 'audio' | 'img' | 'unknown'
+  sender?: 'me' | UserID
 }
 
 // also modify relayer-constants.ts

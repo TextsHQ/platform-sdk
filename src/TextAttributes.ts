@@ -24,6 +24,8 @@ export type TextEntity = {
   pre?: boolean
   codeLanguage?: string
 
+  markdown?: string
+
   replaceWith?: string
   replaceWithMedia?: ReplaceWithMediaEntity
   link?: string

@@ -24,3 +24,12 @@ export function tryParseJSON<FallbackType>(json: string, fallback?: FallbackType
     return fallback
   }
 }
+
+export const htmlTitleRegex = /<title[^>]*>(.*?)<\/title>/
+
+export class ExpectedJSONGotHTMLError extends Error {
+  constructor(statusCode: number, html: string) {
+    const [, title] = htmlTitleRegex.exec(html) || []
+    super(`expected json, got html, status code=${statusCode}, title=${title}`)
+  }
+}

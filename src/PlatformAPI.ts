@@ -54,11 +54,13 @@ export type PaginationArg = {
   direction: 'after' | 'before'
 }
 
-export type AccountInfo = {
+export type ClientContext = {
   accountID: string
   dataDirPath: FSPath
-  // two-letter ISO 3166 country code. like "US"
+  /** two-letter ISO 3166 country code. like "US" */
   country?: string
+  /** will the client call PlatformAPI.archiveThread() */
+  nativeArchiveSync?: boolean
 }
 
 export type ConnectionState = {
@@ -126,7 +128,7 @@ export interface PlatformAPI {
    * Called after new PlatformAPI()
    * @param session - return value of `serializeSession`, `undefined` if not logged in
    */
-  init: (session: SerializedSession, accountInfo: AccountInfo, prefs?: Record<string, boolean | string>) => Awaitable<void>
+  init: (session: SerializedSession, context: ClientContext, prefs?: Record<string, boolean | string>) => Awaitable<void>
 
   /** `dispose` disconnects all network connections and cleans up. Called when user disables account and when app exits. */
   dispose: () => Awaitable<void>

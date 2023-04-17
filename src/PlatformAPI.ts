@@ -80,11 +80,13 @@ export type LoginCreds = {
   cookieJarJSON?: CookieJar.Serialized
   jsCodeResult?: string
   lastURL?: string
-  username?: string
-  password?: string
   code?: string
   custom?: any
+  /** deprecated store last result as instance variable */
   lastLoginResult?: LoginResult
+} | {
+  username: string
+  password: string
 }
 
 export type FetchURL = string

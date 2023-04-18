@@ -100,17 +100,11 @@ export type ToastEvent = {
   }
 }
 
-/** @deprecated use texts.openBrowserWindow() */
-export type OpenWindowEvent = {
-  type: ServerEventType.OPEN_WINDOW
-} & BrowserWindowProps
-
 export type ServerEvent =
   StateSyncEvent |
   ThreadMessagesRefreshEvent |
   SessionUpdatedEvent |
   RefreshAccountEvent |
   ToastEvent |
-  OpenWindowEvent |
   UserActivityEvent |
   UserPresenceEvent

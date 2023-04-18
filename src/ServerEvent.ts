@@ -1,4 +1,3 @@
-import type { CookieJar } from 'tough-cookie'
 import type { CustomEmoji } from './CustomEmoji'
 import type { ActivityType, ServerEventType } from './enums'
 import type { Button, PartialWithID } from './generic'
@@ -101,6 +100,7 @@ export type ToastEvent = {
   }
 }
 
+/** @deprecated use texts.openBrowserWindow() */
 export type OpenWindowEvent = {
   type: ServerEventType.OPEN_WINDOW
 } & BrowserWindowProps

@@ -26,6 +26,8 @@ export type BrowserWindowProps = {
 
   /** Existing cookies to be set */
   cookieJar?: CookieJar.Serialized
+
+  isHidden?: boolean
 }
 
 export type BrowserLogin = {

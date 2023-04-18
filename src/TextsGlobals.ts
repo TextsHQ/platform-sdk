@@ -1,9 +1,11 @@
+import type { CookieJar } from 'tough-cookie'
 import type SentryNode from '@sentry/node'
 import type React from 'react'
 import type ReactDOM from 'react-dom'
 import type { Worker } from 'worker_threads'
 import type { FetchFunction, FetchOptions, FetchResponse, FetchStreamFunction } from './fetch'
 import type { FSPath } from './generic'
+import type { BrowserWindowProps } from './PlatformInfo'
 
 export type TextsGlobals = {
   IS_DEV: boolean
@@ -19,6 +21,7 @@ export type TextsGlobals = {
   }
 
   Sentry: typeof SentryNode
+
   React?: typeof React
   ReactDOM?: typeof ReactDOM
 
@@ -27,9 +30,15 @@ export type TextsGlobals = {
 
   getOriginalObject?: (platformName: string, accountID: string, args: [string, string]) => string
 
+  openBrowserWindow: (props: BrowserWindowProps) => Promise<{
+    lastURL: string
+    cookieJar: CookieJar.Serialized
+    jsCodeResult?: any
+  }>
+
   fetch?: FetchFunction
   fetchStream?: FetchStreamFunction
-  createHttpClient?: () => {
+  createHttpClient: () => {
     requestAsString: (url: string, opts?: FetchOptions) => Promise<FetchResponse<string>>
     requestAsBuffer: (url: string, opts?: FetchOptions) => Promise<FetchResponse<Buffer>>
   }

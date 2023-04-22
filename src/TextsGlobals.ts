@@ -30,7 +30,7 @@ export type TextsGlobals = {
 
   getOriginalObject?: (platformName: string, accountID: string, args: [string, string]) => string
 
-  openBrowserWindow: (props: BrowserWindowProps) => Promise<{
+  openBrowserWindow: (accountID: string, props: BrowserWindowProps) => Promise<{
     lastURL: string
     cookieJar: CookieJar.Serialized
     jsCodeResult?: any

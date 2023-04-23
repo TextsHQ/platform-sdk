@@ -91,7 +91,7 @@ export interface PlatformInfo extends OverridablePlatformInfo, ExtraProp {
   icon: string
   tags?: string[]
 
-  loginMode: LoginMode
+  loginMode: LoginMode | LoginMode[]
   autofillHostnames?: string[]
   /** @deprecated use `browserLogins` */
   browserLogin?: BrowserLogin

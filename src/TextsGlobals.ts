@@ -7,11 +7,6 @@ import type { FetchFunction, FetchOptions, FetchResponse, FetchStreamFunction } 
 import type { FSPath } from './generic'
 import type { BrowserWindowProps } from './PlatformInfo'
 
-type HttpClient = {
-  requestAsString: (url: string, opts?: FetchOptions) => Promise<FetchResponse<string>>
-  requestAsBuffer: (url: string, opts?: FetchOptions) => Promise<FetchResponse<Buffer>>
-}
-
 export type TextsGlobals = {
   IS_DEV: boolean
   isLoggingEnabled: boolean
@@ -43,6 +38,9 @@ export type TextsGlobals = {
 
   fetch?: FetchFunction
   fetchStream?: FetchStreamFunction
-  createNativeHttpClient: (accountID: string) => HttpClient
-  createHttpClient: () => HttpClient
+  nativeFetch: (accountID: string, url: string, opts?: FetchOptions) => Promise<FetchResponse<Buffer>>
+  createHttpClient: () => {
+    requestAsString: (url: string, opts?: FetchOptions) => Promise<FetchResponse<string>>
+    requestAsBuffer: (url: string, opts?: FetchOptions) => Promise<FetchResponse<Buffer>>
+  }
 }

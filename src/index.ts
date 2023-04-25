@@ -1,4 +1,4 @@
-import type { TextsGlobals } from './TextsGlobals'
+import type { TextsRendererGlobals, TextsNodeGlobals } from './TextsGlobals'
 
 export * from './enums'
 export * from './errors'
@@ -23,4 +23,4 @@ export * from './StickerPack'
 export * from './IAsyncSqlite'
 export * from './util'
 
-export const texts = (globalThis as any).texts as TextsGlobals
+export const texts = (globalThis as any).texts as TextsNodeGlobals | TextsRendererGlobals

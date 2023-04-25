@@ -1,13 +1,13 @@
 import type { CookieJar } from 'tough-cookie'
-import type SentryNode from '@sentry/node'
 import type React from 'react'
 import type ReactDOM from 'react-dom'
+import type ReactJSXRuntime from 'react/jsx-runtime'
 import type { Worker } from 'worker_threads'
 import type { FetchFunction, FetchOptions, FetchResponse, FetchStreamFunction } from './fetch'
 import type { FSPath } from './generic'
 import type { BrowserWindowProps } from './PlatformInfo'
 
-export type TextsGlobals = {
+export interface TextsGlobalsCommon {
   IS_DEV: boolean
   isLoggingEnabled: boolean
 
@@ -20,15 +20,24 @@ export type TextsGlobals = {
     BUILD_DIR_PATH: FSPath
   }
 
-  Sentry: typeof SentryNode
+  Sentry: {
+    captureMessage: Function
+    captureException: Function
+  }
 
-  React?: typeof React
-  ReactDOM?: typeof ReactDOM
+  trackPlatformEvent: (data: any) => Promise<void>
+}
 
-  trackPlatformEvent?: (data: any) => Promise<void>
-  runWorker?: (workerFilePath: FSPath, workerData: any) => Worker
+export interface TextsRendererGlobals extends TextsGlobalsCommon {
+  React: typeof React
+  ReactDOM: typeof ReactDOM
+  ReactJSXRuntime: typeof ReactJSXRuntime
+}
 
-  getOriginalObject?: (platformName: string, accountID: string, args: [string, string]) => string
+export interface TextsNodeGlobals extends TextsGlobalsCommon {
+  runWorker: (workerFilePath: FSPath, workerData: any) => Worker
+
+  getOriginalObject: (platformName: string, accountID: string, args: [string, string]) => string
 
   openBrowserWindow: (accountID: string, props: BrowserWindowProps) => Promise<{
     lastURL: string
@@ -36,8 +45,8 @@ export type TextsGlobals = {
     jsCodeResult?: any
   }>
 
-  fetch?: FetchFunction
-  fetchStream?: FetchStreamFunction
+  fetch: FetchFunction
+  fetchStream: FetchStreamFunction
   nativeFetch: (accountID: string, url: string, opts?: FetchOptions) => Promise<FetchResponse<Buffer>>
   createHttpClient: () => {
     requestAsString: (url: string, opts?: FetchOptions) => Promise<FetchResponse<string>>

@@ -1,8 +1,9 @@
+import type { Worker } from 'worker_threads'
+import type { Readable } from 'stream'
 import type { CookieJar } from 'tough-cookie'
 import type React from 'react'
 import type ReactDOM from 'react-dom'
 import type ReactJSXRuntime from 'react/jsx-runtime'
-import type { Worker } from 'worker_threads'
 import type { FetchFunction, FetchOptions, FetchResponse, FetchStreamFunction } from './fetch'
 import type { FSPath } from './generic'
 import type { BrowserWindowProps } from './PlatformInfo'
@@ -48,6 +49,7 @@ export interface TextsNodeGlobals extends TextsGlobalsCommon {
   fetch: FetchFunction
   fetchStream: FetchStreamFunction
   nativeFetch: (accountID: string, url: string, opts?: FetchOptions) => Promise<FetchResponse<Buffer>>
+  nativeFetchStream: (accountID: string, url: string, opts?: FetchOptions) => Promise<Readable>
   createHttpClient: () => {
     requestAsString: (url: string, opts?: FetchOptions) => Promise<FetchResponse<string>>
     requestAsBuffer: (url: string, opts?: FetchOptions) => Promise<FetchResponse<Buffer>>

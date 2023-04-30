@@ -27,6 +27,9 @@ export type BrowserWindowProps = {
   /** Existing cookies to be set */
   cookieJar?: CookieJar.Serialized
 
+  /** Domains to get cookies for when stealing cookies from installed browsers */
+  cookieDomains?: string[]
+
   isHidden?: boolean
 }
 

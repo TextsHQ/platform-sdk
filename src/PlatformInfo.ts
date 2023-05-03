@@ -96,12 +96,14 @@ export interface PlatformInfo extends OverridablePlatformInfo, ExtraProp {
 
   loginMode: LoginMode | LoginMode[]
   autofillHostnames?: string[]
-  /** @deprecated use `browserLogins` */
   browserLogin?: BrowserLogin
   browserLogins?: BrowserLogin[]
 
   deletionMode: MessageDeletionMode
   attributes: Set<Attribute>
+
+  /** time limit for editing the message after it's sent */
+  editMessageTimeLimit?: number
 
   maxMessageLength?: number
   maxGroupTitleLength?: number

@@ -82,8 +82,6 @@ export type LoginCreds = {
   lastURL?: string
   code?: string
   custom?: any
-  /** deprecated store last result as instance variable */
-  lastLoginResult?: LoginResult
 } | {
   username: string
   password: string

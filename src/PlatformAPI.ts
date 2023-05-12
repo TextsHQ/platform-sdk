@@ -180,7 +180,7 @@ export interface PlatformAPI {
 
   sendActivityIndicator: (type: ActivityType, threadID?: ThreadID) => Awaitable<void>
   deleteMessage?: (threadID: ThreadID, messageID: MessageID, forEveryone?: boolean) => Awaitable<void>
-  sendReadReceipt: (threadID: ThreadID, messageID: MessageID, messageCursor?: string) => Awaitable<void>
+  sendReadReceipt: (threadID: ThreadID, messageID?: MessageID, messageCursor?: string) => Awaitable<void>
 
   addReaction?: (threadID: ThreadID, messageID: MessageID, reactionKey: string) => Awaitable<void>
   removeReaction?: (threadID: ThreadID, messageID: MessageID, reactionKey: string) => Awaitable<void>

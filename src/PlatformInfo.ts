@@ -98,6 +98,8 @@ export interface PlatformInfo extends OverridablePlatformInfo, ExtraProp {
   autofillHostnames?: string[]
   browserLogin?: BrowserLogin
   browserLogins?: BrowserLogin[]
+  /** used when loginMode == 'manual' */
+  usernameFieldLabel?: string
 
   deletionMode: MessageDeletionMode
   attributes: Set<Attribute>

@@ -10,6 +10,8 @@ export type FetchOptions = {
   form?: Record<string, number | string>
   body?: string | Buffer | FormData | Readable
   cookieJar?: CookieJar
+  /** @default true */
+  followRedirect?: boolean
 }
 
 export type FetchResponse<T> = {

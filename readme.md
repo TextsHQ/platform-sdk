@@ -49,7 +49,7 @@ Information and attributes about the platform go into the `info.ts` file.
 
 1. It's important to get the network layer working first to avoid complicating things. Write a simple CLI script that connects to the platform, fetches the threads/messages and prints it to the console, and run it using `node dist/script.js` 
 2. Once it's working with node, test if it runs with Electron using `electron dist/script.js` — this will work fine unless there are native dependencies.
-3. After getting the network layer working well, you can proceed with creating the integration.
+3. After getting the network layer working well, you can proceed with creating the integration. Here's [a boilerplate](https://github.com/TextsHQ/platform-boilerplate).
 
 There are four main objects defined by the SDK:
 

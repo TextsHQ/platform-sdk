@@ -68,12 +68,15 @@ export type ConnectionState = {
   canRetry?: boolean
 }
 
+// todo: bad design, redo
 export type LoginResult = {
-  type: 'success' | 'code_required' | 'error' | 'wait'
+  type: 'success' | 'code_required' | 'wait'
   reason?: CodeRequiredReason
   metadata?: any
   title?: string
-  errorMessage?: string
+} | {
+  type: 'error'
+  errorMessage: string
 }
 
 export type LoginCreds = {

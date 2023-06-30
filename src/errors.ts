@@ -1,4 +1,3 @@
-
 export class ReAuthError extends Error { }
 ReAuthError.prototype.name = 'ReAuthError'
 

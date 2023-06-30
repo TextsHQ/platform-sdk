@@ -70,14 +70,13 @@ export type ConnectionState = {
 
 // todo: bad design, redo
 export type LoginResult = {
-  type: 'success' | 'code_required' | 'wait'
+  type: 'code_required'
   reason?: CodeRequiredReason
   metadata?: any
   title?: string
-} | {
-  type: 'error'
-  errorMessage: string
-}
+} | { type: 'error', errorMessage: string }
+| { type: 'wait' }
+| { type: 'success' }
 
 export type LoginCreds = {
   cookieJarJSON?: CookieJar.Serialized

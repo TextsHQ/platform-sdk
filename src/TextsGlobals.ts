@@ -24,6 +24,7 @@ export interface TextsGlobalsCommon {
   Sentry: {
     captureMessage: Function
     captureException: Function
+    startTransaction: Function
   }
 
   trackPlatformEvent: (data: any) => Promise<void>

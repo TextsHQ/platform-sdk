@@ -3,7 +3,7 @@ import type { TextAttributes } from './TextAttributes'
 import type { ThreadID } from './Thread'
 import type { Participant, UserID } from './User'
 import type { Attachment } from './Attachment'
-import type { Identifiable, Size, ID, ExtraProp, OriginalProp, Button } from './generic'
+import type { Identifiable, Size, ID, ExtraProp, OriginalProp, Button, CursorProp } from './generic'
 
 export type MessageID = ID
 
@@ -76,7 +76,7 @@ export type MessageLink = {
 
 export type MessageButton = Button
 
-export interface Message extends Identifiable, ExtraProp, OriginalProp {
+export interface Message extends Identifiable, ExtraProp, OriginalProp, CursorProp {
   id: MessageID
   timestamp: Date
   editedTimestamp?: Date
@@ -111,7 +111,6 @@ export interface Message extends Identifiable, ExtraProp, OriginalProp {
   linkedMessageID?: MessageID
   linkedMessage?: MessagePreview
   action?: MessageAction
-  cursor?: string
   buttons?: MessageButton[]
 
   behavior?: MessageBehavior

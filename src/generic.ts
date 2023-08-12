@@ -10,6 +10,10 @@ export interface OriginalProp {
   _original?: string
 }
 
+export interface CursorProp extends Identifiable {
+  cursor?: string
+}
+
 export type Without<T, U> = {
   [P in Exclude<keyof T, keyof U>]?: never
 }
@@ -24,11 +28,16 @@ export type Size = {
   height: number
 }
 
-export type Paginated<T> = {
+export type PaginatedWithCursors<T> = {
   items: T[]
   hasMore: boolean
-  oldestCursor?: string
+  oldestCursor: string
   newestCursor?: string
+}
+
+export type Paginated<T extends CursorProp> = {
+  items: T[]
+  hasMore: boolean
 }
 
 export type PartialWithID<T> = Partial<T> & { id: string }

@@ -1,7 +1,7 @@
 import type { CookieJar } from 'tough-cookie'
 import type { Readable } from 'stream'
 import type { ActivityType, CodeRequiredReason, ConnectionStatus } from './enums'
-import type { Size, Awaitable, Paginated, FSPath } from './generic'
+import type { Size, Awaitable, PaginatedWithCursors, FSPath, Paginated } from './generic'
 import type { Message, MessageID, MessageLink } from './Message'
 import type { PhoneNumber } from './PhoneNumber'
 import type { PresenceMap, ServerEvent } from './ServerEvent'
@@ -152,18 +152,18 @@ export interface PlatformAPI {
 
   searchUsers?: (typed: string) => Awaitable<User[]>
   searchThreads?: (typed: string) => Awaitable<Thread[]>
-  searchMessages?: (typed: string, pagination?: PaginationArg, options?: SearchMessageOptions) => Awaitable<Paginated<Message>>
+  searchMessages?: (typed: string, pagination?: PaginationArg, options?: SearchMessageOptions) => Awaitable<PaginatedWithCursors<Message>>
 
   getPresence?: () => Awaitable<PresenceMap>
   getCustomEmojis?: () => Awaitable<CustomEmojiMap>
 
-  getThreads: (folderName: ThreadFolderName, pagination?: PaginationArg) => Awaitable<Paginated<Thread>>
+  getThreads: (folderName: ThreadFolderName, pagination?: PaginationArg) => Awaitable<PaginatedWithCursors<Thread>>
   /** Messages should be sorted by timestamp asc → desc */
   getMessages: (threadID: ThreadID, pagination?: PaginationArg) => Awaitable<Paginated<Message>>
-  getThreadParticipants?: (threadID: ThreadID, pagination?: PaginationArg) => Awaitable<Paginated<Participant>>
+  getThreadParticipants?: (threadID: ThreadID, pagination?: PaginationArg) => Awaitable<PaginatedWithCursors<Participant>>
 
-  getStickerPacks?: (pagination?: PaginationArg) => Awaitable<Paginated<StickerPack>>
-  getStickers?: (stickerPackID: StickerPackID, pagination?: PaginationArg) => Awaitable<Paginated<Attachment>>
+  getStickerPacks?: (pagination?: PaginationArg) => Awaitable<PaginatedWithCursors<StickerPack>>
+  getStickers?: (stickerPackID: StickerPackID, pagination?: PaginationArg) => Awaitable<PaginatedWithCursors<Attachment>>
 
   getThread?: (threadID: ThreadID) => Awaitable<Thread | undefined>
   getMessage?: (threadID: ThreadID, messageID: MessageID) => Awaitable<Message | undefined>

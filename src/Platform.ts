@@ -15,6 +15,7 @@ export type AuthProps = {
 
   nmp?: any
   Tooltip?: React.FC<any>
+  children?: React.ReactNode
 }
 
 export interface Platform {

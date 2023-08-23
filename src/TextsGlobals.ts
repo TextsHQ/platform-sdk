@@ -47,6 +47,29 @@ export interface TextsNodeGlobals extends TextsGlobalsCommon {
     jsCodeResult?: any
   }>
 
+  getUserAgentClientHints?: () => Promise<{
+    dpr: number
+    viewportWidth: number
+    highEntropyValues: {
+      brands?: { brand: string, version: string }[]
+      fullVersionList?: { brand: string, version: string }[]
+      mobile: boolean
+      model: string
+      platform: string
+      platformVersion: string
+    }
+    headers: {
+      'Sec-Ch-Prefers-Color-Scheme': 'light' | 'dark'
+      'Sec-Ch-Ua': string
+      'Sec-Ch-Ua-Full-Version-List': string
+      'Sec-Ch-Ua-Mobile': string
+      'Sec-Ch-Ua-Platform': string
+      'Sec-Ch-Ua-Platform-Version': string
+      'Viewport-Width': string
+      'Dpr': string
+    } & Record<string, string>
+  }>
+
   fetch: FetchFunction
   fetchStream: FetchStreamFunction
   nativeFetch: (accountID: string, url: string, opts?: FetchOptions) => Promise<FetchResponse<Buffer>>

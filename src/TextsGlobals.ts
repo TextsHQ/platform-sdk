@@ -48,9 +48,9 @@ export interface TextsNodeGlobals extends TextsGlobalsCommon {
   }>
 
   getUserAgentClientHints?: () => Promise<{
-    dpr: number
-    viewportWidth: number
-    highEntropyValues: {
+    dpr?: number
+    viewportWidth?: number
+    highEntropyValues?: {
       brands?: { brand: string, version: string }[]
       fullVersionList?: { brand: string, version: string }[]
       mobile: boolean

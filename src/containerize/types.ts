@@ -1,4 +1,4 @@
-export type BridgeToMainMessage = {
+export type ContainerToMainMessage = {
   reqID: number
   type: 'method-result'
   result?: any
@@ -9,10 +9,19 @@ export type BridgeToMainMessage = {
   args: any[]
 }
 
-export type MainToBridgeMessage = {
+export type MainToContainerMessage = {
   reqID: number
   type: 'call-method'
   methodName: string
   args: any[]
   isCallback: boolean
+}
+
+export interface Container {
+  // new(entryPointJSPath: string, dataDir: string, env: Record<string, string>): this
+  readonly initPromise?: Promise<void>
+
+  onMessage: (handler: (msg: ContainerToMainMessage) => void) => void
+  postMessage: (msg: MainToContainerMessage) => void
+  dispose: () => void
 }

@@ -1,23 +1,23 @@
 import { parentPort } from 'worker_threads'
 import { ConstructiblePlatformAPI } from '../PlatformAPI'
-import type { BridgeToMainMessage, MainToBridgeMessage } from './types'
+import type { ContainerToMainMessage, MainToContainerMessage } from './types'
 
 const DEBUG = !!process.env.DEBUG
 
 const callParent = parentPort
-  ? (message: BridgeToMainMessage) => { parentPort!.postMessage(message) }
-  : (message: BridgeToMainMessage) => { process.send!(message) }
+  ? (message: ContainerToMainMessage) => { parentPort!.postMessage(message) }
+  : (message: ContainerToMainMessage) => { process.send!(message) }
 
 process.on('uncaughtException', err => {
-  console.error('[Bridge Unhandled Exception]', err)
+  console.error('[Container Unhandled Exception]', err)
 })
 process.on('unhandledRejection', err => {
-  console.error('[Bridge Unhandled Promise Rejection]', err)
+  console.error('[Container Unhandled Promise Rejection]', err)
 })
 
 export default function registerWorkerHandlers(accountID: string, PAPI: ConstructiblePlatformAPI) {
   const papi = new PAPI(accountID)
-  const onMessageHandler = async (msg: 'cleanup' | 'powermonitor-on-resume' | MainToBridgeMessage) => {
+  const onMessageHandler = async (msg: 'cleanup' | 'powermonitor-on-resume' | MainToContainerMessage) => {
     if (msg === 'cleanup' || msg === 'powermonitor-on-resume') return
     if (DEBUG) console.log('message from parent:', msg)
     switch (msg.type) {
@@ -40,7 +40,7 @@ export default function registerWorkerHandlers(accountID: string, PAPI: Construc
             result,
           })
         } catch (err: any) {
-          console.error('bridge-entry error', { methodName, args }, err)
+          console.error('container-entry error', { methodName, args }, err)
           callParent({
             type: 'method-result',
             reqID,

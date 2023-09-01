@@ -2,12 +2,11 @@ import { promises as fs } from 'fs'
 import { parentPort } from 'worker_threads'
 
 import { PlatformAPI, ClientContext, SerializedSession } from '..'
-import { Bridge } from './containers'
-import type { BridgeToMainMessage, MainToBridgeMessage } from './types'
+import type { Container, ContainerToMainMessage, MainToContainerMessage } from './types'
 
 // this is like PlatformAPIRelayer
 class ContainerizedPlatformAPI implements Partial<PlatformAPI> {
-  private bridge: Bridge | undefined
+  private container: Container | undefined
 
   private readonly requestQueue = new Map<number, { resolve: Function, reject: Function }>()
 
@@ -20,28 +19,28 @@ class ContainerizedPlatformAPI implements Partial<PlatformAPI> {
     return new Promise<T>((resolve, reject) => {
       const reqID = ++this.requestId
       this.requestQueue.set(reqID, { resolve, reject })
-      this.bridge!.postMessage({
+      this.container!.postMessage({
         type: 'call-method',
         reqID,
         methodName,
         args,
         isCallback,
-      } as MainToBridgeMessage)
+      } as MainToContainerMessage)
     })
   }
 
-  private handleWorkerCleanupMessage = (value: any) => {
+  private readonly handleWorkerCleanupMessage = (value: any) => {
     if (value === 'cleanup') {
       this.dispose()
     }
   }
 
-  private async initBridge(dataDirPath: string) {
+  private async initContainer(dataDirPath: string) {
     await fs.mkdir(dataDirPath, { recursive: true })
     parentPort?.on('message', this.handleWorkerCleanupMessage)
-    this.bridge = this.bridgeConstructor(dataDirPath)
-    await this.bridge.initPromise
-    this.bridge.onMessage((msg: BridgeToMainMessage) => {
+    this.container = this.containerConstructor(dataDirPath)
+    await this.container.initPromise
+    this.container.onMessage((msg: ContainerToMainMessage) => {
       switch (msg.type) {
         case 'method-result': {
           const { reqID, result, error } = msg
@@ -67,12 +66,12 @@ class ContainerizedPlatformAPI implements Partial<PlatformAPI> {
         }
         default:
           console.log(msg)
-          throw Error('unknown BridgeToMainMessage')
+          throw Error('unknown ContainerToMainMessage')
       }
     })
   }
 
-  constructor(private readonly bridgeConstructor: (dataDirPath: string) => Bridge) {
+  constructor(private readonly containerConstructor: (dataDirPath: string) => Container) {
     // eslint-disable-next-line no-constructor-return
     return new Proxy(this, {
       get(target, prop) {
@@ -89,14 +88,14 @@ class ContainerizedPlatformAPI implements Partial<PlatformAPI> {
     })
   }
 
-  init = async (session: SerializedSession, clientContext: ClientContext) => {
-    await this.initBridge(clientContext.dataDirPath)
+  readonly init = async (session: SerializedSession, clientContext: ClientContext) => {
+    await this.initContainer(clientContext.dataDirPath)
     return this.callMethod<void>('init', [session, clientContext])
   }
 
-  dispose = async () => {
+  readonly dispose = async () => {
     await this.callMethod('dispose', [])
-    this.bridge?.dispose()
+    this.container?.dispose()
     parentPort?.off('message', this.handleWorkerCleanupMessage)
   }
 }

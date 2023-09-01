@@ -9,15 +9,16 @@ export default class ChildProcessContainer implements Container {
 
   readonly initPromise: Promise<void>
 
+  private readonly lockFilePath: string
+
   constructor(
     private readonly entryPointJSPath: string,
     private readonly env: Record<string, string>,
-    private readonly dataDirPath: string,
+    dataDirPath: string,
   ) {
+    this.lockFilePath = path.join(dataDirPath, 'cli-lock-pid')
     this.initPromise = this.init()
   }
-
-  private readonly lockFilePath = path.join(this.dataDirPath, 'cli-lock-pid')
 
   async ensureSingleton() {
     try {

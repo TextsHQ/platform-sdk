@@ -44,17 +44,20 @@ export default class ChildProcessContainer implements Container {
         ...this.env,
       },
     })
-    await fs.writeFile(this.lockFilePath, String(this.cp.pid))
-    return new Promise<void>((resolve, reject) => {
-      this.cp!
-        .on('spawn', () => resolve())
-        .on('close', code => texts.log(`child process close all stdio with code ${code}`))
-        .on('exit', code => texts.log(`child process exited with code ${code}`))
-        .on('error', err => {
-          texts.log(`child process errored ${err}`)
-          reject(err)
-        })
-    })
+    const fsPromise = fs.writeFile(this.lockFilePath, String(this.cp.pid))
+    await Promise.all([
+      fsPromise,
+      new Promise<void>((resolve, reject) => {
+        this.cp!
+          .on('spawn', () => resolve())
+          .on('close', code => texts.log(`child process close all stdio with code ${code}`))
+          .on('exit', code => texts.log(`child process exited with code ${code}`))
+          .on('error', err => {
+            texts.log(`child process errored ${err}`)
+            reject(err)
+          })
+      }),
+    ])
   }
 
   onMessage(handler: (msg: ContainerToMainMessage) => void) {

@@ -7,6 +7,7 @@ import type ReactJSXRuntime from 'react/jsx-runtime'
 import type { FetchFunction, FetchOptions, FetchResponse, FetchStreamFunction } from './fetch'
 import type { FSPath } from './generic'
 import type { BrowserWindowProps } from './PlatformInfo'
+import { UserAgentClientHints, UserAgentHeaders } from './UserAgentHints'
 
 export interface TextsGlobalsCommon {
   IS_DEV: boolean
@@ -51,36 +52,11 @@ export interface TextsNodeGlobals extends TextsGlobalsCommon {
     isEngineSupported: true
     dpr: number
     viewportWidth: number
-    highEntropyValues: {
-      brands?: { brand: string, version: string }[]
-      fullVersionList?: { brand: string, version: string }[]
-      mobile: boolean
-      model: string
-      platform: string
-      platformVersion: string
-    }
-    headers: {
-      'Sec-Ch-Prefers-Color-Scheme': 'light' | 'dark'
-      'Sec-Ch-Ua': string
-      'Sec-Ch-Ua-Full-Version-List': string
-      'Sec-Ch-Ua-Mobile': string
-      'Sec-Ch-Ua-Platform': string
-      'Sec-Ch-Ua-Platform-Version': string
-      'Viewport-Width': string
-      'Dpr': string
-    } & Record<string, string>
+    highEntropyValues: UserAgentClientHints
+    headers: UserAgentHeaders & Record<string, string>
   } | {
     isEngineSupported: false
-    fallbackHeaders: {
-      'Sec-Ch-Prefers-Color-Scheme': 'light' | 'dark'
-      'Sec-Ch-Ua': string
-      'Sec-Ch-Ua-Full-Version-List': string
-      'Sec-Ch-Ua-Mobile': string
-      'Sec-Ch-Ua-Platform': string
-      'Sec-Ch-Ua-Platform-Version': string
-      'Viewport-Width': string
-      'Dpr': string
-    }
+    fallbackHeaders: Partial<UserAgentHeaders> & Record<string, string>
   }>
 
   fetch: FetchFunction

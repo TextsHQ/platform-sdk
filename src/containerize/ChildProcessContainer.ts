@@ -49,12 +49,16 @@ export default class ChildProcessContainer implements Container {
       fsPromise,
       new Promise<void>((resolve, reject) => {
         this.cp!
-          .on('spawn', () => resolve())
+          .once('spawn', () => resolve())
           .on('close', code => texts.log(`child process close all stdio with code ${code}`))
           .on('exit', code => texts.log(`child process exited with code ${code}`))
-          .on('error', err => {
+          .once('error', err => {
             texts.log(`child process errored ${err}`)
             reject(err)
+          })
+          .on('error', err => {
+            texts.log(`child process errored ${err}`)
+            texts.Sentry.captureException(err)
           })
       }),
     ])

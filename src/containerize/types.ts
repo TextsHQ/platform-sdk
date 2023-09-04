@@ -1,17 +1,23 @@
+export const enum MessageType {
+  MethodResult,
+  Callback,
+  CallMethod,
+}
+
 export type ContainerToMainMessage = {
   reqID: number
-  type: 'method-result'
+  type: MessageType.MethodResult
   result?: any
   error?: { name: string, message: string }
 } | {
-  type: 'callback'
+  type: MessageType.Callback
   methodName: string
   args: any[]
 }
 
 export type MainToContainerMessage = {
   reqID: number
-  type: 'call-method'
+  type: MessageType.CallMethod
   methodName: string
   args: any[]
   isCallback: boolean

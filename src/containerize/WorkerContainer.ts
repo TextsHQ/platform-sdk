@@ -1,6 +1,7 @@
 import type { Worker } from 'worker_threads'
-import { Container, ContainerToMainMessage, MainToContainerMessage } from './types'
+
 import { texts } from '..'
+import type { Container, ContainerToMainMessage, MainToContainerMessage } from './types'
 
 export default class WorkerContainer implements Container {
   private worker: Worker

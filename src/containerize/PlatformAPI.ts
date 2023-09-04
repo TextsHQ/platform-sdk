@@ -2,7 +2,7 @@ import { promises as fs } from 'fs'
 import { parentPort } from 'worker_threads'
 
 import { PlatformAPI, ClientContext, SerializedSession } from '..'
-import type { Container, ContainerToMainMessage, MainToContainerMessage } from './types'
+import { MessageType, Container, ContainerToMainMessage, MainToContainerMessage } from './types'
 
 // this is like PlatformAPIRelayer
 class ContainerizedPlatformAPI implements Partial<PlatformAPI> {
@@ -20,7 +20,7 @@ class ContainerizedPlatformAPI implements Partial<PlatformAPI> {
       const reqID = ++this.requestId
       this.requestQueue.set(reqID, { resolve, reject })
       this.container!.postMessage({
-        type: 'call-method',
+        type: MessageType.CallMethod,
         reqID,
         methodName,
         args,
@@ -42,7 +42,7 @@ class ContainerizedPlatformAPI implements Partial<PlatformAPI> {
     await this.container.initPromise
     this.container.onMessage((msg: ContainerToMainMessage) => {
       switch (msg.type) {
-        case 'method-result': {
+        case MessageType.MethodResult: {
           const { reqID, result, error } = msg
           if (this.requestQueue.has(reqID)) {
             const promise = this.requestQueue.get(reqID)
@@ -59,7 +59,7 @@ class ContainerizedPlatformAPI implements Partial<PlatformAPI> {
           }
           return
         }
-        case 'callback': {
+        case MessageType.Callback: {
           const { methodName, args } = msg
           this.callbacks.get(methodName)?.(...args)
           break

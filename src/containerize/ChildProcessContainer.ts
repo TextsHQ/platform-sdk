@@ -1,8 +1,8 @@
 import path from 'path'
 import childProcess from 'child_process'
 import { promises as fs } from 'fs'
-import { Container, ContainerToMainMessage, MainToContainerMessage } from './types'
 import { texts } from '..'
+import type { Container, ContainerToMainMessage, MainToContainerMessage } from './types'
 
 export default class ChildProcessContainer implements Container {
   private cp: childProcess.ChildProcess | undefined

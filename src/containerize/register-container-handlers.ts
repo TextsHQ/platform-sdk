@@ -1,6 +1,6 @@
 import { parentPort } from 'worker_threads'
 import { ConstructiblePlatformAPI } from '../PlatformAPI'
-import type { ContainerToMainMessage, MainToContainerMessage } from './types'
+import { MessageType, ContainerToMainMessage, MainToContainerMessage } from './types'
 
 const DEBUG = !!process.env.DEBUG
 
@@ -21,28 +21,28 @@ export default function registerWorkerHandlers(accountID: string, PAPI: Construc
     if (msg === 'cleanup' || msg === 'powermonitor-on-resume') return
     if (DEBUG) console.log('message from parent:', msg)
     switch (msg.type) {
-      case 'call-method': {
+      case MessageType.CallMethod: {
         const { reqID, methodName, args, isCallback } = msg
         try {
           const method = papi[methodName as keyof ConstructiblePlatformAPI] as Function
           const result = await (isCallback
             ? method?.((...cbArgs: any[]) => {
               callParent({
-                type: 'callback',
+                type: MessageType.Callback,
                 methodName,
                 args: cbArgs,
               })
             })
             : method?.(...args))
           callParent({
-            type: 'method-result',
+            type: MessageType.MethodResult,
             reqID,
             result,
           })
         } catch (err: any) {
           console.error('container-entry error', { methodName, args }, err)
           callParent({
-            type: 'method-result',
+            type: MessageType.MethodResult,
             reqID,
             error: { name: err.name, message: err.message },
           })

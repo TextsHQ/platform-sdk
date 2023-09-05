@@ -1,3 +1,4 @@
+import type { ChildProcess, ForkOptions } from 'child_process'
 import type { Worker } from 'worker_threads'
 import type { Readable } from 'stream'
 import type { CookieJar } from 'tough-cookie'
@@ -37,7 +38,8 @@ export interface TextsRendererGlobals extends TextsGlobalsCommon {
 }
 
 export interface TextsNodeGlobals extends TextsGlobalsCommon {
-  runWorker: (workerFilePath: FSPath, workerData: any) => Worker
+  runWorker: (entryFilePath: FSPath, workerData: any) => Worker
+  forkChildProcess: (entryFilePath: FSPath, options: ForkOptions, initData: any) => ChildProcess
 
   getOriginalObject: (platformName: string, accountID: string, args: [string, string]) => string
 

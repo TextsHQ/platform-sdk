@@ -36,14 +36,12 @@ export default class ChildProcessContainer implements Container {
   private async init() {
     await this.ensureSingleton()
     texts.log('[cp container] init', this.entryPointJSPath)
-    this.cp = childProcess.fork(this.entryPointJSPath, {
-      serialization: 'advanced',
-      stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
+    this.cp = texts.forkChildProcess(this.entryPointJSPath, {
       env: {
         ...process.env,
         ...this.env,
       },
-    })
+    }, { noSentry: true })
     const fsPromise = fs.writeFile(this.lockFilePath, String(this.cp.pid))
     await Promise.all([
       fsPromise,

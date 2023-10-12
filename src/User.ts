@@ -32,6 +32,8 @@ export interface User extends Identifiable {
   email?: string
 
   fullName?: string
+  organizationName?: string
+  jobTitle?: string
   nickname?: string
   imgURL?: string
   isVerified?: boolean

@@ -8,6 +8,7 @@ import type ReactJSXRuntime from 'react/jsx-runtime'
 import type { FetchFunction, FetchOptions, FetchResponse, FetchStreamFunction } from './fetch'
 import type { FSPath } from './generic'
 import type { BrowserWindowProps } from './PlatformInfo'
+import { UserAgentClientHints, UserAgentHeaders } from './UserAgentHints'
 
 export interface TextsGlobalsCommon {
   IS_DEV: boolean
@@ -47,6 +48,17 @@ export interface TextsNodeGlobals extends TextsGlobalsCommon {
     lastURL: string
     cookieJar: CookieJar.Serialized
     jsCodeResult?: any
+  }>
+
+  getUserAgentClientHints?: () => Promise<{
+    isEngineSupported: true
+    dpr: number
+    viewportWidth: number
+    highEntropyValues: UserAgentClientHints
+    headers: UserAgentHeaders & Record<string, string>
+  } | {
+    isEngineSupported: false
+    fallbackHeaders: Partial<UserAgentHeaders> & Record<string, string>
   }>
 
   fetch: FetchFunction

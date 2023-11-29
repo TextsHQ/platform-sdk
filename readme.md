@@ -98,3 +98,20 @@ The Electron desktop app runs three processes/threads:
 - Main process (no platform code is loaded)
 - Renderer process (`PlatformInfo` is loaded from `info.ts`)
 - Worker thread (`PlatformAPI` is loaded from `api.ts`)
+
+### Native deps
+
+If your platform integration uses native deps, for correct bundling, also list them under a `nativeDeps` key in `package.json` like this:
+
+```json
+{
+  "nativeDeps": {
+    "erlpack": "^0.1.4"
+  },
+  "dependencies": {
+    "erlpack": "^0.1.4"
+  }
+}
+```
+
+`nativeDeps` is a made-up name by us.

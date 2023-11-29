@@ -7,7 +7,7 @@ import type ReactDOM from 'react-dom'
 import type ReactJSXRuntime from 'react/jsx-runtime'
 import type { FetchFunction, FetchOptions, FetchResponse, FetchStreamFunction } from './fetch'
 import type { FSPath } from './generic'
-import type { BrowserWindowProps } from './PlatformInfo'
+import type { BrowserWindowProps, PlatformInfo } from './PlatformInfo'
 
 export interface TextsGlobalsCommon {
   IS_DEV: boolean
@@ -19,7 +19,6 @@ export interface TextsGlobalsCommon {
   constants: {
     USER_AGENT: string
     APP_VERSION: string
-    BUILD_DIR_PATH: FSPath
   }
 
   Sentry: {
@@ -28,6 +27,7 @@ export interface TextsGlobalsCommon {
     startTransaction: Function
   }
 
+  getBinariesDirPath: (platformName: PlatformInfo['name']) => FSPath
   trackPlatformEvent: (data: any) => Promise<void>
 }
 

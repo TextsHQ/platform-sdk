@@ -104,8 +104,10 @@ export interface PlatformInfo extends OverridablePlatformInfo, ExtraProp {
   deletionMode: MessageDeletionMode
   attributes: Set<Attribute>
 
-  /** time limit for editing the message after it's sent */
+  /** time limit (in seconds) for editing the message after it's sent */
   editMessageTimeLimit?: number
+  /** time limit (in seconds) for deleting messages e.g. WhatsApp */
+  deleteForEveryoneTimeLimit?: number
 
   maxMessageLength?: number
   maxGroupTitleLength?: number

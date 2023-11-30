@@ -31,8 +31,8 @@ export type Size = {
 export type PaginatedWithCursors<T> = {
   items: T[]
   hasMore: boolean
-  oldestCursor: string
-  newestCursor?: string
+  oldestCursor: string | null
+  newestCursor?: string | null
 }
 
 export type Paginated<T extends CursorProp> = {

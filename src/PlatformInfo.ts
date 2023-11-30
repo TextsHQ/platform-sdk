@@ -107,6 +107,9 @@ export interface PlatformInfo extends OverridablePlatformInfo, ExtraProp {
   /** time limit for editing the message after it's sent */
   editMessageTimeLimit?: number
 
+  /** time limit for deleting messages e.g. WhatsApp */
+  deleteForEveryoneTimeLimit?: number
+
   maxMessageLength?: number
   maxGroupTitleLength?: number
   typingDurationMs?: number

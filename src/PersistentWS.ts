@@ -80,7 +80,7 @@ export default class PersistentWS {
   private readonly waitAndSend = async (data: any): Promise<void> => {
     while (!this.connected) {
       if (this.disposing) return // we're dropping this data since we're disposing
-      texts.log(`[PersistentWS] waiting ${WAIT_DELAY_MS}ms`, data)
+      texts.log(`[PersistentWS] waiting ${WAIT_DELAY_MS}ms`)
       await sleep(WAIT_DELAY_MS)
     }
     this.send(data)

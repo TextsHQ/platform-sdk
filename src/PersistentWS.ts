@@ -70,6 +70,9 @@ export default class PersistentWS {
       })
   }
 
+  /**
+   * Note: this isn't always accurate, the internet could be down/turned off and this may still return true
+   * */
   get connected() {
     return this.ws && this.ws?.readyState === this.ws?.OPEN
   }

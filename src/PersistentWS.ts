@@ -7,6 +7,8 @@ const MAX_RETRY_ATTEMPTS = Infinity
 const getRetryTimeout = (attempt: number) =>
   Math.min(100 + (2 ** attempt + Math.random() * 100), 60_000)
 
+export type WebSocketClientOptions = WebSocket.ClientOptions
+
 const WAIT_DELAY_MS = 50
 // similar to texts-app-desktop/src/renderer/ws-transport.ts
 export default class PersistentWS {

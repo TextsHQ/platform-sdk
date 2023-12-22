@@ -4,8 +4,8 @@ import { debounce } from 'lodash'
 import { Awaitable, texts } from '.'
 
 const MAX_RETRY_ATTEMPTS = Infinity
-const getRetryTimeout = (attempt: number) =>
-  Math.min(100 + (2 ** attempt + Math.random() * 100), 60_000)
+const getRetryTimeout = (attempt: number) => // 60s after 16 attempts
+  Math.min(Math.floor(100 + (2 ** attempt + (Math.random() * 100))), 60_000)
 
 export type WebSocketClientOptions = WebSocket.ClientOptions
 
@@ -37,8 +37,10 @@ export default class PersistentWS {
     }
     const retry = debounce(() => { // this debounce may be unnecessary
       if (++this.retryAttempt <= MAX_RETRY_ATTEMPTS) {
+        const retryAfter = getRetryTimeout(this.retryAttempt)
+        texts.log('[PersistentWS] will retry after', retryAfter, 'ms')
         clearTimeout(this.connectTimeout!)
-        this.connectTimeout = setTimeout(this.connect, getRetryTimeout(this.retryAttempt))
+        this.connectTimeout = setTimeout(this.connect, retryAfter)
       } else {
         this.disposing = true
       }

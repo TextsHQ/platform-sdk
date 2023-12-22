@@ -20,6 +20,8 @@ export default class PersistentWS {
 
   private connectTimeout: ReturnType<typeof setTimeout> | undefined
 
+  private lastOpen: Date | undefined
+
   constructor(
     private readonly getConnectionInfo: () => Awaitable<{ endpoint: string, options?: WebSocket.ClientOptions }>,
     private readonly onMessage: (msg: Buffer) => void,
@@ -31,9 +33,9 @@ export default class PersistentWS {
     try {
       this.dispose()
     } catch (err) {
-      texts.error('[PersistentWS] connect', err)
+      texts.error('[PersistentWS] connect dispose error', err)
     }
-    const retry = debounce(() => {
+    const retry = debounce(() => { // this debounce may be unnecessary
       if (++this.retryAttempt <= MAX_RETRY_ATTEMPTS) {
         clearTimeout(this.connectTimeout!)
         this.connectTimeout = setTimeout(this.connect, getRetryTimeout(this.retryAttempt))
@@ -42,11 +44,12 @@ export default class PersistentWS {
       }
     }, 25)
     const { endpoint, options } = await this.getConnectionInfo()
-    texts.log('[PersistentWS] connecting', endpoint)
+    texts.log(`[PersistentWS] ${this.lastOpen ? 're' : ''}connecting`, endpoint)
     this.ws = new WebSocket(endpoint, options)
     this.ws
       .on('open', () => {
-        texts.log('[PersistentWS] open')
+        texts.log('[PersistentWS] open', this.lastOpen ? `${(this.lastOpen.getTime() - Date.now()) / 1_000}s` : '')
+        this.lastOpen = new Date()
         this.disposing = false
         this.retryAttempt = 0
         this.onOpen?.()
@@ -54,14 +57,14 @@ export default class PersistentWS {
       .on('message', this.onMessage)
       .on('close', code => {
         texts.log('[PersistentWS] close', { code })
-        if (!this.disposing) retry()
-        else this.disposing = false
+        if (this.disposing) this.disposing = false
+        else retry()
         this.onClose?.()
       })
       .on('error', error => {
         console.error('[PersistentWS] error', error)
-        if (!this.disposing) retry()
-        else this.disposing = false
+        if (this.disposing) this.disposing = false
+        else retry()
       })
   }
 
@@ -85,6 +88,7 @@ export default class PersistentWS {
 
   dispose() {
     if (!this.ws) return
+    this.lastOpen = undefined
     this.disposing = true
     this.ws!.close()
   }

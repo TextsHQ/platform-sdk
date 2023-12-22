@@ -1,7 +1,7 @@
 import { setTimeout as sleep } from 'timers/promises'
 import WebSocket from 'ws'
 import { debounce } from 'lodash'
-import { texts } from '.'
+import { Awaitable, texts } from '.'
 
 const MAX_RETRY_ATTEMPTS = Infinity
 const getRetryTimeout = (attempt: number) =>
@@ -19,7 +19,7 @@ export default class PersistentWS {
   private connectTimeout: ReturnType<typeof setTimeout> | undefined
 
   constructor(
-    private readonly getConnectionInfo: () => ({ endpoint: string, options?: WebSocket.ClientOptions }),
+    private readonly getConnectionInfo: () => Awaitable<{ endpoint: string, options?: WebSocket.ClientOptions }>,
     private readonly onMessage: (msg: Buffer) => void,
     private readonly onOpen?: () => void,
     private readonly onClose?: () => void,

@@ -39,7 +39,7 @@ export default class PersistentWS {
         this.disposing = true
       }
     }, 25)
-    const { endpoint, options } = this.getConnectionInfo()
+    const { endpoint, options } = await this.getConnectionInfo()
     texts.log('[PersistentWS] connecting', endpoint)
     this.ws = new WebSocket(endpoint, options)
     this.ws

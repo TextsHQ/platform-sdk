@@ -21,6 +21,8 @@ export default class PersistentWS {
   constructor(
     private readonly getConnectionInfo: () => ({ endpoint: string, options?: WebSocket.ClientOptions }),
     private readonly onMessage: (msg: Buffer) => void,
+    private readonly onOpen?: () => void,
+    private readonly onClose?: () => void,
   ) {}
 
   readonly connect = async () => {
@@ -45,12 +47,14 @@ export default class PersistentWS {
         texts.log('[PersistentWS] open')
         this.disposing = false
         this.retryAttempt = 0
+        this.onOpen?.()
       })
       .on('message', this.onMessage)
       .on('close', code => {
         texts.log('[PersistentWS] close', { code })
         if (!this.disposing) retry()
         else this.disposing = false
+        this.onClose?.()
       })
       .on('error', error => {
         console.error('[PersistentWS] error', error)
@@ -65,6 +69,7 @@ export default class PersistentWS {
 
   private readonly waitAndSend = async (data: any): Promise<void> => {
     while (!this.connected) {
+      if (this.disposing) return // we're dropping this data since we're disposing
       texts.log(`[PersistentWS] waiting ${WAIT_DELAY_MS}ms`, data)
       await sleep(WAIT_DELAY_MS)
     }

@@ -19,8 +19,7 @@ export default class PersistentWS {
   private connectTimeout: ReturnType<typeof setTimeout> | undefined
 
   constructor(
-    private readonly endpoint: string,
-    private readonly options: WebSocket.ClientOptions,
+    private readonly getConnectionInfo: () => ({ endpoint: string, options?: WebSocket.ClientOptions }),
     private readonly onMessage: (msg: Buffer) => void,
   ) {}
 
@@ -38,8 +37,9 @@ export default class PersistentWS {
         this.disposing = true
       }
     }, 25)
-    texts.log('[PersistentWS] connecting', this.endpoint)
-    this.ws = new WebSocket(this.endpoint, this.options)
+    const { endpoint, options } = this.getConnectionInfo()
+    texts.log('[PersistentWS] connecting', endpoint)
+    this.ws = new WebSocket(endpoint, options)
     this.ws
       .on('open', () => {
         texts.log('[PersistentWS] open')
@@ -59,8 +59,12 @@ export default class PersistentWS {
       })
   }
 
+  get connected() {
+    return this.ws && this.ws?.readyState === this.ws?.OPEN
+  }
+
   private readonly waitAndSend = async (data: any): Promise<void> => {
-    while (!this.ws || (this.ws?.readyState !== this.ws?.OPEN)) {
+    while (!this.connected) {
       texts.log(`[PersistentWS] waiting ${WAIT_DELAY_MS}ms`, data)
       await sleep(WAIT_DELAY_MS)
     }
@@ -68,7 +72,7 @@ export default class PersistentWS {
   }
 
   readonly send = (data: any): Promise<void> | undefined => {
-    if (!this.ws || (this.ws?.readyState !== this.ws?.OPEN)) return this.waitAndSend(data)
+    if (!this.connected) return this.waitAndSend(data)
     this.ws!.send(data)
   }
 

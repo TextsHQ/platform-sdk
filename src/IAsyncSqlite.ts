@@ -1,3 +1,5 @@
+import { Awaitable } from './generic'
+
 // taken from better-sqlite3
 // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/better-sqlite3/index.d.ts
 export interface DBOptions {
@@ -14,17 +16,17 @@ interface RunResult {
 export interface IAsyncSqlite {
   new(): this
 
-  init(filename: string, options?: DBOptions): Promise<void>
+  init(filename: string, options?: DBOptions): Awaitable<void>
 
-  exec(sql: string): Promise<boolean>
+  exec(sql: string): Awaitable<boolean>
 
-  run<BindParameters extends any[]>(sql: string, ...params: BindParameters): Promise<RunResult>
-  all<BindParameters extends any[], ResultType>(sql: string, ...params: BindParameters): Promise<ResultType[]>
-  get<BindParameters extends any[], ResultType>(sql: string, ...params: BindParameters): Promise<ResultType>
+  run<BindParameters extends any[]>(sql: string, ...params: BindParameters): Awaitable<RunResult>
+  all<BindParameters extends any[], ResultType>(sql: string, ...params: BindParameters): Awaitable<ResultType[]>
+  get<BindParameters extends any[], ResultType>(sql: string, ...params: BindParameters): Awaitable<ResultType>
 
-  raw_all<BindParameters extends any[], ResultType>(sql: string, ...params: BindParameters): Promise<ResultType[]>
-  pluck_all<BindParameters extends any[], ResultType>(sql: string, ...params: BindParameters): Promise<ResultType[]>
-  pluck_get<BindParameters extends any[], ResultType>(sql: string, ...params: BindParameters): Promise<ResultType>
+  raw_all<BindParameters extends any[], ResultType>(sql: string, ...params: BindParameters): Awaitable<ResultType[]>
+  pluck_all<BindParameters extends any[], ResultType>(sql: string, ...params: BindParameters): Awaitable<ResultType[]>
+  pluck_get<BindParameters extends any[], ResultType>(sql: string, ...params: BindParameters): Awaitable<ResultType>
 
-  dispose(): Promise<void>
+  dispose(): Awaitable<void>
 }

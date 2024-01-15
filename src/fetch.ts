@@ -13,7 +13,7 @@ export type FetchOptions = {
   /** @default true */
   followRedirect?: boolean
 
-  /** for certificate pinning (ex. Signal) */
+  /** DER encoded certificate for certificate pinning (ex. Signal) */
   pinnedCertificates?: Buffer[]
 }
 

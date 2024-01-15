@@ -12,6 +12,9 @@ export type FetchOptions = {
   cookieJar?: CookieJar
   /** @default true */
   followRedirect?: boolean
+
+  /** for certificate pinning (ex. Signal) */
+  pinnedCertificates?: Buffer[]
 }
 
 export type FetchResponse<T> = {

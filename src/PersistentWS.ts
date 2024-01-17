@@ -26,7 +26,7 @@ export default class PersistentWS {
     private readonly getConnectionInfo: () => Awaitable<{ endpoint: string, options?: WebSocket.ClientOptions }>,
     private readonly onMessage: (msg: Buffer) => void,
     private readonly onOpen?: () => void,
-    private readonly onClose?: (code?: number) => void,
+    private readonly onClose?: (code?: number) => { retry: boolean } | void,
   ) { }
 
   readonly connect = async () => {
@@ -74,8 +74,9 @@ export default class PersistentWS {
       .on('close', code => {
         texts.log('[PersistentWS] close', { code })
         if (this.disposing) this.disposing = false
-        else retry()
-        this.onClose?.(code)
+        else if (this.onClose?.(code)?.retry ?? true) {
+          retry()
+        }
       })
       .on('error', error => {
         console.error('[PersistentWS] error', error)
@@ -105,10 +106,33 @@ export default class PersistentWS {
     this.ws!.send(data)
   }
 
+  /**
+    * Make the underlying WebSocket initiate a closing handshake. Reconnection
+    * is performed unless {@linkcode onClose} is present and it returns `{ retry: false }`.
+    *
+    * Note that if the network is disconnected (or sending the server a close
+    * frame takes too long for whatever reason), the WebSocket will timeout
+    * after several seconds and close with a code of `1006`, regardless of the
+    * code passed into this method.
+    */
+  disconnect(code?: number) {
+    if (!this.ws) return
+    this.lastOpen = undefined
+    this.ws.close(code)
+  }
+
+  /**
+    * Make the underlying WebSocket initiate a closing handshake, _without_
+    * dispatching {@linkcode onClose} when it eventually closes. This prevents
+    * automatic reconnection from occurring. To reconnect after calling this
+    * method, call {@linkcode connect}.
+    *
+    * Please see the caveat described in the documentation for {@linkcode disconnect}.
+    */
   dispose(code?: number) {
     if (!this.ws) return
     this.lastOpen = undefined
     this.disposing = true
-    this.ws!.close(code)
+    this.ws.close(code)
   }
 }

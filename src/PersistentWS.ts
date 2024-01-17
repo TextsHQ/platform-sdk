@@ -40,7 +40,21 @@ export default class PersistentWS {
         const retryAfter = getRetryTimeout(this.retryAttempt)
         texts.log('[PersistentWS] will retry after', retryAfter, 'ms')
         clearTimeout(this.connectTimeout!)
-        this.connectTimeout = setTimeout(this.connect, retryAfter)
+        this.connectTimeout = setTimeout(() => {
+          // Check if someone reconnected us while we were
+          // asleep.
+          //
+          // For example, Texts invokes platforms' `reconnectRealtime` methods
+          // once it notices that network connectivity has returned. Depending
+          // on platform logic, our `connect` method could be called before
+          // we enter this function.
+          if (this.connected) {
+            texts.log('[PersistentWS] skipping post-scheduled connect(), already connected')
+            return
+          }
+
+          this.connect()
+        }, retryAfter)
       } else {
         this.disposing = true
       }

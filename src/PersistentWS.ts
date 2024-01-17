@@ -26,7 +26,7 @@ export default class PersistentWS {
     private readonly getConnectionInfo: () => Awaitable<{ endpoint: string, options?: WebSocket.ClientOptions }>,
     private readonly onMessage: (msg: Buffer) => void,
     private readonly onOpen?: () => void,
-    private readonly onClose?: (code?: number) => { retry: boolean },
+    private readonly onClose?: (code?: number) => { retry: boolean } | void,
   ) { }
 
   readonly connect = async () => {

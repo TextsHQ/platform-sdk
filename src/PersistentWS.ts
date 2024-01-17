@@ -93,13 +93,13 @@ export default class PersistentWS {
   }
 
   /**
-    * Disconnects the underlying WebSocket. Reconnection is performed unless
-    * {@linkcode onClose} is present and it returns `{ retry: false }`.
+    * Make the underlying WebSocket initiate a closing handshake. Reconnection
+    * is performed unless {@linkcode onClose} is present and it returns `{ retry: false }`.
     *
     * Note that if the network is disconnected (or sending the server a close
-    * frame takes too long for whatever reason), the WebSocket will timeout and
-    * close with a code of `1006` regardless of the code passed into this
-    * method.
+    * frame takes too long for whatever reason), the WebSocket will timeout
+    * after several seconds and close with a code of `1006`, regardless of the
+    * code passed into this method.
     */
   disconnect(code?: number) {
     if (!this.ws) return
@@ -108,9 +108,10 @@ export default class PersistentWS {
   }
 
   /**
-    * Disconnects the underlying WebSocket without dispatching {@linkcode onClose}.
-    * This prevents automatic reconnection from occurring. To reconnect after
-    * calling this method, call {@linkcode connect}.
+    * Make the underlying WebSocket initiate a closing handshake, _without_
+    * dispatching {@linkcode onClose} when it eventually closes. This prevents
+    * automatic reconnection from occurring. To reconnect after calling this
+    * method, call {@linkcode connect}.
     *
     * Please see the caveat described in the documentation for {@linkcode disconnect}.
     */

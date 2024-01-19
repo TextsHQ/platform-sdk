@@ -27,6 +27,7 @@ export default class PersistentWS {
     private readonly onMessage: (msg: Buffer) => void,
     private readonly onOpen?: () => void,
     private readonly onClose?: (code?: number) => { retry: boolean } | void,
+    private readonly onError?: (error: Error) => { retry: boolean } | void,
   ) { }
 
   readonly connect = async () => {
@@ -81,7 +82,9 @@ export default class PersistentWS {
       .on('error', error => {
         console.error('[PersistentWS] error', error)
         if (this.disposing) this.disposing = false
-        else retry()
+        else if (this.onError?.(error)?.retry ?? true) {
+          retry()
+        }
       })
   }
 

@@ -81,10 +81,9 @@ export default class PersistentWS {
       })
       .on('error', error => {
         console.error('[PersistentWS] error', error)
+        const shouldRetry = this.onError?.(error)?.retry ?? true
         if (this.disposing) this.disposing = false
-        else if (this.onError?.(error)?.retry ?? true) {
-          retry()
-        }
+        else if (shouldRetry) retry()
       })
   }
 

@@ -1,6 +1,6 @@
 import type { CookieJar } from 'tough-cookie'
 import type { Readable } from 'stream'
-import type { ActivityType, CodeRequiredReason, ConnectionStatus } from './enums'
+import type { ActivityType, AppState, CodeRequiredReason, ConnectionStatus } from './enums'
 import type { Size, Awaitable, PaginatedWithCursors, FSPath, Paginated } from './generic'
 import type { Message, MessageID, MessageLink } from './Message'
 import type { PhoneNumber } from './PhoneNumber'
@@ -222,6 +222,9 @@ export interface PlatformAPI {
 
   /** reconnect any websocket, mqtt or network connections since client thinks it's likely to have broken */
   reconnectRealtime?: () => void
+
+  /** notification from app for sleep/wake states  */
+  onAppStateChange?: (state: AppState) => void
 }
 
 export type ConstructiblePlatformAPI = PlatformAPI & { new(accountID: string): PlatformAPI }

@@ -161,3 +161,8 @@ export enum PlayStatus {
   UNPLAYED = 'UNPLAYED',
   PLAYED = 'PLAYED',
 }
+
+export enum AppState {
+  SUSPENDING = 'suspending',
+  RESUMING = 'resuming',
+}

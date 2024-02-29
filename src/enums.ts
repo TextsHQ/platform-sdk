@@ -161,3 +161,10 @@ export enum PlayStatus {
   UNPLAYED = 'UNPLAYED',
   PLAYED = 'PLAYED',
 }
+
+export enum AppState {
+  /** Host is about to sleep (desktop) or suspend to memory (iOS) */
+  SUSPENDING = 'suspending',
+  /** Host is waking or foregrounded */
+  RESUMING = 'resuming',
+}

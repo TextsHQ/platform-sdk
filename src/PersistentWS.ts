@@ -125,6 +125,17 @@ export default class PersistentWS {
   }
 
   /**
+    * Forcibly close the underlying WebSocket connection. This immediately
+    * dispatches {@linkcode onClose} with a code of `1006`, and the return value
+    * is consulted to determine reconnection behavior.
+    */
+  forceDisconnect() {
+    if (!this.ws) return
+    this.lastOpen = undefined
+    this.ws.terminate()
+  }
+
+  /**
     * Make the underlying WebSocket initiate a closing handshake, _without_
     * dispatching {@linkcode onClose} when it eventually closes. This prevents
     * automatic reconnection from occurring. To reconnect after calling this

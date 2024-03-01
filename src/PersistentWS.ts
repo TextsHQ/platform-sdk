@@ -36,7 +36,13 @@ export default class PersistentWS {
     } catch (err) {
       texts.error('[PersistentWS] connect dispose error', err)
     }
-    const retry = debounce(() => { // this debounce may be unnecessary
+
+    // 'error' and 'close' can be dispatched in tandem under certain
+    // circumstances[1]; guard our retry logic behind a debounce to prevent
+    // introducing two conflicting reconnection "threads".
+    //
+    // [1]: https://github.com/websockets/ws/blob/5e42cfdc5fa114659908eaad4d9ead7d5051d740/lib/websocket.js#L1031
+    const retry = debounce(() => {
       if (++this.retryAttempt <= MAX_RETRY_ATTEMPTS) {
         const retryAfter = getRetryTimeout(this.retryAttempt)
         texts.log('[PersistentWS] will retry after', retryAfter, 'ms')
@@ -109,13 +115,14 @@ export default class PersistentWS {
   }
 
   /**
-    * Make the underlying WebSocket initiate a closing handshake. Reconnection
-    * is performed unless {@linkcode onClose} is present and it returns `{ retry: false }`.
+    * Initiate a closing handshake. Upon completion, {@linkcode onClose} is
+    * called and its return value is consulted to determine reconnection
+    * behavior (defaulting to a reconnect).
     *
-    * Note that if the network is disconnected (or sending the server a close
-    * frame takes too long for whatever reason), the WebSocket will timeout
-    * after several seconds and close with a code of `1006`, regardless of the
-    * code passed into this method.
+    * **IMPORTANT**: If sending the server a close frame takes too long for
+    * whatever reason (such as if the network is down), a close will occur after
+    * 30 seconds (the timeout for a close handshake) with a code of `1006`,
+    * regardless of any code passed into this method.
     */
   disconnect(code?: number) {
     if (!this.ws) return
@@ -124,12 +131,25 @@ export default class PersistentWS {
   }
 
   /**
-    * Make the underlying WebSocket initiate a closing handshake, _without_
-    * dispatching {@linkcode onClose} when it eventually closes. This prevents
-    * automatic reconnection from occurring. To reconnect after calling this
-    * method, call {@linkcode connect}.
+    * Forcibly close the underlying WebSocket connection. This immediately
+    * dispatches {@linkcode onClose} with a code of `1006`, and the return value
+    * is consulted to determine reconnection behavior (defaulting to a reconnect).
     *
-    * Please see the caveat described in the documentation for {@linkcode disconnect}.
+    * If the WebSocket is in the middle of connecting, {@linkcode onError} is
+    * also called.
+    */
+  forceDisconnect() {
+    if (!this.ws) return
+    this.lastOpen = undefined
+    this.ws.terminate()
+  }
+
+  /**
+    * Initiate a closing handshake _without_ calling {@linkcode onClose} upon
+    * completion. This prevents automatic reconnection from occurring. To
+    * initiate another connection after using this method, call {@linkcode connect}.
+    *
+    * Please see the note described in the documentation for {@linkcode disconnect}.
     */
   dispose(code?: number) {
     if (!this.ws) return

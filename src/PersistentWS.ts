@@ -36,7 +36,13 @@ export default class PersistentWS {
     } catch (err) {
       texts.error('[PersistentWS] connect dispose error', err)
     }
-    const retry = debounce(() => { // this debounce may be unnecessary
+
+    // 'error' and 'close' can be dispatched in tandem under certain
+    // circumstances[1]; guard our retry logic behind a debounce to prevent
+    // introducing two conflicting reconnection "threads".
+    //
+    // [1]: https://github.com/websockets/ws/blob/5e42cfdc5fa114659908eaad4d9ead7d5051d740/lib/websocket.js#L1031
+    const retry = debounce(() => {
       if (++this.retryAttempt <= MAX_RETRY_ATTEMPTS) {
         const retryAfter = getRetryTimeout(this.retryAttempt)
         texts.log('[PersistentWS] will retry after', retryAfter, 'ms')

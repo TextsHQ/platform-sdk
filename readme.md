@@ -11,7 +11,13 @@ Either:
 
 Or:
 
-1. Create a file `~/.texts-conf.json` (`touch ~/.texts-conf.json`) and open it in an editor
+1. Create `~/Library/Application Support/jack/config.json` and open it in an editor
+
+  - This terminal command opens the file in VS Code (works in Zsh and Fish):
+
+    ```
+    open -a "Visual Studio Code" ~/Library/App*Sup*/jack/config.json
+    ```
 
 2. Paste in:
 

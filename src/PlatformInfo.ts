@@ -89,8 +89,8 @@ export interface OverridablePlatformInfo {
 export interface AdaptiveIcon {
   /** HTML of a the background SVG */
   background: string
-  /** HTML of a the foreground SVG (Colorful) */
-  foreground: string
+  /** (Optional) HTML of a the foreground SVG (Colorful) */
+  foreground?: string
   /** HTML of the foreground SVG (Monochrome) */
   mono: string
 }

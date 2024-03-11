@@ -86,12 +86,23 @@ export interface OverridablePlatformInfo {
   }
 }
 
+export interface AdaptiveIcon {
+  /** HTML of a the background SVG */
+  background: string
+  /** HTML of a the foreground SVG (Colorful) */
+  foreground: string
+  /** HTML of the foreground SVG (Monochrome) */
+  mono: string
+}
+
 export interface PlatformInfo extends OverridablePlatformInfo, ExtraProp {
   name: string
   version?: string
   displayName: string
   /** HTML of an SVG */
   icon: string
+  /** Adaptive Icon as part of the 2023-24 onboarding redesign */
+  adaptiveIcon?: AdaptiveIcon
   tags?: string[]
 
   loginMode: LoginMode | LoginMode[]

@@ -58,6 +58,15 @@ export type Pref = {
   default: boolean | string
 }
 
+export interface PlatformBrand {
+  /** HTML of an SVG, or a Color */
+  background: string
+  /** HTML of an SVG (Monochrome) */
+  icon: string
+  /** HTML of an SVG (Colorful) */
+  coloredIcon?: string
+}
+
 export interface OverridablePlatformInfo {
   reactions?: {
     supported: Record<string, SupportedReaction>
@@ -86,23 +95,14 @@ export interface OverridablePlatformInfo {
   }
 }
 
-export interface AdaptiveIcon {
-  /** HTML of a the background SVG */
-  background: string
-  /** (Optional) HTML of a the foreground SVG (Colorful) */
-  foreground?: string
-  /** HTML of the foreground SVG (Monochrome) */
-  mono: string
-}
-
 export interface PlatformInfo extends OverridablePlatformInfo, ExtraProp {
   name: string
   version?: string
   displayName: string
-  /** HTML of an SVG */
+  /** @deprecated HTML of an SVG. Consider implementing `brand` instead */
   icon: string
-  /** Adaptive Icon as part of the 2023-24 onboarding redesign */
-  adaptiveIcon?: AdaptiveIcon
+  /** Platform's brand properties and icons */
+  brand?: PlatformBrand
   tags?: string[]
 
   loginMode: LoginMode | LoginMode[]

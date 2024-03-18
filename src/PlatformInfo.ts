@@ -58,13 +58,16 @@ export type Pref = {
   default: boolean | string
 }
 
+type HTMLSVG = `<svg ${string} </svg>`
+type HexColor = `#${string}`
+
 export interface PlatformBrand {
   /** HTML of an SVG, or a Color */
-  background: string
+  background: HTMLSVG | HexColor
   /** HTML of an SVG (Monochrome) */
-  icon: string
+  icon: HTMLSVG
   /** HTML of an SVG (Colorful) */
-  coloredIcon?: string
+  coloredIcon?: HTMLSVG
 }
 
 export interface OverridablePlatformInfo {

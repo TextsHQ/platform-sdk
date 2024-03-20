@@ -58,6 +58,18 @@ export type Pref = {
   default: boolean | string
 }
 
+type HTMLSVG = `<svg ${string} </svg>`
+type HexColor = `#${string}`
+
+export interface PlatformBrand {
+  /** HTML of an SVG, or a Color */
+  background: HTMLSVG | HexColor
+  /** HTML of an SVG (Monochrome) */
+  icon: HTMLSVG
+  /** HTML of an SVG (Colorful) */
+  coloredIcon?: HTMLSVG
+}
+
 export interface OverridablePlatformInfo {
   reactions?: {
     supported: Record<string, SupportedReaction>
@@ -90,8 +102,10 @@ export interface PlatformInfo extends OverridablePlatformInfo, ExtraProp {
   name: string
   version?: string
   displayName: string
-  /** HTML of an SVG */
+  /** @deprecated HTML of an SVG. Consider implementing `brand` instead */
   icon: string
+  /** Platform's brand properties and icons */
+  brand?: PlatformBrand
   tags?: string[]
 
   loginMode: LoginMode | LoginMode[]

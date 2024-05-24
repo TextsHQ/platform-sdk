@@ -37,4 +37,6 @@ export interface Thread extends Identifiable, ExtraProp, OriginalProp {
 
   messages: Paginated<Message>
   participants: Paginated<Participant>
+
+  isE2EE?: boolean;
 }

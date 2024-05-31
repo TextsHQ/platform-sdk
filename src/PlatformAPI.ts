@@ -202,7 +202,7 @@ export interface PlatformAPI {
 
   /** called by the client when an attachment (video/audio/image) is marked as played by user */
   markAttachmentPlayed?: (attachmentID: AttachmentID, messageID?: MessageID) => Awaitable<void>
-  onThreadSelected?: (threadID: ThreadID) => Awaitable<void>
+  onThreadSelected?: (threadID: ThreadID | null) => Awaitable<void>
   loadDynamicMessage?: (message: Message) => Awaitable<Partial<Message>>
 
   // web: token = pushSubscription.toJSON()

@@ -185,7 +185,7 @@ export interface PlatformAPI {
   sendReadReceipt: (threadID: ThreadID, messageID?: MessageID, messageCursor?: string) => Awaitable<void>
 
   addReaction?: (threadID: ThreadID, messageID: MessageID, reactionKey: string) => Awaitable<void>
-  removeReaction?: (threadID: ThreadID, messageID: MessageID, reactionKey: string) => Awaitable<void>
+  removeReaction?: (threadID: ThreadID, messageID: MessageID, reactionKey: string, id: string, messageId?: string) => Awaitable<void>
 
   getLinkPreview?: (link: string) => Awaitable<MessageLink | undefined>
 

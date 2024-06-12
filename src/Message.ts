@@ -17,6 +17,7 @@ export interface MessageReaction extends Identifiable {
   participantID: UserID
   /** is the `reactionKey` an emoji */
   emoji?: boolean
+  messageID?: string
 }
 
 export type ThreadTitleUpdatedAction = { type: MessageActionType.THREAD_TITLE_UPDATED, title: string, actorParticipantID: UserID }

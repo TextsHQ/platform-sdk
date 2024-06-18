@@ -80,6 +80,7 @@ export enum Attribute {
 
   CAN_FETCH_LINK_PREVIEW = 'can_fetch_link_preview',
   CAN_REMOVE_LINK_PREVIEW = 'can_remove_link_preview',
+  SUPPORTS_MUTING = 'supports_muting',
 }
 
 export enum MessageActionType {

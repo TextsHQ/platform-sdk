@@ -197,6 +197,7 @@ export interface PlatformAPI {
 
   markAsUnread?: (threadID: ThreadID, messageID?: MessageID) => Awaitable<void>
   archiveThread?: (threadID: ThreadID, archived: boolean) => Awaitable<void>
+  muteThread?: (threadID: ThreadID, muted: boolean) => Awaitable<void>
   pinThread?: (threadID: ThreadID, pinned: boolean) => Awaitable<void>
   notifyAnyway?: (threadID: ThreadID) => Awaitable<void>
 

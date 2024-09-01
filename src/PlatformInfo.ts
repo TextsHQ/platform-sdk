@@ -58,6 +58,7 @@ export type Pref = {
   default: boolean | string
 }
 
+
 type HTMLSVG = `<svg ${string} </svg>`
 type HexColor = `#${string}`
 
@@ -97,6 +98,15 @@ export interface OverridablePlatformInfo {
     }
   }
 }
+export interface ProxyConfig {
+  host: string;
+  port: number;
+  protocol: 'http' | 'https' | 'socks4' | 'socks5';
+  auth?: {
+    username: string;
+    password: string;
+  };
+}
 
 export interface PlatformInfo extends OverridablePlatformInfo, ExtraProp {
   name: string
@@ -130,6 +140,16 @@ export interface PlatformInfo extends OverridablePlatformInfo, ExtraProp {
   notifications?: NotificationsInfo
 
   prefs?: Record<string, Pref>
+
+  proxyConfig?: {
+    host: string;
+    port: number;
+    protocol: 'http' | 'https' | 'socks4' | 'socks5';
+    auth?: {
+      username: string;
+      password: string;
+    };
+  };
 
   getUserProfileLink?: (participant: Participant) => string
   generateUniqueMessageID?: () => string

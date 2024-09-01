@@ -12,6 +12,7 @@ import type { NotificationsInfo } from './Notifications'
 import type { StickerPack, StickerPackID } from './StickerPack'
 import type { Attachment, AttachmentID } from './Attachment'
 import type { OverridablePlatformInfo } from './PlatformInfo'
+import type { PlatformConfig } from './Platform'
 
 export type OnLoginEventCallback = (data: any) => void
 
@@ -130,8 +131,9 @@ export interface PlatformAPI {
    * Called after new PlatformAPI()
    * @param session - return value of `serializeSession`, `undefined` if not logged in
    */
-  init: (session: SerializedSession, context: ClientContext, prefs?: Record<string, boolean | string>) => Awaitable<void>
+  init(session?: any,  prefs?: Record<string, any>, config?: PlatformConfig): Awaitable<void>;
 
+  
   /** `dispose` disconnects all network connections and cleans up. Called when user disables account and when app exits. */
   dispose: () => Awaitable<void>
 

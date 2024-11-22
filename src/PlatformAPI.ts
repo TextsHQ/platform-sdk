@@ -84,6 +84,7 @@ export type LoginCreds = {
   lastURL?: string
   code?: string
   custom?: any
+  headers?: Record<string, string>
 } | {
   username: string
   password: string

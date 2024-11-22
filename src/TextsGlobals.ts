@@ -47,6 +47,7 @@ export interface TextsNodeGlobals extends TextsGlobalsCommon {
     lastURL: string
     cookieJar: CookieJar.Serialized
     jsCodeResult?: any
+    headers?: Record<string, string> | string
   }>
 
   fetch: FetchFunction

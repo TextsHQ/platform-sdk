@@ -50,3 +50,5 @@ export type Button = {
   label: string
   linkURL: string
 }
+
+export type StringWithAutocompleteOptions<TOptions extends string> = | (string & {}) | TOptions

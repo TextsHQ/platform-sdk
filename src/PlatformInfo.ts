@@ -1,6 +1,6 @@
 import type { CookieJar } from 'tough-cookie'
 import type { MessageDeletionMode, Attribute } from './enums'
-import type { ExtraProp } from './generic'
+import type { ExtraProp, StringWithAutocompleteOptions } from './generic'
 import type { NotificationsInfo } from './Notifications'
 import type { Participant } from './User'
 
@@ -31,6 +31,11 @@ export type BrowserWindowProps = {
   cookieDomains?: string[]
 
   isHidden?: boolean
+
+  headerWatcher?: {
+    url: string
+    header: StringWithAutocompleteOptions<'*'>
+  }
 }
 
 export type BrowserLogin = {

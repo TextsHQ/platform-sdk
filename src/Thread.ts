@@ -3,7 +3,7 @@ import type { Message, MessageID } from './Message'
 import type { Participant } from './User'
 import type { ThreadFolderName } from './ThreadFolderName'
 
-export type ThreadType = 'single' | 'group' | 'channel' | 'broadcast'
+export type ThreadType = 'single' | 'group' | 'groupDM' | 'channel' | 'broadcast'
 
 export type ThreadID = ID
 
